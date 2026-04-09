@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Schedule Demo Button Custom Style */
+.schedule-btn {
+    position: relative;
+    background: #ff9100; /* Default Orange */
+    color: #fff;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    overflow: hidden; 
+    z-index: 10;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+/* Ye hai wo Blue Muh jo center se Left aur Right jayega */
+.schedule-btn::before {
+    content: "";
+    position: absolute;
+    border-radius: 10%;
+    top: 0;
+    left: 50%; /* Center position */
+    width: 0; /* Shuruat mein koi width nahi */
+    height: 100%; /* Height poori rahegi */
+    background: linear-gradient(-45deg, #292dc2, #0084e9);
+    z-index: -1; 
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%); /* Center se expand hone ke liye logic */
+}
+
+/* Hover par width 0 se 100% hogi (Left-Right expansion) */
+.schedule-btn:hover::before {
+    width: 100%;
+}
+
+.schedule-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Sirf adha chalega seamless ke liye */
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 100s linear infinite;
+}
+
+/* Jab parent par hover ho, toh scroll ruk jaye */
+.animate-infinite-scroll:has(.client-item:hover) {
+  animation-play-state: paused;
+}
