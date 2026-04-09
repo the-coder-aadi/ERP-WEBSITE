@@ -64,3 +64,4 @@ body {
 .animate-infinite-scroll:has(.client-item:hover) {
   animation-play-state: paused;
 }
+

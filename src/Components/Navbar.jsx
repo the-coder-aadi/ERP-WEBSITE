@@ -188,7 +188,7 @@ const [openSection, setOpenSection] = useState(null);
 
 
 <div
-  className={`min-[900px]:hidden overflow-hidden w-[90%]  absolute sm:top-20 top-18 md:top-22 left-1/2 transform -translate-x-1/2 border border-[#d6d6d6] rounded-md transition-all duration-500 ease-in-out bg-white z-50
+  className={`min-[900px]:hidden overflow-hidden w-[90%]  fixed sm:top-20 top-18 md:top-22 left-1/2 transform -translate-x-1/2 border border-[#d6d6d6] rounded-md transition-all duration-500 ease-in-out bg-white z-110
   ${menuOpen ? "max-h-[500px] opacity-100 shadow-lg" : "max-h-0 opacity-0"}
   `}
 >

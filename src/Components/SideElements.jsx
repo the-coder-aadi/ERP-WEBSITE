@@ -41,7 +41,7 @@ const [isVisible, setIsVisible] = useState(false);
       </div>
 
       {/* 2. Floating Action Icons (Bottom-Right) */}
-      <div className="absolute bottom-10 max-[500px]:right-1  right-4 flex flex-col gap-4 pointer-events-auto">
+      <div className="absolute bottom-13 max-[500px]:right-1  right-4 flex flex-col gap-4 pointer-events-auto">
         
         {/* WhatsApp Icon */}
         <a href="https://wa.me/yournumber" target="_blank" rel="noreferrer" 
