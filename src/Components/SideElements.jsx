@@ -35,7 +35,7 @@ const [isVisible, setIsVisible] = useState(false);
       
       {/* 1. Download Brochure Button (Sticky Center-Right) */}
       <div className="absolute right-0 top-[15%]  pointer-events-auto">
-        <button className="bg-[#FF9100] text-white font-medium py-2 px-3 max-[500px]:py-1 max-[500px]:px-2 rounded-sm shadow-lg flex items-center gap-2 [writing-mode:vertical-lr] rotate-0 hover:bg-[#e68200] transition-all duration-300">
+        <button className="bg-[#00b7ff] text-white font-medium py-2 px-3 max-[500px]:py-1 max-[500px]:px-2 rounded-sm shadow-lg flex items-center gap-2 [writing-mode:vertical-lr] rotate-0 hover:bg-[#006fe6] transition-all duration-300">
           Download Brochure
         </button>
       </div>

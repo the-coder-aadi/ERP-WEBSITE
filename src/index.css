@@ -7,7 +7,7 @@ body {
 /* Schedule Demo Button Custom Style */
 .schedule-btn {
     position: relative;
-    background: #ff9100; /* Default Orange */
+    background: #3f12e2; /* Default Orange */
     color: #fff;
     padding: 12px 26px;
     font-size: 14px;
@@ -32,7 +32,7 @@ body {
     left: 50%; /* Center position */
     width: 0; /* Shuruat mein koi width nahi */
     height: 100%; /* Height poori rahegi */
-    background: linear-gradient(-45deg, #292dc2, #0084e9);
+    background: linear-gradient(-45deg, #ff9100, #d79947);
     z-index: -1; 
     transition: all 0.3s ease-in-out;
     transform: translateX(-50%); /* Center se expand hone ke liye logic */

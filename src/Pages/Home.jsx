@@ -16,10 +16,12 @@ function Home() {
 
 
 const stories = [
-    "The organization, whether small or large, needs easy access to online services, to handle their data and manage educational requirements in a cost-effective and efficient way. When we started to move towards the ERP system for our institute, it was full of challenges. The market is full of companies providing ERP services. But to get a good one and trustworthy is a hard nut to crack. When",
-    "The most challenging aspect for an educational institute is to manage its data and handle their educational operations via an online platform. The edupluscampus is helping organizations like us to manage our data and work online smoothly. It is one of the most reliable and trustworthy entities to rely on. The best about edupluscampus is its flexibility and cost involved. In the very nominal charges,",
-    "With the growing number of students and staff in our well-esteemed organization, we were looking for an end-to-end technical solution to meet our data management requirements. We opted for edupluscampus cloud-based solution and are using their products like smart ERP, LMS, EasyCheck and OBE tool. All I can say is that our data handling has become so smooth and"
-  ];
+  "Organizations need efficient digital solutions to manage data and academic operations. Choosing the right ERP can be challenging, but Vidya ERP provides a reliable and user-friendly platform that fits institutional needs effectively.",
+
+  "Managing institutional data and daily operations online has always been challenging. Vidya ERP has helped us streamline processes and maintain data efficiently with a flexible and cost-effective solution.",
+
+  "With the growing number of students and staff, we needed a complete solution to manage operations smoothly. Vidya ERP’s cloud-based platform has simplified our workflows and improved overall data management."
+];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -96,67 +98,67 @@ const dummyVideos = [
 
 const clientsData = [
   {
-    name: "Chinchwad University, Pune",
-    logo: "6 (1).png",
-    textColor: "text-red-900"
+    name: "Global University",
+    logo: "placeholder.webp",
+    textColor: "text-gray-800"
   },
   {
-    name: "Vishwakarma University, Pune",
-    logo: "3.webp",
-    textColor: "text-orange-900"
+    name: "Modern Institute of Technology",
+    logo: "placeholder.webp",
+    textColor: "text-orange-800"
   },
   {
-    name: "Deccan Education Society Pune University (DESPU)",
-    logo: "3 (2).webp",
-    textColor: "text-gray-900"
+    name: "National College of Engineering",
+    logo: "placeholder.webp",
+    textColor: "text-gray-800"
   },
   {
-    name: "PCCOE - Pimpri Chinchwad College of Engineering",
-    logo:"11 (1).webp",
+    name: "Bright Future School",
+    logo: "placeholder.webp",
     textColor: "text-blue-900"
   },
   {
-    name: "Vishwakarma Institute of Technology (VIT), Pune",
-    logo: "1.webp",
-    textColor: "text-sky-900"
+    name: "Innovative Learning Academy",
+    logo: "placeholder.webp",
+    textColor: "text-gray-800"
   },
   {
-    name: "NICMAR University, Pune",
-    logo: "NICMAR.webp",
-    textColor: "text-rose-900"
+    name: "City Education Group",
+    logo: "placeholder.webp",
+    textColor: "text-purple-800"
   }
 ];
 
 const SchoolsData = [
   {
-    name: "Sanjivani Academy",
+    name: "Bright Future School",
     logo: "school1.webp",
-    textColor: "text-red-900"
+    textColor: "text-gray-800"
   },
   {
-    name: "Sanjivani Jr. College",
+    name: "Green Valley Academy",
     logo: "school2.webp",
-    textColor: "text-orange-900"
+    textColor: "text-gray-800"
   },
   {
-    name: "Sanjivani Toddlers",
+    name: "Little Stars Preschool",
     logo: "school3.webp",
-    textColor: "text-gray-900"
+    textColor: "text-gray-800"
   },
   {
-    name: "S.M.K.D.E Society",
-    logo:"school4.webp",
-    textColor: "text-blue-900"
+    name: "Sunrise Education Society",
+    logo: "school4.webp",
+    textColor: "text-gray-800"
   },
   {
-    name: "Tilak Maharashtra Vidyalaya",
+    name: "National Public School",
     logo: "school5.webp",
-    textColor: "text-sky-900"
+    textColor: "text-gray-800"
   },
   {
-    name: "Universal Wisdom School",
+    name: "Global Wisdom School",
     logo: "school6.webp",
-    textColor: "text-rose-900"
+    textColor: "text-gray-800"
   }
 ];
 
@@ -166,34 +168,34 @@ const doubleschool = [...SchoolsData, ...SchoolsData,...SchoolsData,...SchoolsDa
 
 const solutionsData = [
   {
-    icon: <FaUniversity/>, // Material Icon name
-    title: "EduplusCollege",
-    description: "A multipurpose cloud-based ERP software for colleges and higher institutions with 25+ modules for achieving better learning outcomes"
+    icon: <FaUniversity />,
+    title: "Vidya College ERP",
+    description: "A powerful cloud-based ERP solution designed to streamline operations and enhance learning management for colleges and higher institutions."
   },
   {
-    icon: <FaSchool/>, 
-    title: "EduplusSchool",
-    description: "A cutting-edge school ERP software that allows institutions for superior teaching-learning pedagogies that ensure better outcomes for every child"
+    icon: <FaSchool />,
+    title: "Vidya School ERP",
+    description: "An advanced school management system that simplifies administration, improves communication, and supports better student outcomes."
   },
   {
-    icon: <FaBookOpen/>, 
-    title: "EduplusLMS",
-    description: "Whether you want to get an overview of the courses or collaborate within the system, create administer and score tests and generate reports, the Eduplus LMS provides a comprehensive solution for all your needs"
+    icon: <FaBookOpen />,
+    title: "Vidya LMS",
+    description: "A complete learning management system to create, manage, and deliver courses, assessments, and performance tracking seamlessly."
   },
   {
-    icon: <FaCheckSquare/>, 
+    icon: <FaCheckSquare />,
     title: "EasyCheck",
-    description: "EasyCheck Evaluation System is an online answer checker that reduces the tedious and labour intensive process of traditional paper checking by digitizing the marksheets"
+    description: "A smart digital evaluation system that simplifies answer checking and reduces manual workload through automated processes."
   },
   {
-    icon: <FaLaptopCode/>, 
+    icon: <FaLaptopCode />,
     title: "EasyPariksha",
-    description: "A robust AI-based online proctoring exam tool that helps educational institutes design, schedule and deliver assessments online seamlessly"
+    description: "An AI-powered online examination platform for secure, scalable, and seamless assessment management."
   },
   {
-    icon: <FaCertificate/>, 
+    icon: <FaCertificate />,
     title: "EasyAccredit",
-    description: "Analyse and assess the progress of the students on various parameters to meet the guidelines set by various accreditation bodies like NAAC, NBA, etc."
+    description: "A comprehensive accreditation management system to track, analyze, and meet institutional compliance standards."
   }
 ];
 
@@ -209,13 +211,13 @@ const solutionsData = [
       <div className="hidden max-[900px]:block px-4 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <p className="text-[#0303c3] text-[18px] max-[400px]:text-[14.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
-              ERP for Smart Campuses of the Future.
+            <p className="text-[#4f16de] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+              Smart ERP Solutions for Modern Institutions.
             </p>
             <h1 className="text-[18px] sm:text-[22px] max-[400px]:text-[14.5px] md:text-[25px] lg:text-[28px] font-semibold text-[#3a3a3a] leading-[1.5] lg:leading-[1.6]">
-              Redefining Education 
-              with <span className="text-[#ffffff] bg-[#FF9100] px-2 rounded-md">All-In-One</span> <br />
-              End-to-End <span className="text-[#ffffff] bg-[#FF9100] px-2 rounded-md">ERP Solution</span> 
+              Enhancing Education 
+              with <span className="text-[#ffffff] bg-[#2600ff] px-2 rounded-md">Integrated</span> <br />
+              Complete <span className="text-[#ffffff] bg-[#3300ff] px-2 rounded-md">ERP Platform</span> 
             </h1>
           </div>
         </div>
@@ -227,16 +229,16 @@ const solutionsData = [
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
         <div className="w-full h-full max-[900px]:h-auto">
          <img 
-    src="/erpBanner.jpg" 
+    src="/final.png" 
     alt="ERP Banner Desktop" 
-    className="hidden min-[501px]:block w-full h-full object-cover object-top"
+    className="hidden min-[701px]:block w-full h-full object-cover object-top"
   />
 
   {/* 2. Mobile Image: Jo sirf 600px aur usse niche dikhegi */}
   <img 
-    src="/erpmobileposter.jpeg" // Yahan apni mobile wali image ka path dalo
+    src="/finalmobile.png" // Yahan apni mobile wali image ka path dalo
     alt="ERP Banner Mobile" 
-    className="block min-[501px]:hidden w-full h-auto object-cover"
+    className="block min-[701px]:hidden w-full h-auto object-cover"
   />
         </div>
 
@@ -248,15 +250,15 @@ const solutionsData = [
             <div className="w-full min-[900px]:w-1/2 flex max-[900px]:hidden  flex-col  items-start whitespace-nowrap">
               
               {/* 1. Small Heading: Size kam kiya hai */}
-              <p className="text-[#0303c3] text-[16px] sm:text-[20px] md:text-[26px] lg:text-[30px]  font-bold tracking-wide mb-2 opacity-90">
-                ERP for Smart Campuses of the Future.
+              <p className="text-[#4f16de] text-[16px] sm:text-[20px] md:text-[26px] lg:text-[30px]  font-bold tracking-wide mb-2 opacity-90">
+               Smart ERP Solutions for Modern Institutions.
               </p>
 
               {/* 2. Main Heading: Size aur line-height adjust ki hai taaki photo na dhake */}
-              <h1 className="text-[16px] sm:text-[20px] md:text-[25px]  lg:text-[28px] font-semibold text-[#3a3a3a] leading-[2.3] lg:leading-[1.6]  ">
-                Redefining Education 
-                with <span className="text-[#ffffff] bg-[#FF9100] px-2 rounded-md">All-In-One</span> <br/>
-                End-to-End <span className="text-[#ffffff] bg-[#FF9100] px-2 rounded-md">ERP Solution</span> 
+              <h1 className="text-[16px] sm:text-[20px] md:text-[25px]  lg:text-[28px] font-semibold text-[#3a3a3a] leading-[1.9] lg:leading-[1.6]  ">
+               Enhancing Education  
+                with <span className="text-[#ffffff] bg-[#2600ff] px-2 rounded-md">Integrated</span> <br/>
+                Complete  <span className="text-[#ffffff] bg-[#3300ff] px-2 rounded-md">ERP Platform</span> 
               </h1>
               
             
@@ -309,7 +311,7 @@ const solutionsData = [
       <textarea placeholder="Message for us..." rows="1" className="w-full bg-white border border-gray-300 rounded-lg pl-10 pr-4 py-2 text-sm outline-none focus:border-[#2C84D5] transition-all placeholder:text-gray-300 resize-none"></textarea>
     </div>
 
-    {/* Captcha Section (Same as Photo) */}
+    {/* Captcha Section */}
     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center gap-2 border border-gray-100">
       <div className="flex items-center gap-3">
         <div className="bg-white px-3 py-1 border border-gray-200 rounded font-mono font-bold tracking-[5px] text-md select-none italic text-gray-700 shadow-sm">
@@ -348,7 +350,7 @@ const solutionsData = [
 
 
   {/* --- MOBILE/TABLET WALA FORM (Hero ke niche) --- */}
-<div className="min-[900px]:hidden w-full px-4 py-6 bg-[#FBFBFC]">
+<div className="min-[900px]:hidden w-full px-4 py-6 ">
   <div className="max-w-[450px] mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
     
     {/* Form Header - Height kam ki hai */}
@@ -426,45 +428,56 @@ const solutionsData = [
   <div className="max-w-[1200px] mx-auto flex flex-col min-[1000px]:flex-row items-center gap-16 lg:gap-30">
     
     {/* Left Side: Bulb Graphic - Size aur chota kiya hai */}
-    <div className="w-full min-[1000px]:w-[40%] flex justify-center">
-      <div className="relative max-w-[220px] sm:max-w-[260px] lg:max-w-[260px] w-full">
-        <img 
-          src="/Empower.svg" 
-          alt="Empowering Education Bulb" 
-          className="w-full h-auto object-contain will-change-contents transition-transform scale-125 duration-500 hover:-translate-y-3"
-        />
-      </div>
-    </div>
+ <motion.div 
+  initial={{ opacity: 0, x: -80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="w-full min-[1000px]:w-[40%] flex justify-center"
+>
+  <div className="relative max-w-[220px] sm:max-w-[260px] lg:max-w-[300px] w-full">
+    <img 
+      src="/empower.jpg" 
+      alt="Empowering Education Bulb" 
+      className="w-full h-auto object-contain transition-transform scale-125 duration-500 hover:-translate-y-3"
+    />
+  </div>
+</motion.div>
 
     {/* Right Side: Content Area - Width thodi kam ki hai (65% -> 60%) */}
-    <div className="w-full min-[1000px]:w-[60%] flex flex-col items-start">
+    <motion.div 
+  initial={{ opacity: 0, x: 80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7, delay: 0.2 }}
+  viewport={{ once: true }}
+  className="w-full min-[1000px]:w-[60%] flex flex-col items-start"
+>
       
       {/* Orange Accent Line */}
       <div className="w-15 h-[10px] bg-[#FF9100] rounded-full mb-6"></div>
 
       {/* Main Heading - Responsive sizing */}
       <h2 className="text-2xl sm:text-3xl lg:text-[28px] font-semibold text-[#3f3f3f] leading-[1.3] mb-6 tracking-tight">
-        Empowering Schools, Colleges and Universities with Smart Digital Solutions
+        Empowering Educational Institutions with Smart Digital ERP Solutions
       </h2>
 
       {/* Description Paragraphs */}
       <div className="space-y-6 text-gray-500 text-[14px] md:text-[15.5px] leading-[1.8] text-justify font-medium opacity-90">
-        <p>
-          Supporting the Digital Transformation of Schools, Colleges, and Universities 
-          with the best ERP software solutions. EduplusCampus offers the best ERP 
-          software in India, delivering a comprehensive suite of online solutions to 
-          revolutionize the teaching-learning experience and streamline the operations 
-          of educational institutions.
-        </p>
-        
-        <p>
-          Whether you're managing a school, college, or university, our platform is 
-          designed to meet your unique needs. EduplusCampus ERP Software empowers 
-          management, students, teachers, and parents by addressing key challenges 
-          in the education sector through smart, scalable, and user-friendly ERP solutions.
-        </p>
+     <p>
+  Driving the digital transformation of schools, colleges, and universities 
+  with advanced ERP solutions. Vidya ERP provides a comprehensive suite of 
+  tools designed to simplify institutional operations, enhance productivity, 
+  and improve the overall teaching and learning experience.
+</p>
+
+<p>
+  Whether you manage a school, college, or university, Vidya ERP is built to 
+  meet your unique requirements. Our platform empowers administrators, 
+  teachers, students, and parents by streamlining processes, improving 
+  communication, and delivering a seamless, user-friendly digital experience.
+</p>
       </div>
-    </div>
+    </motion.div >
 
   </div>
 </section>
@@ -479,15 +492,15 @@ const solutionsData = [
 
         {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
         {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-        <h2 className="text-[28px] sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#4c3bcf] leading-tight mb-8 tracking-tight">
-          SMART CLOUD-BASED SOLUTIONS
+        <h2 className="text-[28px] uppercase sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#4c3bcf] leading-tight mb-8 tracking-tight">
+          Smart Cloud-Based ERP Solutions
         </h2>
 
         {/* 3. Sub-text (Italicized Description) */}
         {/* 'italic' class aur professional font style use kiya hai readability ke liye */}
         <p className="italic text-gray-700 text-[15px] sm:text-[16px] md:text-[20.5px]  leading-relaxed  font-semibold">
-          Innovative solutions that cover all aspects of the administration of 
-          educational institutes to empower educators and enhance student success
+            Powerful, cloud-driven ERP solutions designed to streamline operations, 
+  simplify administration, and enhance learning outcomes for modern educational institutions.
         </p>
 
       </div>
@@ -499,7 +512,7 @@ const solutionsData = [
         {solutionsData.map((item, index) => (
           <div 
             key={index} 
-            className="bg-white border-[1.5px] border-blue-100 rounded-[35px] max-[400px]:p-5 p-7 flex flex-col items-center text-center shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group"
+            className="bg-white border-[1.5px] will-change-contents border-blue-100 rounded-[35px] max-[400px]:p-5 p-7 flex flex-col items-center text-center shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group"
           >
             {/* Icon Box */}
             <div className="w-20 h-20  flex items-center justify-center mb-8 max-[400px]:mb-2">
@@ -531,7 +544,7 @@ const solutionsData = [
     <div className="w-14 h-2.5 bg-[#FF9100] rounded-full"></div>
   </div>
   <h2 className="text-white text-2xl md:text-[32px] font-bold mb-12">
-    Elevate Learning with EduplusCampus
+    Transforming Education with Vidya ERP
   </h2>
 
   <div className="max-w-5xl mx-auto grid gap-6 grid-cols-1 min-[440px]:grid-cols-2 md:grid-cols-3 sm:gap-10">
@@ -579,7 +592,7 @@ const solutionsData = [
 
     {/* Heading */}
     <h2 className="text-center text-[#4c3bcf] text-2xl md:text-3xl font-semibold mb-6 sm:mb-12">
-      EduplusCampus Offers
+      What We Offer
     </h2>
 
     {/* Content */}
@@ -588,7 +601,7 @@ const solutionsData = [
       {/* LEFT IMAGE */}
       <div className="w-full lg:w-1/2">
         <img
-          src="/offer.webp"
+          src="offer.jpg"
           alt="offers"
           className="w-full h-auto rounded-md object-cover"
         />
@@ -598,18 +611,20 @@ const solutionsData = [
       <div className="w-full lg:w-1/2 grid grid-cols-1 min-[470px]:grid-cols-2 gap-y-4 gap-x-10">
 
         {[
-          "Support and Training",
-          "Mobile Applications",
-          "Biometric",
-          "Notification",
-          "QR Code",
-          "Barcode",
-          "End-to-End Solutions",
-          "Intuitive User Interface",
-          "Dashboards and Reporting",
-          "EduplusCampus Integration",
-          "Easy integration with third-party API",
-          "Data Security and Central Data Repository"
+       
+  "Dedicated Support & Training",
+  "Mobile Applications",
+  "Biometric Integration",
+  "Smart Notifications",
+  "QR Code Integration",
+  "Barcode Support",
+  "End-to-End ERP Solutions",
+  "Intuitive User Interface",
+  "Advanced Dashboards & Reporting",
+  "Seamless System Integration",
+  "Easy Third-Party API Integration",
+  "Secure Data Management & Centralized Repository"
+
         ].map((item, index) => (
           
           <div
@@ -645,7 +660,7 @@ const solutionsData = [
     
     <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-8"></div>
     <h2 className="sm:text-2xl text-xl md:text-4xl font-extrabold  text-[#3d52d9] mb-6 sm:mb-16 text-center">
-      Our Prestigious Clients & 200+ More
+      Our Trusted Clients & Growing Network
     </h2>
 
     {/* Main Container - 'group' class add ki hai hover detect karne ke liye */}
@@ -660,14 +675,11 @@ const solutionsData = [
           <div
             key={index}
             // individual item hover par bhi pura track rukega
-            className="w-[300px] client-item shrink-0 flex flex-col items-center text-center px-6 gap-6 cursor-pointer"
+            className="w-[300px] client-item shrink-0 duration-300  hover:scale-105 will-change-contents hover:scale-105 will-change-contents flex flex-col items-center text-center px-6 gap-6 cursor-pointer"
           >
-         <div className="h-20 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-  <img 
-    src={client.logo} 
-    className="h-full w-auto object-contain max-w-[180px] opacity-80 group-hover:opacity-100 transition-opacity" 
-  />
-</div>
+   <div className="w-9 h-9 bg-[#2F2FB2] will-change-contents  text-white flex items-center justify-center rounded-md font-bold">
+      {client.name.charAt(0)}
+    </div>
             <p className={`text-[14px] font-bold ${client.textColor} opacity-80 uppercase tracking-tight`}>
               {client.name}
             </p>
@@ -687,7 +699,7 @@ const solutionsData = [
     
     <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-8"></div>
     <h2 className="sm:text-2xl text-xl md:text-4xl font-extrabold  text-[#3d52d9] mb-6 sm:mb-16 text-center">
-     Our School ERP Software – Trusted by Elite & Prestigious Schools
+     Our School ERP Software – Trusted by Leading & Modern Schools
     </h2>
 
     {/* Main Container - 'group' class add ki hai hover detect karne ke liye */}
@@ -702,14 +714,11 @@ const solutionsData = [
           <div
             key={index}
             // individual item hover par bhi pura track rukega
-            className="w-[300px] client-item shrink-0 flex flex-col items-center text-center px-6 gap-6 cursor-pointer"
+            className="w-[300px] client-item shrink-0 flex flex-col duration-300 hover:scale-105 will-change-contents hover:scale-105 will-change-contents  items-center text-center px-6 gap-6 cursor-pointer"
           >
-         <div className="h-20 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-  <img 
-    src={client.logo} 
-    className="h-full w-auto object-contain max-w-[180px] opacity-80 group-hover:opacity-100 transition-opacity" 
-  />
-</div>
+ <div className="w-9 h-9 bg-[#2F2FB2] will-change-contents  text-white flex items-center justify-center rounded-md font-bold">
+      {client.name.charAt(0)}
+    </div>
             <p className={`text-[14px] font-bold ${client.textColor} opacity-80 uppercase tracking-tight`}>
               {client.name}
             </p>

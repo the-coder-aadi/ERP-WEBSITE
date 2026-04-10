@@ -5,25 +5,43 @@ import React from "react";
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const subMenuItems = [
-  "About Us",
+
+const subMenuItems = [
+  "About Vidya ERP",
   "Our Team",
-  "Demo",
-  "Life at EduplusCampus",
+  "Request Demo",
+  "Life at Vidya ERP",
   "Careers"
 ];
 
 const productsData = [
-  { left: "EduplusUniversity", right: "EasyCheck" },
-  { left: "EduplusCollege", right: "EasyPariksha" },
-  { left: "EduplusSchool", right: "EasyAccredit" },
-  { left: "EduplusCRM", right: "EduplusJobs" },
-  { left: "EasyEnroll", right: "EduplusAlma" },
-  { left: "EduplusHR", right: "EduplusLibrary" },
-  { left: "EduplusLMS", right: "EduplusInventory" },
-  { left: "EduplusExam", right: "EduplusDesk" }
+  { left: "VidyaUniversity", right: "EasyCheck" },
+  { left: "VidyaCollege", right: "EasyPariksha" },
+  { left: "VidyaSchool", right: "EasyAccredit" },
+  { left: "VidyaCRM", right: "VidyaJobs" },
+  { left: "EasyEnroll", right: "VidyaAlma" },
+  { left: "VidyaHR", right: "VidyaLibrary" },
+  { left: "VidyaLMS", right: "VidyaInventory" },
+  { left: "VidyaExam", right: "VidyaDesk" }
 ];
-
+const productdatamobile = [
+  "VidyaUniversity",
+  "EasyCheck",
+  "VidyaCollege",
+  "EasyPariksha",
+  "VidyaSchool",
+  "EasyAccredit",
+  "VidyaCRM",
+  "VidyaJobs",
+  "EasyEnroll",
+  "VidyaAlma",
+  "VidyaHR",
+  "VidyaLibrary",
+  "VidyaLMS",
+  "VidyaInventory",
+  "VidyaExam",
+  "VidyaDesk"
+];
   const partnerdata = [
 "Become a Referral Partner",
 "Become a Channel Partner"
@@ -41,13 +59,11 @@ const [openSection, setOpenSection] = useState(null);
   return (
     <>
     <nav className="w-full sticky top-0 z-[100] bg-white border-b shadow-sm border-gray-200">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-5  py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-3 sm:py-4.5">
 
         {/* Logo */}
-        <div className="flex items-center">
-          <img src="logo.webp" alt="logo" className="md:h-14 sm:h-12 h-10 object-contain" />
-        </div>
-
+     {/* Logo */}
+<div className="flex items-center"> <img src="vidyalogo.png" alt="logo" className="md:h-14 sm:h-12 h-10 object-contain" /> </div>
         {/* Desktop Menu */}
         <ul className="hidden min-[900px]:flex items-center gap-7 mt-3  text-[15px] font-medium text-gray-700">
           <li className="text-blue-600 cursor-pointer font-medium text-[14px]">Home</li>
@@ -57,7 +73,7 @@ const [openSection, setOpenSection] = useState(null);
   {/* Trigger */}
   <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
     About Us
-    <span className="material-symbols-outlined text-[18px]">
+    <span className="material-symbols-outlined text-[18px]" style={{ fontSize: "19px" }}>
       expand_more
     </span>
   </div>
@@ -188,7 +204,7 @@ const [openSection, setOpenSection] = useState(null);
 
 
 <div
-  className={`min-[900px]:hidden overflow-hidden w-[90%]  fixed sm:top-20 top-18 md:top-22 left-1/2 transform -translate-x-1/2 border border-[#d6d6d6] rounded-md transition-all duration-500 ease-in-out bg-white z-110
+  className={`min-[900px]:hidden overflow-hidden w-[90%]  fixed sm:top-21 top-16 md:top-23 left-1/2 transform -translate-x-1/2 border border-[#d6d6d6] rounded-md transition-all duration-500 ease-in-out bg-white z-110
   ${menuOpen ? "max-h-[500px] opacity-100 shadow-lg" : "max-h-0 opacity-0"}
   `}
 >
@@ -237,9 +253,9 @@ const [openSection, setOpenSection] = useState(null);
     </div>
           </div>
           
-          <div className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#F9F9F9] ${openSection === 'products' ? 'max-h-[300px]' : 'max-h-0'}`}>
+          <div className={`overflow-x-hidden transition-all duration-500 ease-in-out bg-[#F9F9F9] ${openSection === 'products' ? 'max-h-[300px]' : 'max-h-0'}`}>
             <ul className="flex flex-col">
-              {subMenuItems.map((item, index) => (
+              {productdatamobile.map((item, index) => (
                 <li key={index} className="px-8 py-3 border-b border-gray-200/50 text-gray-600 text-[14px]">
                   {item}
                 </li>
@@ -263,7 +279,7 @@ const [openSection, setOpenSection] = useState(null);
           
           <div className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#F9F9F9] ${openSection === 'partners' ? 'max-h-[300px]' : 'max-h-0'}`}>
             <ul className="flex flex-col">
-              {subMenuItems.map((item, index) => (
+              {partnerdata.map((item, index) => (
                 <li key={index} className="px-8 py-3 border-b border-gray-200/50 text-gray-600 text-[14px]">
                   {item}
                 </li>
