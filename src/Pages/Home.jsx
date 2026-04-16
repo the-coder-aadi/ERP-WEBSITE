@@ -1,6 +1,6 @@
 import Navbar from "../Components/Navbar";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../Components/firebase";
 
@@ -14,6 +14,7 @@ import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from 'react-icons/fa';
 import RequestDemo from "../Components/RequestDemo";
 import Footer from "../Components/Footer";
 import SideElements from "../Components/SideElements";
+import Counter from "../Components/Counter";
 
 function Home() {
   const [generatedCaptcha, setGeneratedCaptcha] = useState("")
@@ -86,9 +87,9 @@ const generateCaptcha = () => {
     setIsGenerating(false); // Kaam hone ke baad loading band
   }, 500); // 1500ms = 1.5 seconds
 }
-  useEffect(() => {
-    generateCaptcha();
-  }, []);
+  // useEffect(() => {
+  //   generateCaptcha();
+  // }, []);
 
   const [errors, setErrors] = useState({});
 
@@ -117,7 +118,6 @@ const generateCaptcha = () => {
 
     return Object.keys(newErrors).length === 0;
   }
-
 
 
   const handleSubmit = async (e) => {
@@ -152,8 +152,8 @@ const generateCaptcha = () => {
       message: "",
       captchaInput: ""
     });
+generateCaptcha()
 
-    generateCaptcha(); // new captcha
 
   } catch (error) {
     console.log(error);
@@ -184,14 +184,14 @@ const generateCaptcha = () => {
     setCurrentIndex((prev) => (prev === 0 ? stories.length - 1 : prev - 1));
   };
 
-
-// function Counter({ value, suffix = "" }) {
+// const Counter = memo(function Counter({ value, suffix = "" }) {
 //   const ref = useRef(null);
 //   const [count, setCount] = useState(0);
 //   const hasAnimated = useRef(false);
 
 //   useEffect(() => {
 //     const node = ref.current;
+//     if (!node) return;
 
 //     const observer = new IntersectionObserver(
 //       ([entry]) => {
@@ -212,25 +212,22 @@ const generateCaptcha = () => {
 //             if (progress < 1) {
 //               requestAnimationFrame(animate);
 //             } else {
-//               setCount(value); // ✅ final stop
+//               setCount(value);
 //             }
 //           };
 
 //           requestAnimationFrame(animate);
 
-//           // 🔥 IMPORTANT: stop observing after first trigger
-//           observer.unobserve(node);
+//           observer.disconnect(); // 🔥 main fix
 //         }
 //       },
 //       { threshold: 0.6 }
 //     );
 
-//     if (node) observer.observe(node);
+//     observer.observe(node);
 
-//     return () => {
-//       if (node) observer.unobserve(node);
-//     };
-//   }, [value]);
+//     return () => observer.disconnect();
+//   }, []); // 🔥 value hata diya (important)
 
 //   return (
 //     <div ref={ref} className="sm:text-7xl text-6xl font-bold text-white">
@@ -238,8 +235,7 @@ const generateCaptcha = () => {
 //       {suffix}
 //     </div>
 //   );
-// }
-
+// });
 
   const solutionsData = [
     {
@@ -442,7 +438,7 @@ name="name"
                     value={formData.captchaInput}
                     onChange={handleChange}
                     name="captchaInput"
-                    placeholder="ENTER CAPTCHA"  className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
+                    placeholder="ENTER CAPTCHA"  className={`w-full bg-white border text-center rounded-lg px-5 py-2 text-sm outline-none transition-all
   ${errors.captcha ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
                       
                 </div>
@@ -715,8 +711,8 @@ name="name"
 
 
       </main>
-
-      <section className="bg-[#2F2FB2] py-12 px-5 text-center">
+{/* 
+    <section className="bg-[#2F2FB2] py-12 px-5 text-center">
         <div className="flex justify-center mb-4">
           <div className="w-14 h-2.5 bg-[#FF9100] rounded-full"></div>
         </div>
@@ -726,38 +722,38 @@ name="name"
 
         <div className="max-w-5xl mx-auto grid gap-6 grid-cols-1 min-[440px]:grid-cols-2 md:grid-cols-3 sm:gap-10">
 
-          {/* ITEM */}
+    
           <div className="flex flex-col items-center">
 
-            {/* BOX */}
+      
             <div className="border-4 border-white hover:-translate-y-2 transition-all duration-300  py-8 w-full">
-              {/* <Counter value={4} suffix="L+" /> */}
+              <Counter value={4} suffix="L+" />
             </div>
 
-            {/* TEXT */}
             <p className="text-white font-semibold mt-2 text-2xl sm:text-3xl">Learners</p>
           </div>
 
-          {/* ITEM */}
+     
           <div className="flex flex-col items-center">
             <div className="border-4 border-white py-8 w-full hover:-translate-y-2 transition-all duration-300 ">
-              {/* <Counter value={142} suffix="+" /> */}
+              <Counter value={142} suffix="+" />
             </div>
             <p className="text-white mt-2 font-semibold text-2xl sm:text-3xl">Clients</p>
           </div>
 
-          {/* ITEM */}
+
           <div className="flex flex-col items-center">
             <div className="border-4 border-white py-8 w-full hover:-translate-y-2 transition-all duration-300 ">
-              {/* <Counter value={47} suffix="+" /> */}
+              <Counter value={47} suffix="+" />
              
             </div>
             <p className="text-white mt-2 font-semibold text-2xl sm:text-3xl">Modules</p>
           </div>
 
         </div>
-      </section>
-
+        
+      </section> */}
+<Counter />
 
       <section className="w-full bg-[#F9FAFB] py-12 sm:py-16 px-5">
 

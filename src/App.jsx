@@ -27,6 +27,7 @@ import ChannelPartner from "./Pages/ChannelPartner"
 import ScrollToTop from "./Components/ScrollToTop"
 
 
+
 function App() {
  return(
 <BrowserRouter>
@@ -54,6 +55,7 @@ function App() {
 <Route path="/referral-partner" element={<Referral />} />
 <Route path="/channel-partner" element={<ChannelPartner />} />
 <Route path="/vidya-desk" element={<VidyaDesk />} />
+
 </Routes>
 </BrowserRouter>
  )  
