@@ -1,53 +1,56 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
+import VidyaUniversity from "../Pages/vidhyauniversity";
 import React from "react";
+import { useNavigate,useLocation  } from "react-router-dom";
 
 function Navbar() {
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+const isAboutActive = location.pathname.startsWith("/about") || location.pathname.startsWith("/our")|| location.pathname.startsWith("/life")|| location.pathname.startsWith("/careers");
+const isProductActive =
+  location.pathname.startsWith("/vidya") ||
+  location.pathname.startsWith("/crm") ||
+  location.pathname.startsWith("/easy");
 
+  const IsPartnerActive = location.pathname.startsWith("/referral") ||
+  location.pathname.startsWith("/channel");
+
+
+const navigate = useNavigate();
 
 const subMenuItems = [
-  "About Vidya ERP",
-  "Our Team",
-  "Request Demo",
-  "Life at Vidya ERP",
-  "Careers"
+  { name: "About Vidya ERP", path: "/about" },
+  { name: "Our Team", path: "/our-team" },
+  { name: "Demo", path: "/our-demo" },
+  { name: "Life at Vidya ERP", path: "/life-at-vidya" },
+  { name: "Careers", path: "/careers" }
 ];
-
 const productsData = [
-  { left: "VidyaUniversity", right: "EasyCheck" },
-  { left: "VidyaCollege", right: "EasyPariksha" },
-  { left: "VidyaSchool", right: "EasyAccredit" },
-  { left: "VidyaCRM", right: "VidyaJobs" },
-  { left: "EasyEnroll", right: "VidyaAlma" },
-  { left: "VidyaHR", right: "VidyaLibrary" },
-  { left: "VidyaLMS", right: "VidyaInventory" },
-  { left: "VidyaExam", right: "VidyaDesk" }
-];
-const productdatamobile = [
-  "VidyaUniversity",
-  "EasyCheck",
-  "VidyaCollege",
-  "EasyPariksha",
-  "VidyaSchool",
-  "EasyAccredit",
-  "VidyaCRM",
-  "VidyaJobs",
-  "EasyEnroll",
-  "VidyaAlma",
-  "VidyaHR",
-  "VidyaLibrary",
-  "VidyaLMS",
-  "VidyaInventory",
-  "VidyaExam",
-  "VidyaDesk"
-];
-  const partnerdata = [
-"Become a Referral Partner",
-"Become a Channel Partner"
-
+  { name: "VidyaUniversity", path: "/vidya-university" },
+  { name: "EasyCheck", path: "/easy-check" },
+  { name: "VidyaCollege", path: "/vidya-university" },
+  { name: "EasyPariksha", path: "/easy-pariksha" },
+  { name: "VidyaSchool", path: "/vidya-school" },
+  { name: "VidyaCRM", path: "/crm-software" },
+  { name: "EasyEnroll", path: "/easy-enroll" },
+  { name: "VidyaHR", path: "/vidya-hr" },
+  { name: "VidyaLMS", path: "/vidya-lms" },
+  { name: "VidyaDesk", path: "/vidya-desk" }
 ];
 
+const partnerdata = [
+  {
+    name: "Become a Referral Partner",
+    path: "/referral-partner", 
+
+  },
+  {
+    name: "Become a Channel Partner",
+    path: "/channel-partner",
+
+  }
+];
 
 const [openSection, setOpenSection] = useState(null); 
 
@@ -63,15 +66,23 @@ const [openSection, setOpenSection] = useState(null);
 
         {/* Logo */}
      {/* Logo */}
-<div className="flex items-center"> <img src="vidyalogo.png" alt="logo" className="md:h-14 sm:h-12 h-10 object-contain" /> </div>
+<div className="flex items-center"> <img src="/vidyalogo.png" alt="logo" className="md:h-14 sm:h-12 h-10 object-contain" /> </div>
         {/* Desktop Menu */}
         <ul className="hidden min-[900px]:flex items-center gap-7 mt-3  text-[15px] font-medium text-gray-700">
-          <li className="text-blue-600 cursor-pointer font-medium text-[14px]">Home</li>
+          <li onClick={()=> navigate("/")}
+  className={`cursor-pointer font-medium text-[15.5px] hover:text-blue-600 ${
+    location.pathname === "/" ? "text-blue-600" : "text-gray-700"
+  }`}
+>
+  Home
+</li>
 
 <li className="relative group">
   
   {/* Trigger */}
-  <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
+  <div className={`flex items-center gap-1 text-[15.5px] cursor-pointer hover:text-blue-600 ${
+    isAboutActive ? "text-blue-600 font-medium" : ""
+  }`}>
     About Us
     <span className="material-symbols-outlined text-[18px]" style={{ fontSize: "19px" }}>
       expand_more
@@ -88,10 +99,14 @@ const [openSection, setOpenSection] = useState(null);
     <ul className="py-2">
       {subMenuItems.map((item, index) => (
         <li
+         onClick={()=> navigate(item.path)}
           key={index}
-          className="px-4 py-3 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer"
+            style={{
+          color: location.pathname === item.path ? "blue" : "text-gray-500"
+        }}
+          className="px-4 py-3 text-[15px] text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer"
         >
-          {item}
+          {item.name}
         </li>
       ))}
     </ul>
@@ -102,7 +117,9 @@ const [openSection, setOpenSection] = useState(null);
   <li className="relative group">
 
   {/* Trigger */}
-  <div className="flex items-center gap-1 text-[15px] font-medium cursor-pointer hover:text-blue-600">
+  <div className={`flex items-center gap-1 text-[15.5px] font-medium cursor-pointer hover:text-blue-600 ${
+    isProductActive ? "text-blue-600 font-medium" : ""
+  }`}>
     Products
     <span className="material-symbols-outlined text-[18px]" style={{ fontSize: "19px" }}>
       expand_more
@@ -119,12 +136,16 @@ const [openSection, setOpenSection] = useState(null);
     <ul className="py-2 grid grid-cols-2">
       {productsData.map((item, index) => (
         <React.Fragment key={index}>
-          <li className="px-4 py-3 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer">
-            {item.left}
+          <li  onClick={()=> navigate(item.path)}
+                  style={{
+         color: location.pathname === item.path ? "blue" : "text-gray-500"
+
+        }}
+          className="px-4 py-3 text-[15px] text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer">
+            {item.name}
+            
           </li>
-          <li className="px-4 py-3 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer">
-            {item.right}
-          </li>
+
         </React.Fragment>
       ))}
     </ul>
@@ -135,7 +156,9 @@ const [openSection, setOpenSection] = useState(null);
 <li className="relative group">
 
   {/* Trigger */}
-  <div className="flex items-center gap-1 font-medium text-[15px] cursor-pointer hover:text-blue-600">
+  <div className={`flex items-center gap-1 text-[15.5px] font-medium cursor-pointer hover:text-blue-600 ${
+    IsPartnerActive ? "text-blue-600 font-medium" : ""
+  }`} >
     Partners
     <span className="material-symbols-outlined text-[18px]" style={{ fontSize: "19px" }}>
       expand_more
@@ -144,7 +167,7 @@ const [openSection, setOpenSection] = useState(null);
 
   {/* Dropdown */}
   <div
-    className="absolute left-0 top-10 w-56 bg-white border border-gray-200 rounded-md shadow-lg 
+    className="absolute left-0 top-10 w-63 bg-white border border-gray-200 rounded-md shadow-lg 
     opacity-0 invisible translate-y-2 
     group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 
     transition-all duration-200 ease-out z-50 after:content-[''] after:absolute after:-top-4 after:left-0 after:w-full after:h-4"
@@ -153,9 +176,14 @@ const [openSection, setOpenSection] = useState(null);
       {partnerdata.map((item, index) => (
         <li
           key={index}
-          className="px-4 py-2 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer"
+                    style={{
+          color: location.pathname === item.path ? "blue" : "text-gray-500"
+
+        }}
+          onClick={()=> navigate(item.path)}
+          className="px-4 py-2 text-[15.5px] text-gray-500 hover:text-gray-800 hover:bg-gray-50 cursor-pointer"
         >
-          {item}
+          {item.name}
         </li>
       ))}
     </ul>
@@ -163,13 +191,21 @@ const [openSection, setOpenSection] = useState(null);
 
 </li>
 
-          <li className="cursor-pointer hover:text-blue-600 font-medium text-[15px]">Pricing</li>
-          <li className="cursor-pointer hover:text-blue-600 font-medium text-[15px]">Blog</li>
-          <li className="cursor-pointer hover:text-blue-600 font-medium text-[15px]">Contact Us</li>
+          <li className="cursor-pointer hover:text-blue-600 font-medium text-[15.5px]">Pricing</li>
+          <li className={`cursor-pointer font-medium text-[15.5px] hover:text-blue-600 ${
+    location.pathname === "/blog" ? "text-blue-600" : "text-gray-700"
+  }`}  onClick={()=> navigate("/blog")}>Blog</li>
+          <li className={`cursor-pointer font-medium text-[15.5px] hover:text-blue-600 ${
+    location.pathname === "/contact" ? "text-blue-600" : "text-gray-700"
+  }`}  onClick={()=> navigate("/contact")}>Contact Us</li>
         </ul>
 
         {/* Mobile Menu Icon */}
-    <div className="min-[900px]:hidden cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
+    <div className="min-[900px]:hidden cursor-pointer" onClick={() =>{
+     setMenuOpen(!menuOpen) 
+      setOpenSection(null)
+    }
+    }>
   
   <div className="w-6 h-5 flex flex-col justify-between">
     
@@ -211,14 +247,21 @@ const [openSection, setOpenSection] = useState(null);
   <ul className="flex flex-col text-[15px] font-medium text-gray-700">
     
     {/* Sabhi li mein equal padding aur border set kar di hai */}
-    <li className="px-5 py-3.5 border-b border-gray-100 text-blue-600 cursor-pointer hover:bg-gray-50">
-      Home
-    </li>
+<li 
+  onClick={() => navigate("/")}
+  className={`px-5 py-3.5 border-b border-gray-100 cursor-pointer hover:bg-gray-50 ${
+    location.pathname === "/" ? "text-blue-600" : "text-gray-700"
+  }`}
+>
+  Home
+</li>
 
 <li className="flex flex-col border-b border-gray-100">
           <div 
             onClick={() => toggleSection('about')}
-            className={`flex items-center justify-between px-5 py-3.5 cursor-pointer hover:bg-gray-50 transition-colors ${openSection === 'about' ? 'text-blue-600' : ''}`}
+            className={`flex items-center justify-between px-5 py-3.5 cursor-pointer hover:bg-gray-50 transition-colors ${openSection === 'about' ? 'text-blue-600' : ''} ${
+    isAboutActive ? "text-blue-600 font-medium" : ""
+  }` }
           >
             About Us
        <div className={`transition-all duration-300 ease-in-out flex items-center justify-center ${openSection === 'about' ? 'rotate-180' : 'rotate-0'}`}>
@@ -232,8 +275,10 @@ const [openSection, setOpenSection] = useState(null);
           <div className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#F9F9F9] ${openSection === 'about' ? 'max-h-[300px]' : 'max-h-0'}`}>
             <ul className="flex flex-col">
               {subMenuItems.map((item, index) => (
-                <li key={index} className="px-8 py-3 border-b border-gray-200/50 text-gray-600 text-[14px] hover:text-black">
-                  {item}
+                <li onClick={()=> navigate(item.path)} key={index} className={`px-8 py-3 border-b border-gray-200/50 text-[14px] cursor-pointer ${
+    location.pathname === item.path ? "text-blue-600" : "text-gray-600"
+  }`}>
+                  {item.name}
                 </li>
               ))}
             </ul>
@@ -243,7 +288,9 @@ const [openSection, setOpenSection] = useState(null);
  <li className="flex flex-col border-b border-gray-100">
           <div 
             onClick={() => toggleSection('products')}
-            className={`flex items-center justify-between px-5 py-3.5 cursor-pointer hover:bg-gray-50 transition-colors ${openSection === 'products' ? 'text-blue-600' : ''}`}
+            className={`flex items-center justify-between px-5 py-3.5 cursor-pointer hover:bg-gray-50 transition-colors ${openSection === 'products' ? 'text-blue-600' : ''} ${
+    isProductActive ? "text-blue-600 font-medium" : ""
+  }`}
           >
             Products
            <div className={`transition-all duration-300 ease-in-out flex items-center justify-center ${openSection === 'products' ? 'rotate-180' : 'rotate-0'}`}>
@@ -255,9 +302,12 @@ const [openSection, setOpenSection] = useState(null);
           
           <div className={`overflow-x-hidden transition-all duration-500 ease-in-out bg-[#F9F9F9] ${openSection === 'products' ? 'max-h-[300px]' : 'max-h-0'}`}>
             <ul className="flex flex-col">
-              {productdatamobile.map((item, index) => (
-                <li key={index} className="px-8 py-3 border-b border-gray-200/50 text-gray-600 text-[14px]">
-                  {item}
+              {productsData.map((item, index) => (
+                <li onClick={()=> navigate(item.path)}  key={index}   className={`px-8 py-3 border-b border-gray-200/50 text-[14px] cursor-pointer ${
+    location.pathname === item.path ? "text-blue-600" : "text-gray-600"
+  }`}
+>
+                  {item.name}
                 </li>
               ))}
             </ul>
@@ -267,7 +317,9 @@ const [openSection, setOpenSection] = useState(null);
   <li className="flex flex-col border-b border-gray-100">
           <div 
             onClick={() => toggleSection('partners')}
-            className={`flex items-center justify-between px-5 py-3.5 cursor-pointer hover:bg-gray-50 transition-colors ${openSection === 'partners' ? 'text-blue-600' : ''}`}
+            className={`flex items-center justify-between px-5 py-3.5 cursor-pointer hover:bg-gray-50 transition-colors ${openSection === 'partners' ? 'text-blue-600' : ''} ${
+    IsPartnerActive ? "text-blue-600 font-medium" : ""
+  }`}
           >
             Partners
    <div className={`transition-all duration-300 ease-in-out flex items-center justify-center ${openSection === 'partners' ? 'rotate-180' : 'rotate-0'}`}>
@@ -280,8 +332,11 @@ const [openSection, setOpenSection] = useState(null);
           <div className={`overflow-hidden transition-all duration-500 ease-in-out bg-[#F9F9F9] ${openSection === 'partners' ? 'max-h-[300px]' : 'max-h-0'}`}>
             <ul className="flex flex-col">
               {partnerdata.map((item, index) => (
-                <li key={index} className="px-8 py-3 border-b border-gray-200/50 text-gray-600 text-[14px]">
-                  {item}
+                <li onClick={()=> navigate(item.path)} key={index}   className={`px-8 py-3 border-b border-gray-200/50 text-[14px] cursor-pointer ${
+    location.pathname === item.path ? "text-blue-600" : "text-gray-600"
+  }`}
+>
+                  {item.name}
                 </li>
               ))}
             </ul>
@@ -292,14 +347,24 @@ const [openSection, setOpenSection] = useState(null);
       Pricing
     </li>
 
-    <li className="px-5 py-3.5 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
-      Blog
-    </li>
+  <li 
+  onClick={() => navigate("/blog")}
+  className={`px-5 py-3.5 border-b border-gray-100 cursor-pointer hover:bg-gray-50 ${
+    location.pathname === "/blog" ? "text-blue-600" : "text-gray-700"
+  }`}
+>
+  Blog
+</li>
 
     {/* Last item se border-b hata di hai taaki niche extra line na dikhe */}
-    <li className="px-5 py-3.5 cursor-pointer hover:bg-gray-50">
-      Contact Us
-    </li>
+  <li 
+  onClick={() => navigate("/contact")}
+  className={`px-5 py-3.5 cursor-pointer hover:bg-gray-50 ${
+    location.pathname === "/contact" ? "text-blue-600" : "text-gray-700"
+  }`}
+>
+  Contact Us
+</li>
 
   </ul>
 </div>
