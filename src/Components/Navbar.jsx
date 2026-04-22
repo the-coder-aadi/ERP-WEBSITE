@@ -193,7 +193,7 @@ const [openSection, setOpenSection] = useState(null);
 
           <li className="cursor-pointer hover:text-blue-600 font-medium text-[15.5px]">Pricing</li>
           <li className={`cursor-pointer font-medium text-[15.5px] hover:text-blue-600 ${
-    location.pathname === "/blog" ? "text-blue-600" : "text-gray-700"
+    location.pathname.startsWith("/blog") ? "text-blue-600" : "text-gray-700"
   }`}  onClick={()=> navigate("/blog")}>Blog</li>
           <li className={`cursor-pointer font-medium text-[15.5px] hover:text-blue-600 ${
     location.pathname === "/contact" ? "text-blue-600" : "text-gray-700"

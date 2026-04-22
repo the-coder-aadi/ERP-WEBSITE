@@ -6,6 +6,7 @@ const OurDemo = () => {
 
    const [rotate, setRotate] = useState(false)
   const [isGenerating, setIsGenerating] = useState(false)
+    const [loading, setLoading] = useState(false);
   const [generatedCaptcha, setGeneratedCaptcha] = useState("")
 
   const [formData, setFormData] = useState({
@@ -61,12 +62,30 @@ if (!formData.email) {
   return Object.keys(newErrors).length === 0;
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async(e) => {
   e.preventDefault();
+
+   if (loading) return;
 
   if (!validate()) return;
 
-  alert("Demo Request Submitted 🚀");
+
+try {
+  setLoading(true);
+
+         await fetch("https://script.google.com/macros/s/AKfycby4Qa7jLNEk4z8c8lH7wInzbGyGBXFvHmCG4U8CsBlKbvN-UWae5JXTsUYI8hGq4U7D-w/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          type: "Download Brochure",
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          select: formData.position,
+          message: formData.message,
+          date: new Date().toISOString()
+        })
+      });
+      alert("Form submitted successfully 🎉");
 
   setFormData({
     fullName: "",
@@ -78,6 +97,12 @@ const handleSubmit = (e) => {
   });
 
   setErrors({});
+  } catch (error) {
+    console.log(error);
+    alert("Error submitting form ❌");
+  }finally {
+    setLoading(false);
+  }
 };
 
 const [errors, setErrors] = useState({});
@@ -117,8 +142,8 @@ const generateCaptcha = () => {
     <section className="w-full bg-[#F3F4F6] px-4 py-16 sm:px-4">
 
       <div className="flex flex-col items-center mb-6 sm:mb-10 text-center">
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
-        <h2 className="sm:text-2xl text-xl mb-4 md:text-3xl font-bold text-[#3d52d9]">Request For Demo</h2>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
+        <h2 className="sm:text-2xl text-xl mb-4 md:text-3xl font-bold text-primary">Request For Demo</h2>
         <p className="italic text-gray-600 text-[13px] sm:text-[15px] md:text-[16.5px]  leading-relaxed  font-medium">
           Our experts will help you find the perfect solution for your needs.
 
@@ -129,7 +154,7 @@ const generateCaptcha = () => {
 
         {/* Form Header */}
 
-        <form onSubmit={handleSubmit} className="p-6 md:p-10  flex flex-col gap-6 sm:gap-8">
+        <form onSubmit={handleSubmit} spellCheck={false} className="p-6 md:p-10  flex flex-col gap-6 sm:gap-8">
 
           {/* SECTION 1: YOUR DETAILS */}
           <div className="sm:space-y-4 space-y-2">
@@ -139,7 +164,7 @@ const generateCaptcha = () => {
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600  uppercase">Full Name <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{ fontSize: "20px" }}>person</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{ fontSize: "20px" }}>person</span>
                  <input
   name="fullName"
   value={formData.fullName}
@@ -155,7 +180,7 @@ const generateCaptcha = () => {
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Email Address <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{ fontSize: "20px" }}>mail</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{ fontSize: "20px" }}>mail</span>
                  <input
   name="email"
   value={formData.email}
@@ -171,7 +196,7 @@ const generateCaptcha = () => {
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Phone Number <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{ fontSize: "20px" }}>smartphone</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{ fontSize: "20px" }}>smartphone</span>
                <input
   name="phone"
   value={formData.phone}
@@ -194,7 +219,7 @@ const generateCaptcha = () => {
                   <div className="space-y-2">
                     <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Select Position</label>
                     <div className="relative mt-1.5">
-                      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{ fontSize: "20px" }}>laptop_mac</span>
+                      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{ fontSize: "20px" }}>laptop_mac</span>
                  <select
   name="position"
   value={formData.position}
@@ -222,7 +247,7 @@ const generateCaptcha = () => {
             <div className="space-y-0">
               <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Your Message</label>
               <div className="relative mt-1.5">
-                <span className="material-symbols-outlined absolute left-3 top-4 text-blue-500 text-[20px]" style={{ fontSize: "20px" }}>edit</span>
+                <span className="material-symbols-outlined absolute left-3 top-4 text-primary text-[20px]" style={{ fontSize: "20px" }}>edit</span>
              <textarea
   name="message"
   value={formData.message}
@@ -263,7 +288,7 @@ const generateCaptcha = () => {
                 transform: rotate ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "0.4s"
               }}
-              className="text-[20px] text-blue-500 cursor-pointer relative z-10"
+              className="text-[20px] text-primary cursor-pointer relative z-10"
             />
           </div>
             
@@ -281,8 +306,8 @@ const generateCaptcha = () => {
 
           {/* SUBMIT BUTTON */}
           <div className="flex justify-center">
-            <button className="bg-gradient-to-r from-[#FF8E00] to-[#FF6200] hover:scale-105 transition-all text-white font-bold sm:py-4 sm:px-12 px-5 rounded-full shadow-xl flex items-center gap-3 py-3 uppercase tracking-wider text-[14px] sm:text-sm">
-              Submit Request
+            <button disabled={loading} className="bg-gradient-to-r from-[#6f00ff] to-[#aa00ff] hover:scale-105 cursor-pointer transition-all text-white font-bold sm:py-4 sm:px-12 px-5 rounded-full shadow-xl flex items-center gap-3 py-3 uppercase tracking-wider text-[14px] sm:text-sm">
+              {loading ? "Submitting..." : "Submit Request"}
               <span className="material-symbols-outlined text-[20px]">send</span>
             </button>
           </div>

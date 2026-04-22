@@ -36,7 +36,7 @@ function LifeAtVidya() {
       <Navbar />
 
       {/* 🔥 HERO SECTION */}
-      <section className="relative py-8 sm:py-16 px-5 text-center bg-gradient-to-br from-[#1E3A8A] to-[#3d52d9] text-[orange] overflow-hidden">
+      <section className="relative py-8 sm:py-16 px-5 text-center bg-gradient-to-br from-[#6b28de] to-[#4f018f] text-secondary overflow-hidden">
         
         <h1 className="text-3xl sm:text-5xl font-bold mb-4">
           Life at Vidya
@@ -52,7 +52,7 @@ function LifeAtVidya() {
 
       {/* 🔥 INTRO */}
       <section className="max-w-5xl mx-auto px-5 sm:px-6 py-14 text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
           A Culture Built on Growth & Innovation
         </h2>
 
@@ -119,7 +119,7 @@ function LifeAtVidya() {
               key={i}
               className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
             >
-              <h3 className="text-[#1E3A8A] text-xl font-semibold mb-2">
+              <h3 className="text-primary text-xl font-semibold mb-2">
                 {item.title}
               </h3>
               <p className="text-gray-600 text-[16px]">
@@ -133,7 +133,7 @@ function LifeAtVidya() {
 
       {/* 🔥 QUOTE SECTION */}
       <section className="text-center py-16 bg-white">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[orange] mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-4">
           “Work. Learn. Grow.”
         </h2>
         <p className="text-gray-500 text-md sm:text-lg">

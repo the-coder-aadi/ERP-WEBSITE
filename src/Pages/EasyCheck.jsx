@@ -142,7 +142,7 @@ const benefits = [
      <div className="hidden max-[701px]:block px-5 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-[#0008e7] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+            <h1 className="text-primary text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
            Digital Evaluation System 
                 for Education Institutes
             </h1>
@@ -158,9 +158,9 @@ const benefits = [
       <section className="relative w-full max-[700px]:h-full max-[1023px]:h-[450px] max-[770px]:h-[380px] h-[600px] overflow-hidden bg-[#001529]">
 
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
-        <div className="w-full h-full ">
+        <div className="w-full h-full bg-white">
           <img
-            src="/check.jpg"
+            src="/check.webp"
             alt="ERP Banner Desktop"
             className="hidden min-[701px]:block w-screen max-[700px]:h-full max-[770px]:h-[380px] max-[1023px]:h-[450px]  h-full object-cover object-top"
 
@@ -168,7 +168,7 @@ const benefits = [
 
           {/* 2. Mobile Image: Jo sirf 600px aur usse niche dikhegi */}
           <img
-            src="/checkmobile.jpg" // Yahan apni mobile wali image ka path dalo
+            src="/checkmobile.webp" // Yahan apni mobile wali image ka path dalo
             alt="ERP Banner Mobile"
             className="block min-[701px]:hidden w-full h-auto object-cover"
           />
@@ -176,19 +176,19 @@ const benefits = [
 
         {/* Content Overlay: flex-items-start aur pt (padding-top) se text upar shift ho jayega */}
         <div className="absolute inset-0 z-10 top-[0px] md:top-[50px] lg:top-[80px]">
-          <div className="max-w-[1500px] mx-auto h-full px-6 pl-8 md:pl-9 lg:pl-18 flex items-start pt-16 md:pt-2 lg:pt-3">
+          <div className="max-w-[1500px] mx-auto h-full px-6 pl-8 md:pl-9 lg:pl-10 flex items-start pt-32 md:pt-20 lg:pt-18">
 
             {/* Left Content Area */}
             <div className="w-full min-[900px]:w-1/2 flex max-[701px]:hidden  flex-col  items-start whitespace-nowrap">
 
               {/* 1. Small Heading: Size kam kiya hai */}
-              <h1 className="text-[#e59502] text-[19px] sm:text-[28px] md:text-[34px] lg:text-[45px]  font-bold tracking-wide mb-2 opacity-90">
+              <h1 className="text-secondary text-[19px] sm:text-[28px] md:text-[34px] lg:text-[45px]  font-bold tracking-wide mb-2 opacity-90">
                 Digital Evaluation System <br />
                 for Education Institutes
               </h1>
 
               {/* 2. Main Heading: Size aur line-height adjust ki hai taaki photo na dhake */}
-              <p className="text-[16px] sm:text-[23px] md:text-[28px]  lg:text-[34px] font-semibold text-[#494949] leading-[1.9] lg:leading-[1.6]  ">
+              <p className="text-[16px] sm:text-[23px] md:text-[28px]  lg:text-[34px] font-semibold text-[#e9e9e9] leading-[1.9] lg:leading-[1.6]  ">
                 Smart Online Answer Sheet <br />
   Checking Platform
               </p>
@@ -207,7 +207,7 @@ const benefits = [
 
       {/* Mobile button: below poster and smaller on small screens */}
       <div className="max-[900px]:block hidden">
-        <a href="#request-demo" className="mx-auto mt-4 w-fit block px-4 py-2 rounded-lg bg-orange-500 text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
+        <a href="#request-demo" className="mx-auto mt-4 w-fit block px-4 py-2 rounded-lg bg-primary text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
           Request for Free Demo
         </a>
       </div>
@@ -230,10 +230,10 @@ const benefits = [
           <div className="w-full lg:w-1/2 text-center lg:text-left">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               What is EasyCheck?
             </h2>
 
@@ -270,11 +270,11 @@ const benefits = [
      <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         
         {/* 1. Orange Accent Line (Bilkul center mein) */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
         {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
         {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-        <h2 className="text-[22px] uppercase sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-[#3d52d9] leading-tight mb-8 tracking-tight">
+        <h2 className="text-[22px] uppercase sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-primary leading-tight mb-8 tracking-tight">
          Our Cutting-Edge Features
         </h2>
 
@@ -290,13 +290,13 @@ const benefits = [
       >
         {/* Icon Box */}
         <div className="w-16 h-16 flex items-center justify-center mb-6 max-[400px]:mb-2">
-          <span className="text-[#FF9100] text-[34px]">
+          <span className="text-secondary text-[34px]">
             {item.icon}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-[18px] font-medium text-[#3d52d9] mb-3 tracking-tight">
+        <h3 className="text-[18px] font-medium text-primary mb-3 tracking-tight">
           {item.title}
         </h3>
 
@@ -314,13 +314,13 @@ const benefits = [
 <section className="w-full bg-white py-10 px-4 md:px-10">
   <div className="max-w-6xl mx-auto text-center">
 
-    <div className="w-14 h-2 bg-[#FF9100] rounded-full mx-auto mb-4"></div>
+    <div className="w-14 h-2 bg-secondary rounded-full mx-auto mb-4"></div>
 
-    <h2 className="text-2xl md:text-3xl font-bold text-[#4A3AFF] mb-2">
+    <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">
       How It Works
     </h2>
 
-    <p className="text-blue-600 font-semibold mb-12 text-sm md:text-base">
+    <p className="text-[#8800ff] font-semibold mb-12 text-sm md:text-base">
       Simple 5-Step Digital Evaluation Process
     </p>
   </div>
@@ -372,8 +372,8 @@ const benefits = [
           w-8 h-8 md:w-10 md:h-10 
           rounded-full 
           bg-white 
-          border-4 border-[#FF9100] 
-          text-[#4A3AFF] 
+          border-4 border-secondary 
+          text-primary 
           font-bold 
           z-10
         ">
@@ -395,7 +395,7 @@ const benefits = [
       <div className="max-w-4xl mx-auto text-center">
         
         {/* Main Heading */}
-        <h2 className="text-[#007bff] text-2xl md:text-4xl font-bold mb-12 tracking-tight">
+        <h2 className="text-primary text-2xl md:text-4xl font-bold mb-12 tracking-tight">
           Download User Manual
         </h2>
 
@@ -405,7 +405,7 @@ const benefits = [
           {/* Student Manual Row */}
           <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-2xl group">
             <div className="flex items-center gap-6 mb-4 sm:mb-0">
-              <div className="text-[#3d52d9] text-5xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
+              <div className="text-primary text-5xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
                 <FaUserCircle strokeWidth={1.5} />
               </div>
               <span className="text-gray-800 text-xl md:text-2xl font-bold">
@@ -420,7 +420,7 @@ const benefits = [
           {/* Paper Checker Manual Row */}
           <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-2xl group">
             <div className="flex items-center gap-6 mb-4 sm:mb-0">
-              <div className="text-[#3d52d9] text-5xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
+              <div className="text-primary text-5xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
                 <FaFileAlt strokeWidth={1.5} />
               </div>
               <span className="text-gray-800 text-xl md:text-2xl font-bold">
@@ -436,11 +436,11 @@ const benefits = [
       </div>
     </section>
 
-    <section className="w-full mt-8 bg-[#2f40d5] py-10 md:py-16 px-6">
+    <section className="w-full mt-8 bg-primary py-10 md:py-16 px-6">
           <div className="max-w-5xl mx-auto text-center">
             
             {/* Top Orange Accent Line */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mx-auto mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mx-auto mb-6"></div>
     
             {/* Main Heading */}
             <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-10 leading-tight">
@@ -470,9 +470,9 @@ My team and I thank you for the seamless shifts to online examinations. This was
                     
                     {/* Header */}
                     <div className="flex flex-col items-center mb-12">
-                      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+                      <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
                       <h2 className="text-3xl md:text-4xl font-extrabold text-[#001529] text-center">
-                        Frequently Asked <span className="text-[#3d52d9]">Questions</span>
+                        Frequently Asked <span className="text-primary">Questions</span>
                       </h2>
                       <p className="text-gray-500 mt-4 text-center">
                         Find answers to common questions about Vidya ERP and its features.
@@ -491,11 +491,11 @@ My team and I thank you for the seamless shifts to online examinations. This was
                             onClick={() => toggleAccordion(index)}
                             className="w-full flex items-center justify-between gap-3  p-4 sm:p-5 text-left bg-white hover:bg-gray-50 transition-colors"
                           >
-                            <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-[#3d52d9]' : 'text-gray-700'}`}>
+                            <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-primary' : 'text-gray-700'}`}>
                               {faq.question}
                             </span>
                            <FaChevronDown 
-              className={`text-[#FF9100] transition-transform duration-300 flex-shrink-0 ${
+              className={`text-secondary transition-transform duration-300 flex-shrink-0 ${
                 activeIndex === index ? 'rotate-180' : 'rotate-0'
               }`} 
             />

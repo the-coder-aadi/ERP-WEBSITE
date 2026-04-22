@@ -34,8 +34,8 @@ function Demo() {
       {/* 🔥 HERO SECTION */}
       <section className="text-center px-5 sm:px-6 py-14 max-w-5xl mx-auto">
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E3A8A] mb-4">
-          Explore Our <span className="text-[#FF9100]">Demo Modules</span>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4">
+          Explore Our <span className="text-secondary">Demo Modules</span>
         </h1>
 
         <p className="text-gray-600 text-[15px] sm:text-lg leading-relaxed max-w-3xl mx-auto">
@@ -44,7 +44,7 @@ function Demo() {
           tools can transform your institution.
         </p>
 
-        <p className="text-[#FF9100] font-medium mt-4">
+        <p className="text-primary font-medium mt-4">
           No signup required • Instant access • Easy to explore
         </p>
       </section>
@@ -62,16 +62,16 @@ function Demo() {
 
               {/* TOP GRADIENT LINE */}
               <div className="absolute top-0 left-0 w-full h-1.5 
-              bg-gradient-to-r from-[#FF9100] to-[#3d52d9] 
+              bg-gradient-to-r from-[#a23dd9]  to-[#3d52d9] 
               scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
               {/* ICON */}
-              <div className="text-[#FF9100] text-4xl mb-5 flex justify-center">
+              <div className="text-secondary text-4xl mb-5 flex justify-center">
                 {item.icon}
               </div>
 
               {/* TITLE */}
-              <h3 className="text-xl font-semibold text-[#1E3A8A] mb-3">
+              <h3 className="text-xl font-semibold text-primary mb-3">
                 {item.title}
               </h3>
 
@@ -82,8 +82,8 @@ function Demo() {
 
               {/* BUTTON */}
           <Link to={`/demo/${index}`}>
-  <button className="px-6 py-2.5 rounded-full bg-[#1E3A8A] text-white text-sm font-medium 
-  hover:bg-[#FF9100] transition-all">
+  <button className="px-6 py-2.5 rounded-full cursor-pointer hover:scale-105 duration-300 bg-primary text-white text-sm font-medium 
+   transition-all">
     {item.btn}
   </button>
 </Link>

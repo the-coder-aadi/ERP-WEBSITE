@@ -6,6 +6,8 @@ import { useState,useEffect } from "react";
 
 function Contact() {
 
+  const [loading, setLoading] = useState(false);
+
 const [formData, setFormData] = useState({
   name: "",
   email: "",
@@ -55,12 +57,29 @@ if (!formData.email) {
   return Object.keys(newErrors).length === 0;
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async(e) => {
   e.preventDefault();
+
+  if (loading) return;
 
   if (!validate()) return;
 
-  alert("Message sent successfully 🎉");
+  try {
+    setLoading(true);
+
+        await fetch("https://script.google.com/macros/s/AKfycby4Qa7jLNEk4z8c8lH7wInzbGyGBXFvHmCG4U8CsBlKbvN-UWae5JXTsUYI8hGq4U7D-w/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        type: "Send us a Message",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        date: new Date().toLocaleString()
+      })
+    });
+
+      alert("Message sent successfully 🎉");
 
   setFormData({
     name: "",
@@ -70,6 +89,13 @@ const handleSubmit = (e) => {
   });
 
   setErrors({});
+}
+  catch (error) {
+    console.log(error);
+    alert("Error submitting form ❌");
+  }finally {
+    setLoading(false);
+  }
 };
 
 
@@ -78,8 +104,8 @@ const handleSubmit = (e) => {
       <Navbar />
 
       {/* 🔥 HERO */}
-      <section className="bg-gradient-to-r from-[#3d52d9] to-[#6a78fd] text-white py-8 md:py-16 px-4 text-center">
-        <h1 className="text-3xl max-[400px]:text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+      <section className="bg-gradient-to-r from-[#6e3dd9] to-[#856afd] text-white py-8 md:py-16 px-4 text-center">
+        <h1 className="text-3xl text-[#f4d350] max-[400px]:text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
           Get in Touch with Us
         </h1>
         <p className="text-sm sm:text-lg max-w-2xl mx-auto opacity-90">
@@ -110,14 +136,14 @@ const handleSubmit = (e) => {
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 flex items-center justify-center 
                   bg-[#FF9100]/10 rounded-full 
-                  group-hover:bg-[#FF9100] transition">
-                    <span className="text-[#FF9100] group-hover:text-white">
+                  group-hover:bg-[#d0a402] transition">
+                    <span className="text-[#d0bb01] group-hover:text-white">
                       {item.icon}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-[#3d52d9]">
+                    <h3 className="font-semibold text-primary">
                       {item.title}
                     </h3>
                     <p className="text-gray-600 text-sm">{item.value}</p>
@@ -130,11 +156,11 @@ const handleSubmit = (e) => {
           {/* RIGHT FORM */}
           <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border-2  border-[#ededed] hover:shadow-xl transition">
 
-            <h2 className="text-2xl font-bold text-[#3d52d9] mb-6">
+            <h2 className="text-2xl font-bold text-primary mb-6">
               Send us a Message
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-5">
+            <form onSubmit={handleSubmit} spellCheck={false} className="space-y-3 sm:space-y-5">
 
         <input
   name="name"
@@ -142,7 +168,7 @@ const handleSubmit = (e) => {
   onChange={handleChange}
   type="text"
   placeholder="Your Name"
-  className={`w-full border outline-none mb-1.5 rounded-lg px-4 py-3 focus:ring-1 transition
+  className={`w-full border  mb-1.5 rounded-lg px-4 py-3 outline-none duration-200 focus:border-[#8c00ff54]  transition
   ${errors.name ? "border-red-500" : "border-[#959595]"}`}
 />
 <p className="text-red-500 text-xs">{errors.name}</p>
@@ -153,7 +179,7 @@ const handleSubmit = (e) => {
   onChange={handleChange}
   type="email"
   placeholder="Your Email"
-  className={`w-full border outline-none mb-1.5 rounded-lg px-4 py-3 focus:ring-1 transition
+  className={`w-full border  mb-1.5 rounded-lg px-4 py-3 outline-none duration-200 focus:border-[#8c00ff54]  transition
   ${errors.email ? "border-red-500" : "border-[#959595]"}`}
 />
 <p className="text-red-500 text-xs">{errors.email}</p>
@@ -164,7 +190,7 @@ const handleSubmit = (e) => {
   onChange={handleChange}
   type="text"
   placeholder="Phone Number"
-  className={`w-full border outline-none mb-1.5 rounded-lg px-4 py-3 focus:ring-1 transition
+  className={`w-full border  mb-1.5 rounded-lg px-4 py-3 outline-none duration-200 focus:border-[#8c00ff54]  transition
   ${errors.phone ? "border-red-500" : "border-[#959595]"}`}
 />
 <p className="text-red-500 text-xs">{errors.phone}</p>
@@ -175,14 +201,15 @@ const handleSubmit = (e) => {
   onChange={handleChange}
   rows="2"
   placeholder="Your Message"
-  className="w-full border outline-none border-[#959595] rounded-lg px-4 py-3 min-h-[80px] focus:ring-1 transition"
+  className="w-full border  border-[#959595] rounded-lg px-4 py-3 min-h-[80px] outline-none duration-200 focus:border-[#8c00ff54]  transition"
 ></textarea>
 
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full bg-[#FF9100] hover:bg-[#e57f00] text-white font-semibold py-3 rounded-lg transition hover:scale-[1.02]"
               >
-                Send Message
+               {loading ? "Sending..." : "Send Message"}
               </button>
 
             </form>

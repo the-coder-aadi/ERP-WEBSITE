@@ -52,9 +52,9 @@ const AnimatedCounter = memo(function AnimatedCounter({ value, suffix = "" }) {
 
 function Counter() {
   return (
-    <section className="bg-[#2F2FB2] py-12 px-5 text-center">
+    <section className="bg-primary py-12 px-5 text-center">
       <div className="flex justify-center mb-4">
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full"></div>
       </div>
       <h2 className="text-white text-2xl md:text-[32px] font-bold mb-12">
         Transforming Education with Vidya ERP

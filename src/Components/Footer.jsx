@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useLocation } from 'react-router-dom';
+
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaChevronRight } from 'react-icons/fa';
 
 const footerLinks = [
@@ -7,20 +8,20 @@ const footerLinks = [
   { name: "Download Brochure", action: "modal" },
   { name: "Vidya College ERP", path: "/vidya-university" },
   { name: "Blogs", path: "/blog" },
-  { name: "Learning Management", path: "/vidya-lms" },
+  { name: "Vidya LMS", path: "/vidya-lms" },
   { name: "Contact Us", path: "/contact" },
-  { name: "Assessment Tools", path: "/easy-check" },
-  { name: "Request Demo", path: "/our-demo" },
-  { name: "Accreditation System", path: "/vidya-hr" },
-  { name: "Certificates", path: "/life-at-vidya" },
+  { name: "EasyCheck", path: "/easy-check" },
+  { name: "Demo", path: "/our-demo" },
+  { name: "Vidya HR", path: "/vidya-hr" },
   { name: "School ERP", path: "/vidya-school" },
-  { name: "Product Videos", path: "/vidya-desk" },
+  { name: "Vidya Desk", path: "/vidya-desk" },
   { name: "Online Exams", path: "/easy-pariksha" },
-  { name: "Sitemap", path: "/" },
+  { name: "Refer & Earn", path: "/referral-partner" },
   { name: "Pricing", path: "/" }
 ];
 
 const Footer = () => {
+  const location = useLocation();
   return (
     <footer className="w-full bg-[#eaeaea] pt-7 sm:pt-10 font-sans">
       
@@ -141,14 +142,35 @@ const Footer = () => {
             © <span className="font-bold">Copyright Vidya ERP 2026.</span> All Rights Reserved.
           </p>
           
-          <div className="flex flex-wrap justify-center font-medium gap-x-3 gap-y-1 text-gray-400 text-[15px]">
-            {["App Policy", "Privacy Policy", "Terms of Use", "Terms & Conditions", "Copyright Policy", "Disclaimer"].map((item, i) => (
-              <React.Fragment key={i}>
-                <a href="#" className="hover:text-white transition-colors">{item}</a>
-                {i !== 5 && <span>|</span>}
-              </React.Fragment>
-            ))}
-          </div>
+
+
+<div className="flex flex-wrap justify-center font-medium gap-x-3 gap-y-1 text-gray-400 text-[15px]">
+  {[
+    { name: "App Policy", path: "/app-policy" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
+    { name: "Terms of Use", path: "/terms-of-use" },
+    { name: "Terms & Conditions", path: "/terms-conditions" },
+    { name: "Copyright Policy", path: "/copyright-policy" },
+    { name: "Disclaimer", path: "/disclaimer" },
+  ].map((item, i) => {
+    
+    const isActive = location.pathname === item.path;
+
+    return (
+      <React.Fragment key={i}>
+        <Link
+          to={item.path}
+          className={`transition-colors ${
+            isActive ? "text-gray-200" : "text-gray-400 hover:text-white"
+          }`}
+        >
+          {item.name}
+        </Link>
+        {i !== 5 && <span>|</span>}
+      </React.Fragment>
+    );
+  })}
+</div>
 
         </div>
       </div>

@@ -181,7 +181,7 @@ useEffect(() => {
       <div className="hidden max-[701px]:block px-5 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-[#0008e7] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+            <h1 className="text-primary text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
               Next-Gen ERP for Universities
               & Higher Education
             </h1>
@@ -197,7 +197,7 @@ useEffect(() => {
       <section className="relative w-full max-[700px]:h-full max-[1023px]:h-[450px] max-[770px]:h-[380px] h-[600px] overflow-hidden bg-[#001529]">
 
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
-        <div className="w-full h-full ">
+        <div className="w-full h-full bg-white">
           <img
             src="/technology.jpg"
             alt="ERP Banner Desktop"
@@ -221,13 +221,13 @@ useEffect(() => {
             <div className="w-full min-[900px]:w-1/2 flex max-[701px]:hidden  flex-col  items-start whitespace-nowrap">
 
               {/* 1. Small Heading: Size kam kiya hai */}
-              <h1 className="text-[orange] text-[19px] sm:text-[26px] md:text-[30px] lg:text-[42px]  font-semibold tracking-wide mb-2 opacity-90">
+              <h1 className="text-secondary text-[19px] sm:text-[26px] md:text-[30px] lg:text-[43px]  font-bold tracking-wide mb-2 opacity-90">
                 Next-Gen ERP for Universities <br />
                 & Higher Education
               </h1>
 
               {/* 2. Main Heading: Size aur line-height adjust ki hai taaki photo na dhake */}
-              <p className="text-[16px] sm:text-[22px] md:text-[26px]  lg:text-[32px] font-semibold text-[#ffffff] leading-[1.9] lg:leading-[1.6]  ">
+              <p className="text-[16px] sm:text-[22px] md:text-[26px]  lg:text-[34px] font-semibold text-[#ffffff] leading-[1.9] lg:leading-[1.6]  ">
                 Smart & Scalable <br />
                 ERP Platform for Universities
               </p>
@@ -246,7 +246,7 @@ useEffect(() => {
 
       {/* Mobile button: below poster and smaller on small screens */}
       <div className="max-[900px]:block hidden">
-        <a href="#request-demo" className="mx-auto w-fit mt-4 block px-4 py-2 rounded-lg bg-orange-500 text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
+        <a href="#request-demo" className="mx-auto w-fit mt-4 block px-4 py-2 rounded-lg bg-primary  text-white font-bold text-sm shadow-lg transition-all ">
           Request for Free Demo
         </a>
       </div>
@@ -267,10 +267,10 @@ useEffect(() => {
           <div className="w-full lg:w-1/2 text-center lg:text-left">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               What is Vidya College ERP?
             </h2>
 
@@ -321,8 +321,8 @@ useEffect(() => {
 
         {/* Heading */}
         <div className="text-center mb-4 md:mb-8 lg:mb-12">
-          <div className="w-14 h-2.5 bg-[#FF9100] mx-auto rounded-full mb-4"></div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9]">
+          <div className="w-14 h-2.5 bg-secondary mx-auto rounded-full mb-4"></div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
             Vidya ERP Modules
           </h2>
           <p className="text-gray-600 mt-3 text-sm sm:text-base">
@@ -348,7 +348,7 @@ style={{
               >
                 <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all hover:-translate-y-2 h-full">
 
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#E6E8FF] text-[#3d52d9] flex items-center justify-center rounded-full font-bold mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#E6E8FF] text-primary flex items-center justify-center rounded-full font-bold mb-4">
                     {item.title.charAt(0)}
                   </div>
 
@@ -387,11 +387,11 @@ style={{
      <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         
         {/* 1. Orange Accent Line (Bilkul center mein) */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
         {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
         {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-        <h2 className="text-[22px] uppercase sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-[#3d52d9] leading-tight mb-8 tracking-tight">
+        <h2 className="text-[22px] uppercase sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-primary leading-tight mb-8 tracking-tight">
           Vidya College ERP - Key Features
         </h2>
 
@@ -408,13 +408,13 @@ style={{
           >
             {/* Icon Box */}
             <div className="w-20 h-20  flex items-center justify-center mb-8 max-[400px]:mb-2">
-              <span className=" text-[#FF9100] text-[45px]">
+              <span className=" text-secondary text-[45px]">
                 {item.icon}
               </span>
             </div>
 
             {/* Title */}
-            <h3 className="text-[22px] font-medium text-[#3d52d9] mb-4 tracking-tight">
+            <h3 className="text-[22px] font-medium text-primary mb-4 tracking-tight">
               {item.title}
             </h3>
 
@@ -437,7 +437,7 @@ style={{
     <div className="mb-12">
       
       {/* Small Line */}
-      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+      <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
       {/* Heading */}
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold sm:font-bold text-gray-800 mb-6">
@@ -458,7 +458,7 @@ style={{
     <div>
       
       {/* Small Line */}
-      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+      <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
       {/* Heading */}
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold sm:font-bold text-gray-800 mb-6">
@@ -483,9 +483,9 @@ style={{
         
         {/* Header */}
         <div className="flex flex-col items-center mb-12">
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#001529] text-center">
-            Frequently Asked <span className="text-[#3d52d9]">Questions</span>
+            Frequently Asked <span className="text-primary">Questions</span>
           </h2>
           <p className="text-gray-500 mt-4 text-center">
             Find answers to common questions about Vidya ERP and its features.
@@ -504,11 +504,11 @@ style={{
                 onClick={() => toggleAccordion(index)}
                 className="w-full flex items-center justify-between gap-3  p-4 sm:p-5 text-left bg-white hover:bg-gray-50 transition-colors"
               >
-                <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-[#3d52d9]' : 'text-gray-700'}`}>
+                <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-primary' : 'text-gray-700'}`}>
                   {faq.question}
                 </span>
                <FaChevronDown 
-  className={`text-[#FF9100] transition-transform duration-300 flex-shrink-0 ${
+  className={`text-secondary transition-transform duration-300 flex-shrink-0 ${
     activeIndex === index ? 'rotate-180' : 'rotate-0'
   }`} 
 />

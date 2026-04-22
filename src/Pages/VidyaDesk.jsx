@@ -7,6 +7,7 @@ import {
   FaCogs,
   FaCheckCircle
 } from "react-icons/fa";
+import OurDemo from "../Components/demo";
 
 function VidyaDesk() {
 
@@ -61,10 +62,10 @@ function VidyaDesk() {
       <section className="text-center py-12 sm:py-20 px-5 relative overflow-hidden">
 
         {/* background glow */}
-        <div className="absolute w-[350px] h-[350px] bg-[#3d52d9]/20 rounded-full blur-3xl top-[-100px] left-[-100px]"></div>
-        <div className="absolute w-[350px] h-[350px] bg-[#FF9100]/20 rounded-full blur-3xl bottom-[-100px] right-[-100px]"></div>
+        <div className="absolute w-[350px] h-[350px] bg-[#9900ff29] rounded-full blur-3xl top-[-100px] left-[-100px]"></div>
+        <div className="absolute w-[350px] h-[350px] bg-[#ffea002e] rounded-full blur-3xl bottom-[-100px] right-[-100px]"></div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E3A8A] mb-4 relative z-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 relative z-10">
           VidyaDesk – Smart Helpdesk System
         </h1>
 
@@ -85,11 +86,11 @@ function VidyaDesk() {
             className="bg-white p-6 rounded-2xl shadow-sm 
             hover:shadow-xl hover:-translate-y-2 transition duration-300 group"
           >
-            <div className="text-[#FF9100] text-4xl mb-4 group-hover:scale-110 transition">
+            <div className="text-secondary text-4xl mb-4 group-hover:scale-105 transition">
               {item.icon}
             </div>
 
-            <h3 className="text-[#1E3A8A] font-semibold mb-2">
+            <h3 className="text-primary font-semibold mb-2">
               {item.title}
             </h3>
 
@@ -106,7 +107,7 @@ function VidyaDesk() {
 
         {/* LEFT */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-2xl lg:text-start text-center sm:text-3xl font-bold text-[#1E3A8A] mb-6">
+          <h2 className="text-2xl lg:text-start text-center sm:text-3xl font-bold text-primary mb-6">
             How VidyaDesk Works
           </h2>
 
@@ -116,7 +117,7 @@ function VidyaDesk() {
                 key={i}
                 className="flex items-start gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition"
               >
-                <div className="w-8 h-8 flex items-center justify-center bg-[#FF9100] text-white rounded-full text-sm font-bold">
+                <div className="w-8 h-8 flex items-center justify-center bg-secondary text-white rounded-full text-sm font-bold">
                   {i + 1}
                 </div>
 
@@ -142,8 +143,8 @@ function VidyaDesk() {
       {/* 🔥 BENEFITS */}
       <section className="bg-white py-10 md:py-16 px-5">
 
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-3">
+        <div className="max-w-6xl mx-auto text-center mb-10" >
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-3">
             Benefits of VidyaDesk
           </h2>
           <p className="text-gray-600">
@@ -158,7 +159,7 @@ function VidyaDesk() {
               key={i}
               className="flex items-start gap-3 bg-[#f8f9fb] p-5 rounded-xl shadow-sm hover:shadow-md transition"
             >
-              <FaCheckCircle className="text-[#FF9100] mt-1 flex-shrink-0" />
+              <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
               <p className="text-gray-700 text-sm sm:text-base">
                 {item}
               </p>
@@ -172,7 +173,7 @@ function VidyaDesk() {
       {/* 🔥 CTA */}
       <section className="text-center py-10 md:py-16 px-5">
 
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
           Enhance Your Institution’s Support System
         </h2>
 
@@ -181,12 +182,15 @@ function VidyaDesk() {
           with VidyaDesk integrated into your ERP ecosystem.
         </p>
 
-        <button className="bg-[#FF9100] text-white px-8 py-3 rounded-lg 
-        hover:bg-orange-600 transition duration-300 shadow-md hover:shadow-lg">
+        <a href="#our-demo" className="bg-[#8800ff] text-white px-8 py-3 rounded-lg 
+        hover:bg-[#7406cf] transition font-semibold duration-300 shadow-md hover:shadow-lg">
           Request Demo
-        </button>
+        </a>
 
       </section>
+    <section id="our-demo">
+  <OurDemo />
+</section>
 
       <Footer />
     </div>

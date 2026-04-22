@@ -6,6 +6,7 @@ const RequestDemo = () => {
  const [rotate, setRotate] = useState(false)
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedCaptcha, setGeneratedCaptcha] = useState("")
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
   fullName: "",
   email: "",
@@ -33,8 +34,6 @@ const handleChange = (e) => {
     [name]: ""
   }));
 };
-
-
 
 
   const handleCaptchaClick = () => {
@@ -108,35 +107,64 @@ if (!formData.website) {
   return Object.keys(newErrors).length === 0;
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
+
+  if (loading) return;
+
   if (!validate()) return;
+console.log("submit ho raha hai...")
+  try {
+setLoading(true);
+    // 📊 GOOGLE SHEET SAVE
+    await fetch("https://script.google.com/macros/s/AKfycby4Qa7jLNEk4z8c8lH7wInzbGyGBXFvHmCG4U8CsBlKbvN-UWae5JXTsUYI8hGq4U7D-w/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        type: "Request For Demo",
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        instituteName: formData.instituteName,
+        InstituteWebsite: formData.website,
+        select: formData.solution,
+        message: formData.message,
+        date: new Date().toLocaleString()
+      })
+    });
 
-  alert("Form submitted successfully 🎉");
+    alert("Form submitted successfully 🎉");
 
-  setFormData({
-    fullName: "",
-    email: "",
-    phone: "",
-    instituteName: "",
-    website: "",
-    solution: "",
-    message: "",
-    captcha: ""
-  });
+    // reset form
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      instituteName: "",
+      website: "",
+      solution: "",
+      message: "",
+      captcha: ""
+    });
 
-  setErrors({});
-  generateCaptcha();
+    setErrors({});
+    generateCaptcha();
+
+  } catch (error) {
+    console.log(error);
+    alert("Error submitting form ❌");
+  }finally {
+    setLoading(false);
+  }
+  
 };
-
 
   return (
     <section className="w-full bg-[#F3F4F6] px-4 py-16 sm:px-4">
 
      <div className="flex flex-col items-center mb-8 sm:mb-14 text-center">
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
-          <h2 className="sm:text-2xl text-xl mb-4 md:text-3xl font-bold text-[#3d52d9]">Are you Looking for Smart Solutions to Automate Your Campus?</h2>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
+          <h2 className="sm:text-2xl text-xl mb-4 md:text-3xl font-bold text-primary">Are you Looking for Smart Solutions to Automate Your Campus?</h2>
    <p className="italic text-gray-700 text-[13px] sm:text-[15px] md:text-[17.5px]  leading-relaxed  font-medium">
          With the best support and smooth implementation, we can help you do just that. <br />
 Just fill in this form and our representatives will get in touch with you.
@@ -147,15 +175,15 @@ Just fill in this form and our representatives will get in touch with you.
         
         {/* Form Header */}
         <div className="flex items-center text-center justify-center max-[330px]:gap-2 gap-3 py-6 sm:py-8 border-b border-gray-50">
-          <span className="material-symbols-outlined text-[#FF9100] text-4xl">headset_mic</span>
-          <h2 className="text-xl md:text-2xl max-[330px]:text-[16px]  font-extrabold text-[#2C84D5]">Request a Demo</h2>
+          <span className="material-symbols-outlined text-secondary text-4xl">headset_mic</span>
+          <h2 className="text-xl md:text-2xl max-[330px]:text-[16px]  font-extrabold text-primary">Request a Demo</h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 md:p-12  md:pt-4 flex flex-col gap-8 sm:gap-10">
+        <form onSubmit={handleSubmit} spellCheck={false} className="p-6 md:p-12  md:pt-4 flex flex-col gap-8 sm:gap-10">
           
           {/* SECTION 1: YOUR DETAILS */}
           <div className="sm:space-y-4 space-y-2">
-            <div className="flex items-center gap-2 text-[#2C84D5]">
+            <div className="flex items-center gap-2 text-primary">
               <span className="material-symbols-outlined text-[20px]" style={{fontSize:"20px"}}>account_circle</span>
               <span className="text-xs font-bold uppercase tracking-widest">Your Details</span>
             </div>
@@ -164,14 +192,14 @@ Just fill in this form and our representatives will get in touch with you.
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600  uppercase">Full Name <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>person</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{fontSize:"20px"}}>person</span>
                  <input
   name="fullName"
   value={formData.fullName}
   onChange={handleChange}
   type="text"
   placeholder="Your Full Name"
-  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none transition-all
+  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none transition-all duration-200 focus:border-[#8c00ff54] 
   ${errors.fullName ? "border-red-500" : "border-gray-200"}`}
 />
 
@@ -181,14 +209,14 @@ Just fill in this form and our representatives will get in touch with you.
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Email Address <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>mail</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{fontSize:"20px"}}>mail</span>
                  <input
   name="email"
   value={formData.email}
   onChange={handleChange}
   type="email"
   placeholder="your@email.com"
-  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none
+  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none duration-200 focus:border-[#8c00ff54] 
   ${errors.email ? "border-red-500" : "border-gray-200"}`}
 />
 
@@ -198,14 +226,14 @@ Just fill in this form and our representatives will get in touch with you.
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Phone Number <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>smartphone</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{fontSize:"20px"}}>smartphone</span>
                 <input
   name="phone"
   value={formData.phone}
   onChange={handleChange}
   type="tel"
   placeholder="+91..."
-  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none
+  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none duration-200 focus:border-[#8c00ff54] 
   ${errors.phone ? "border-red-500" : "border-gray-200"}`}
 />
 
@@ -216,7 +244,7 @@ Just fill in this form and our representatives will get in touch with you.
 
           {/* SECTION 2: INSTITUTE DETAILS */}
           <div className="sm:space-y-4 space-y-2">
-            <div className="flex items-center gap-2 text-[#2C84D5]">
+            <div className="flex items-center gap-2 text-primary">
               <span className="material-symbols-outlined text-[20px]" style={{fontSize:"20px"}}>account_balance</span>
               <span className="text-xs font-bold uppercase tracking-widest">Institute Details</span>
             </div>
@@ -225,14 +253,14 @@ Just fill in this form and our representatives will get in touch with you.
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Institute Name <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>domain</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{fontSize:"20px"}}>domain</span>
                  <input
   name="instituteName"
   value={formData.instituteName}
   onChange={handleChange}
   type="text"
   placeholder="Your Institute"
-  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none
+  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none duration-200 focus:border-[#8c00ff54] 
   ${errors.instituteName ? "border-red-500" : "border-gray-200"}`}
 />
 
@@ -242,14 +270,14 @@ Just fill in this form and our representatives will get in touch with you.
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Institute Website <span className="text-orange-500">*</span></label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>language</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{fontSize:"20px"}}>language</span>
                  <input
   name="website"
   value={formData.website}
   onChange={handleChange}
   type="text"
   placeholder="www.institute.edu"
-  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none
+  className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none duration-200 focus:border-[#8c00ff54] 
   ${errors.website ? "border-red-500" : "border-gray-200"}`}
 />
 
@@ -259,7 +287,7 @@ Just fill in this form and our representatives will get in touch with you.
               <div className="space-y-2">
                 <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Select Solution</label>
                 <div className="relative mt-1.5">
-                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>laptop_mac</span>
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-[20px]" style={{fontSize:"20px"}}>laptop_mac</span>
                 <select
   name="solution"
   value={formData.solution}
@@ -280,21 +308,21 @@ Just fill in this form and our representatives will get in touch with you.
 
           {/* SECTION 3: MESSAGE */}
           <div className="sm:space-y-4 space-y-2">
-            <div className="flex items-center gap-2 text-[#2C84D5]">
+            <div className="flex items-center gap-2 text-primary">
               <span className="material-symbols-outlined text-[20px]" style={{fontSize:"20px"}}>chat</span>
               <span className="text-xs font-bold uppercase tracking-widest">Message</span>
             </div>
             <div className="space-y-2">
               <label className="text-[12.5px] font-semibold text-gray-600 uppercase">Your Message</label>
               <div className="relative mt-1.5">
-                <span className="material-symbols-outlined absolute left-3 top-4 text-blue-500 text-[20px]" style={{fontSize:"20px"}}>edit</span>
+                <span className="material-symbols-outlined absolute left-3 top-4 text-primary text-[20px]" style={{fontSize:"20px"}}>edit</span>
                <textarea
   name="message"
   value={formData.message}
   onChange={handleChange}
   rows="3"
   placeholder="Tell us about your requirements..."
-  className="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-3 text-sm focus:border-blue-400 outline-none transition-all resize-y min-h-[100px] max-h-[300px]"
+  className="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-3 text-sm focus:border-[#8c00ff] outline-none transition-all resize-y min-h-[100px] max-h-[300px]"
 ></textarea>
               </div>
             </div>
@@ -342,8 +370,8 @@ Just fill in this form and our representatives will get in touch with you.
 
           {/* SUBMIT BUTTON */}
           <div className="flex justify-center">
-            <button className="bg-gradient-to-r from-[#FF8E00] to-[#FF6200] hover:scale-105 transition-all text-white font-bold sm:py-4 sm:px-12 px-5 rounded-full shadow-xl flex items-center gap-3 py-3 uppercase tracking-wider text-[14px] sm:text-sm">
-              Submit Request
+            <button disabled={loading} className="bg-gradient-to-r from-[#6f00ff] to-[#aa00ff] cursor-pointer hover:scale-105 transition-all text-white font-bold sm:py-4 sm:px-12 px-5 rounded-full shadow-xl flex items-center gap-3 py-3 uppercase tracking-wider text-[14px] sm:text-sm">
+              {loading ? "Submitting..." : "Submit Request"}
               <span className="material-symbols-outlined text-[20px]">send</span>
             </button>
           </div>

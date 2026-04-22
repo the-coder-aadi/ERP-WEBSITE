@@ -89,7 +89,7 @@ const faqs = [
       <div className="hidden max-[701px]:block px-5 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-[#0008e7] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+            <h1 className="text-primary text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
             Transforming Education
               with Smart LMS Solutions
             </h1>
@@ -105,7 +105,7 @@ const faqs = [
       <section className="relative w-full max-[700px]:h-full max-[1023px]:h-[450px] max-[770px]:h-[380px] h-[600px] overflow-hidden bg-[#001529]">
 
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
-        <div className="w-full h-full ">
+        <div className="w-full h-full bg-white">
           <img
             src="/study.jpg"
             alt="ERP Banner Desktop"
@@ -129,7 +129,7 @@ const faqs = [
             <div className="w-full min-[900px]:w-1/2 flex max-[701px]:hidden  flex-col  items-start whitespace-nowrap">
 
               {/* 1. Small Heading: Size kam kiya hai */}
-              <h1 className="text-[orange] text-[19px] sm:text-[26px] md:text-[30px] lg:text-[42px]  font-semibold tracking-wide mb-2 opacity-90">
+              <h1 className="text-secondary text-[19px] sm:text-[26px] md:text-[30px] lg:text-[42px]  font-semibold tracking-wide mb-2 opacity-90">
                Transforming Education<br />
               with Smart LMS Solutions
               </h1>
@@ -155,7 +155,7 @@ const faqs = [
 
       {/* Mobile button: below poster and smaller on small screens */}
       <div className="max-[900px]:block hidden">
-        <a href="#request-demo" className="mx-auto mt-4 block px-4 w-fit py-2 rounded-lg bg-orange-500 text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
+        <a href="#request-demo" className="mx-auto mt-4 block px-4 w-fit py-2 rounded-lg bg-primary text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
           Request for Free Demo
         </a>
       </div>
@@ -177,10 +177,10 @@ const faqs = [
           <div className="w-full lg:w-1/2 text-center lg:text-left">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               What is Eduplus LMS?
             </h2>
 
@@ -213,10 +213,10 @@ const faqs = [
       <div className="max-w-6xl mx-auto text-center">
 
         {/* Orange Line */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mx-auto mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mx-auto mb-4"></div>
 
         {/* Heading */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3d52d9] mb-10">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-10">
           Highlights
         </h2>
 
@@ -226,7 +226,7 @@ const faqs = [
             <div key={index} className="flex items-start gap-4 text-left">
 
               {/* Icon */}
-              <div className="w-34 h-12 flex items-center justify-center rounded-full bg-[#EEF2FF] text-[#4A3AFF] text-xl shadow-sm">
+              <div className="w-34 h-12 flex items-center justify-center rounded-full bg-[#EEF2FF] text-secondary text-xl shadow-sm">
                 {item.icon}
               </div>
 
@@ -247,14 +247,14 @@ const faqs = [
       </div>
     </section>
 
-           <section className="w-full bg-[#292DC2] mt-10 py-4 sm:py-8 md:py-12 px-4 sm:px-6">
+           <section className="w-full bg-primary mt-10 py-4 sm:py-8 md:py-12 px-4 sm:px-6">
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-2 sm:gap-10 lg:gap-16">
 
     {/* 🔥 LEFT CONTENT */}
     <div className="w-full lg:w-1/2 text-center lg:text-left">
 
       {/* small tag */}
-      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+      <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
       {/* heading */}
      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-100 mb-4">
@@ -300,8 +300,8 @@ const faqs = [
 
         {/* Heading */}
         <div className="text-center mb-10">
-          <div className="w-14 h-2 bg-[#FF9100] mx-auto rounded-full mb-4"></div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3d52d9]">
+          <div className="w-14 h-2 bg-secondary mx-auto rounded-full mb-4"></div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
             Powerful LMS Features
           </h2>
         </div>
@@ -313,7 +313,7 @@ const faqs = [
           <div className="space-y-4 order-1">
             {leftFeatures.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <FaCheckCircle className="text-[#4A3AFF] mt-1 text-sm" />
+                <FaCheckCircle className="text-primary mt-1 text-sm" />
                 <p className="text-gray-700 text-sm sm:text-base">{item}</p>
               </div>
             ))}
@@ -332,7 +332,7 @@ const faqs = [
           <div className="space-y-4 order-3">
             {rightFeatures.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <FaCheckCircle className="text-[#4A3AFF] mt-1 text-sm" />
+                <FaCheckCircle className="text-primary mt-1 text-sm" />
                 <p className="text-gray-700 text-sm sm:text-base">{item}</p>
               </div>
             ))}
@@ -348,7 +348,7 @@ const faqs = [
   <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
     
     {/* Orange Line */}
-    <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-8"></div>
+    <div className="w-14 h-2.5 bg-secondary rounded-full mb-8"></div>
 
     {/* Heading */}
     <h2 className="text-[28px] uppercase sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#4c3bcf] leading-tight mb-6 tracking-tight">
@@ -373,11 +373,11 @@ const faqs = [
   </div>
 </section>
 
-<section className="w-full bg-[#1E266E] py-10 md:py-16 px-6">
+<section className="w-full bg-[#390889] py-10 md:py-16 px-6">
       <div className="max-w-5xl mx-auto text-center">
         
         {/* Top Orange Accent Line */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mx-auto mb-6"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mx-auto mb-6"></div>
 
         {/* Main Heading */}
         <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-10 leading-tight">
@@ -399,7 +399,7 @@ const faqs = [
           
           {/* Author/Client Info */}
           <div className="mt-8">
-            <h4 className="text-[#FF9100] font-bold text-lg md:text-xl uppercase tracking-wider">
+            <h4 className="text-secondary font-bold text-lg md:text-xl uppercase tracking-wider">
               Principal, Global Education Academy
             </h4>
             <p className="text-gray-300 text-sm mt-1">
@@ -417,9 +417,9 @@ const faqs = [
             
             {/* Header */}
             <div className="flex flex-col items-center mb-12">
-              <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+              <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#001529] text-center">
-                Frequently Asked <span className="text-[#3d52d9]">Questions</span>
+                Frequently Asked <span className="text-primary">Questions</span>
               </h2>
               <p className="text-gray-500 mt-4 text-center">
                 Find answers to common questions about Vidya ERP and its features.
@@ -438,11 +438,11 @@ const faqs = [
                     onClick={() => toggleAccordion(index)}
                     className="w-full flex items-center justify-between gap-3  p-4 sm:p-5 text-left bg-white hover:bg-gray-50 transition-colors"
                   >
-                    <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-[#3d52d9]' : 'text-gray-700'}`}>
+                    <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-primary' : 'text-gray-700'}`}>
                       {faq.question}
                     </span>
                    <FaChevronDown 
-      className={`text-[#FF9100] transition-transform duration-300 flex-shrink-0 ${
+      className={`text-secondary transition-transform duration-300 flex-shrink-0 ${
         activeIndex === index ? 'rotate-180' : 'rotate-0'
       }`} 
     />

@@ -94,13 +94,13 @@ const FlowCard = ({ data }) => (
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-lg border-l-[6px] border-[#FF9100] hover:shadow-xl transition-all border border-gray-100"
+    className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-lg border-l-[6px] border-secondary hover:shadow-xl transition-all border border-gray-100"
   >
-    <div className="w-14 h-14 bg-gradient-to-br from-[#FF9100] to-[#FFB700] rounded-full flex items-center justify-center text-white text-2xl shadow-inner flex-shrink-0">
+    <div className="w-14 h-14 bg-gradient-to-br from-secondary to-[#FFB700] rounded-full flex items-center justify-center text-white text-2xl shadow-inner flex-shrink-0">
       {data.icon}
     </div>
     <div className="text-left">
-      <h3 className="text-xl font-bold text-[#4A3AFF] mb-1">{data.title}</h3>
+      <h3 className="text-xl font-bold text-primary mb-1">{data.title}</h3>
       <p className="text-gray-600 text-sm leading-relaxed">{data.desc}</p>
     </div>
   </motion.div>
@@ -148,9 +148,9 @@ const WhyChooseData = [
       {/* Left Side: Content */}
       <div className="w-full md:w-[55%] flex flex-col items-center md:items-start text-center md:text-left"> {/* Width 50% se 45% ki */}
         {/* Top Orange Accent Line */}
-        <div className="w-12 h-2.5 bg-[#FF9100] mx-auto rounded-full mb-4"></div> {/* Line thodi choti ki */}
+        <div className="w-12 h-2.5 bg-secondary mx-auto rounded-full mb-4"></div> {/* Line thodi choti ki */}
         
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#4C3BCF] leading-tight mb-6 sm:mb-8"> {/* Font size 1 step down kiya */}
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary leading-tight mb-6 sm:mb-8"> {/* Font size 1 step down kiya */}
           VidyaEnroll Admissions <br className="hidden lg:block" /> 
           Management System
         </h1>
@@ -160,7 +160,7 @@ const WhyChooseData = [
         </p>
         
         {/* Action Button */}
-        <button className="bg-[#4A3AFF] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#3a2cd1] transition-all transform hover:-translate-y-1 uppercase text-xs tracking-wider">
+        <button className="bg-primary text-white font-bold pb-3.5 py-2.5 px-8 rounded-full shadow-lg hover:bg-[#3a2cd1] transition-all transform hover:-translate-y-1 uppercase text-xs sm:text-sm tracking-wider">
           Request A Demo
         </button>
       </div>
@@ -169,7 +169,7 @@ const WhyChooseData = [
       <div className="w-full md:w-[45%] mt-8 md:mt-0 flex justify-center"> {/* Image container width kam ki */}
         <div className="relative group max-w-sm md:max-w-md"> {/* Max-width lagayi image size control karne ke liye */}
           {/* Background decorative glow */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#4A3AFF] to-[#FF9100] rounded-[1.5rem] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-[1.5rem] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
           
           <img 
             src="enroll.jpg" 
@@ -186,11 +186,11 @@ const WhyChooseData = [
      <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         
         {/* 1. Orange Accent Line (Bilkul center mein) */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
         {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
         {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-        <h2 className="text-[22px]  sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-[#3d52d9] leading-tight mb-8 tracking-tight">
+        <h2 className="text-[22px]  sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-primary leading-tight mb-8 tracking-tight">
          Key Features of EasyEnroll
         </h2>
 
@@ -210,14 +210,14 @@ const WhyChooseData = [
       {/* Icon Box */}
       <div className="w-16 h-16 flex items-center justify-center mb-4"> 
         {/* w-20 se w-16 kiya hai aur margin niche ka kam kiya hai */}
-        <span className="text-[#FF9100] text-[35px] md:text-[40px]">
+        <span className="text-secondary text-[35px] md:text-[40px]">
           {item.icon}
           {/* Icon size 45px se 40px kar diya hai */}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="text-[18px] md:text-[20px] font-bold text-[#3d52d9] mb-2 tracking-tight leading-tight">
+      <h3 className="text-[18px] md:text-[20px] font-bold text-primary mb-2 tracking-tight leading-tight">
         {/* font size 22px se 20px kiya aur margin-bottom half kar diya */}
         {item.title}
       </h3>
@@ -238,11 +238,11 @@ const WhyChooseData = [
      <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         
         {/* 1. Orange Accent Line (Bilkul center mein) */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
         {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
         {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-        <h2 className="text-[22px]  sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-[#3d52d9] leading-tight mb-8 tracking-tight">
+        <h2 className="text-[22px]  sm:text-2xl md:text-3xl lg:text-[36px] font-bold text-primary leading-tight mb-8 tracking-tight">
           Why Choose EasyEnroll?
         </h2>
 
@@ -262,14 +262,14 @@ const WhyChooseData = [
       {/* Icon Box */}
       <div className="w-14 h-14 flex items-center justify-center mb-5"> 
         {/* Box size 20 se 14 kiya aur margin kam kiya */}
-        <span className="text-[#FF9100] text-[32px] md:text-[36px]">
+        <span className="text-secondary text-[32px] md:text-[36px]">
           {item.icon}
           {/* Icon size 45px se 36px kar diya */}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="text-[18px] md:text-[20px] font-bold text-[#3d52d9] mb-2 tracking-tight">
+      <h3 className="text-[18px] md:text-[20px] font-bold text-primary mb-2 tracking-tight">
         {/* Text size 22px se 20px kiya */}
         {item.title}
       </h3>
@@ -288,15 +288,15 @@ const WhyChooseData = [
 
 <section ref={targetRef} className=" py-12 px-4 bg-white min-h-[150vh] max-w-3xl mx-auto">
         <div className="text-center mb-4">
-          <div className="w-14 h-2 bg-[#FF9100] rounded-full mx-auto mb-4"></div>
-          <h2 className="text-3xl font-extrabold text-[#4A3AFF]">Admission Round Flow</h2>
+          <div className="w-14 h-2 bg-secondary rounded-full mx-auto mb-4"></div>
+          <h2 className="text-3xl font-extrabold text-primary">Admission Round Flow</h2>
         </div>
 
         {/* Progress Bar Container - Sticky */}
         <div className=" mb-8 bg-white/90 backdrop-blur-md py-4 ">
           <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
             <motion.div
-  className="h-full bg-[#4A3AFF]"
+  className="h-full bg-primary"
   animate={{ width: `${progress}%` }}
   transition={{ duration: 0.4 }}
 />
@@ -320,11 +320,11 @@ const WhyChooseData = [
   }}
     className="flex items-center hover:bg-white/20  gap-5 p-5 bg-white rounded-xl  shadow-md border-l-4 border-orange-400"
   >
-              <div className="w-12 h-12 bg-[#FF9100] rounded-full flex items-center justify-center text-white text-xl flex-shrink-0 shadow-lg">
+              <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white text-xl flex-shrink-0 shadow-lg">
                 {data.icon}
               </div>
               <div className="text-left">
-                <h3 className="text-lg font-bold text-[#4A3AFF]">{data.title}</h3>
+                <h3 className="text-lg font-bold text-primary">{data.title}</h3>
                 <p className="text-gray-500 text-xs leading-relaxed">{data.desc}</p>
               </div>
             </motion.div>

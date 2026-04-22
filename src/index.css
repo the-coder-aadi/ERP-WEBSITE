@@ -1,17 +1,61 @@
 @import "tailwindcss";
 
+:root {
+  --primary: #6702bf;
+  --secondary: #cfb703;
+  --hover: #fffef8;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-hover:hover {
+  color: var(--hover);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
 body {
   font-family: 'Poppins', sans-serif;
 overflow-x: hidden;
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+img,
+svg,
+.material-symbols-outlined,
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+::selection {
+  background: #d1d5db; /* light gray */
+  color: #000;         /* text readable rahe */
+}
+
+::-moz-selection {
+  background: #d1d5db;
+  color: #000;
 }
 
 /* Schedule Demo Button Custom Style */
 .schedule-btn {
     position: relative;
-    background: #ff9100; /* Default Orange */
+    background: #6702bf; /* Default Orange */
     color: #fff;
     padding: 12px 26px;
     font-size: 14px;
@@ -36,7 +80,7 @@ html {
     left: 50%; /* Center position */
     width: 0; /* Shuruat mein koi width nahi */
     height: 100%; /* Height poori rahegi */
-    background: linear-gradient(-45deg, #3f12e2, #5931e7);
+    background: linear-gradient(-45deg, #eec211, #e3c607);
     z-index: -1; 
     transition: all 0.3s ease-in-out;
     transform: translateX(-50%); /* Center se expand hone ke liye logic */
@@ -67,5 +111,14 @@ html {
 /* Jab parent par hover ho, toh scroll ruk jaye */
 .animate-infinite-scroll:has(.client-item:hover) {
   animation-play-state: paused;
+}
+
+.scrolltotop{
+ font-size: 14px;
+}
+@media (max-width: 500px) {
+  .scrolltotop{
+ font-size: 10px;
+}
 }
 

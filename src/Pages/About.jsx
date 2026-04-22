@@ -31,7 +31,7 @@ const highlights = [
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center text-center group">
               {/* Icon - Blue Color (Screenshot match) */}
-              <div className="text-[#3d52d9] text-6xl mb-4 transition-transform duration-300 group-hover:scale-110">
+              <div className="text-primary text-6xl mb-4 transition-transform duration-300 group-hover:scale-110">
                 {stat.icon}
               </div>
               {/* Count */}
@@ -49,7 +49,7 @@ const highlights = [
         {/* --- RIGHT SIDE: CONTENT --- */}
         <div className="w-full min-[1000px]:w-1/2 flex flex-col items-start">
           {/* Orange Accent Line */}
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
           
           <h2 className="text-3xl md:text-4xl font-semibold text-[#222] mb-8">
             Our Story
@@ -57,7 +57,7 @@ const highlights = [
 
           <div className="space-y-6 text-gray-500 text-md sm:text-lg leading-relaxed text-justify ">
        <p>
-  <span className="text-[#3d52d9] font-bold">Vidya ERP</span> is a cutting-edge product development and technology services provider that helps educational institutions become digital-first. Our goal is to empower schools and colleges with smart solutions that keep them ahead in today’s competitive environment.
+  <span className="text-primary font-bold">Vidya ERP</span> is a cutting-edge product development and technology services provider that helps educational institutions become digital-first. Our goal is to empower schools and colleges with smart solutions that keep them ahead in today’s competitive environment.
 </p>
 
 <p>
@@ -79,14 +79,14 @@ const highlights = [
         {/* --- OUR VISION CARD --- */}
         <div className="w-full md:w-1/2 flex flex-col items-center">
           {/* Orange Accent Line */}
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
           
           <h2 className="text-3xl md:text-4xl font-bold text-[#222] mb-5 md:mb-8">
             Our Vision
           </h2>
 
           {/* Blue Content Box - Matches image_24.png perfectly */}
-          <div className="w-full bg-[#292dc2] text-white p-6 md:p-8 will-change-contents  lg:p-10 rounded-md shadow-2xl  min-h-[150px] flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
+          <div className="w-full bg-primary text-white p-6 md:p-8 will-change-contents  lg:p-10 rounded-md shadow-2xl  min-h-[150px] flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
             <p className="text-[16px] md:text-[18px] font-medium leading-relaxed text-center italic tracking-wide opacity-95">
                To empower educational institutions with a smart digital ecosystem that drives innovation, efficiency, and global excellence.
             </p>
@@ -96,14 +96,14 @@ const highlights = [
         {/* --- OUR MISSION CARD --- */}
         <div className="w-full md:w-1/2 flex flex-col items-center">
           {/* Orange Accent Line */}
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
           
           <h2 className="text-3xl md:text-4xl font-bold text-[#222] mb-5 md:mb-8">
             Our Mission
           </h2>
 
           {/* Blue Content Box - Matches image_24.png perfectly */}
-          <div className="w-full bg-[#292dc2] text-white will-change-contents p-6 md:p-8 lg:p-10 rounded-md shadow-2xl min-h-[150px] flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
+          <div className="w-full bg-primary text-white will-change-contents p-6 md:p-8 lg:p-10 rounded-md shadow-2xl min-h-[150px] flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
             <p className="text-[16px] md:text-[18px] font-medium leading-relaxed text-center tracking-wide opacity-95">
                 To simplify institutional operations and enhance productivity through a unified, intuitive, and cloud-based ERP solution.
             </p>
@@ -117,7 +117,7 @@ const highlights = [
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         {/* --- Header Section --- */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
         <h2 className="text-4xl md:text-5xl font-bold text-[#222] mb-16 text-center">
           Our Highlights
         </h2>
@@ -129,7 +129,7 @@ const highlights = [
               
               {/* Circular Icon Container */}
               <div className="w-25 h-25 bg-white rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.08)] mb-6 transition-all duration-300 group-hover:shadow-[0_15px_40px_rgba(0,0,0,0.15)] group-hover:-translate-y-2">
-                <div className="text-[#3d52d9] text-4xl">
+                <div className="text-primary text-4xl">
                   {item.icon}
                 </div>
               </div>

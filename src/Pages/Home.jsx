@@ -21,6 +21,7 @@ function Home() {
   const [timer, setTimer] = useState(120)
   const [rotate, setRotate] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
@@ -31,65 +32,63 @@ function Home() {
     captchaInput: ""
   })
 
- const handleChange = (e) => {
-  const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  setFormData({
-    ...formData,
-    [name]: value
-  });
-
-  // 🔥 IMPORTANT: error remove on typing
-  setErrors((prev) => ({
-    ...prev,
-    [name]: ""
-  }));
-};
-  const handleCaptchaClick = () => {
-  setRotate(true)
-  generateCaptcha()
-
-  setTimeout(() => {
-    setRotate(false);
-  }, 400);
-}
-
-useEffect(() => {
-  generateCaptcha(); // first time
-
-  const interval = setInterval(() => {
-    setTimer((prev) => {
-      if (prev === 1) {
-        generateCaptcha(); // 🔥 new captcha
-        return 120;        // reset timer
-      }
-      return prev - 1;
+    setFormData({
+      ...formData,
+      [name]: value
     });
-  }, 1000);
 
-  return () => clearInterval(interval);
-}, []);
+    // 🔥 IMPORTANT: error remove on typing
+    setErrors((prev) => ({
+      ...prev,
+      [name]: ""
+    }));
+  };
+  const handleCaptchaClick = () => {
+    setRotate(true)
+    generateCaptcha()
 
-const generateCaptcha = () => {
-  setIsGenerating(true); // Pehle loading chalu karo
-  setGeneratedCaptcha(""); // Purana captcha clear kar do (optional)
+    setTimeout(() => {
+      setRotate(false);
+    }, 400);
+  }
 
-  // 1.5 second ka delay add kiya hai
-  setTimeout(() => {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    let captcha = "";
+  useEffect(() => {
+    generateCaptcha(); // first time
 
-    for (let i = 0; i < 6; i++) {
-      captcha += chars[Math.floor(Math.random() * chars.length)];
-    }
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev === 1) {
+          generateCaptcha(); // 🔥 new captcha
+          return 120;        // reset timer
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-    setGeneratedCaptcha(captcha);
-    setIsGenerating(false); // Kaam hone ke baad loading band
-  }, 500); // 1500ms = 1.5 seconds
-}
-  // useEffect(() => {
-  //   generateCaptcha();
-  // }, []);
+    return () => clearInterval(interval);
+  }, []);
+
+  const generateCaptcha = () => {
+    setIsGenerating(true);
+    setGeneratedCaptcha("");
+
+    // 1.5 second ka delay add kiya hai
+    setTimeout(() => {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let captcha = "";
+
+      for (let i = 0; i < 6; i++) {
+        captcha += chars[Math.floor(Math.random() * chars.length)];
+      }
+
+      setGeneratedCaptcha(captcha);
+      setIsGenerating(false); 
+    }, 500); 
+  }
+
 
   const [errors, setErrors] = useState({});
 
@@ -98,21 +97,21 @@ const generateCaptcha = () => {
 
     if (!formData.name) newErrors.name = "Name required";
 
- if (!formData.email) {
-  newErrors.email = "Email required";
-} else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
-  newErrors.email = "Enter valid Gmail (example@gmail.com)";
-}
+    if (!formData.email) {
+      newErrors.email = "Email required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
+      newErrors.email = "Enter valid Gmail (example@gmail.com)";
+    }
 
-  if (!/^\d{10}$/.test(formData.phone)) {
-  newErrors.phone = "Enter valid 10 digit number";
-}
+    if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Enter valid 10 digit number";
+    }
     if (formData.captchaInput !== generatedCaptcha) {
       newErrors.captcha = "Invalid captcha";
     }
     if (!formData.position) {
-  newErrors.position = "select a position";
-}
+      newErrors.position = "select a position";
+    }
 
     setErrors(newErrors);
 
@@ -121,49 +120,71 @@ const generateCaptcha = () => {
 
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // 1. validation check
-  if (!validate()) return;
-
-  try {
-    // 2. loading start (optional)
-    setLoading(true);
-
-    // 3. Firebase save
-    await addDoc(collection(db, "enquiries"), {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      position: formData.position,
-      message: formData.message,
-      createdAt: new Date()
-    });
-
-    // 4. success
-    alert("Enquiry sent successfully 🎉");
-
-    // 5. reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      position: "",
-      message: "",
-      captchaInput: ""
-    });
-generateCaptcha()
+    if (loading) return;
 
 
-  } catch (error) {
-    console.log(error);
-    alert("Something went wrong ❌");
+    if (!validate()) return;
 
-  } finally {
-    setLoading(false);
-  }
+    try {
+  
+      setLoading(true);
+
+      // 3. Firebase save
+      await addDoc(collection(db, "enquiries"), {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        position: formData.position,
+        message: formData.message,
+        createdAt: new Date()
+      });
+
+      await fetch("https://script.google.com/macros/s/AKfycby4Qa7jLNEk4z8c8lH7wInzbGyGBXFvHmCG4U8CsBlKbvN-UWae5JXTsUYI8hGq4U7D-w/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          type: "enquiry",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+           select: formData.position,
+          date: new Date().toLocaleString()
+        })
+      });
+
+      // 4. success
+      alert("Enquiry sent successfully 🎉");
+
+      // 5. reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        position: "",
+        message: "",
+        captchaInput: ""
+      });
+      generateCaptcha()
+
+
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong ❌");
+
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const handleFocus = (field) => {
+  setErrors((prev) => ({
+    ...prev,
+    [field]: ""
+  }));
 };
-
 
 
   const stories = [
@@ -184,58 +205,7 @@ generateCaptcha()
     setCurrentIndex((prev) => (prev === 0 ? stories.length - 1 : prev - 1));
   };
 
-// const Counter = memo(function Counter({ value, suffix = "" }) {
-//   const ref = useRef(null);
-//   const [count, setCount] = useState(0);
-//   const hasAnimated = useRef(false);
 
-//   useEffect(() => {
-//     const node = ref.current;
-//     if (!node) return;
-
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting && !hasAnimated.current) {
-//           hasAnimated.current = true;
-
-//           let startTime = null;
-//           const duration = 1500;
-
-//           const animate = (timestamp) => {
-//             if (!startTime) startTime = timestamp;
-
-//             const progress = Math.min((timestamp - startTime) / duration, 1);
-//             const current = Math.floor(progress * value);
-
-//             setCount(current);
-
-//             if (progress < 1) {
-//               requestAnimationFrame(animate);
-//             } else {
-//               setCount(value);
-//             }
-//           };
-
-//           requestAnimationFrame(animate);
-
-//           observer.disconnect(); // 🔥 main fix
-//         }
-//       },
-//       { threshold: 0.6 }
-//     );
-
-//     observer.observe(node);
-
-//     return () => observer.disconnect();
-//   }, []); // 🔥 value hata diya (important)
-
-//   return (
-//     <div ref={ref} className="sm:text-7xl text-6xl font-bold text-white">
-//       {count}
-//       {suffix}
-//     </div>
-//   );
-// });
 
   const solutionsData = [
     {
@@ -280,13 +250,13 @@ generateCaptcha()
       <div className="hidden max-[900px]:block px-4 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <p className="text-[#0008e7] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
-              Smart ERP Solutions for Modern Institutions.
+            <p className="text-primary text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+              Smart ERP Solutions for Modern Institutions
             </p>
             <h1 className="text-[18px] sm:text-[22px] max-[400px]:text-[14.5px] md:text-[25px] lg:text-[28px] font-semibold text-[#3a3a3a] leading-[1.5] lg:leading-[1.6]">
               Enhancing Education
-              with <span className="text-[#ffffff] bg-[#ff9100] px-2 rounded-md">Integrated</span> <br />
-              Complete <span className="text-[#ffffff] bg-[#ff9100] px-2 rounded-md">ERP Platform</span>
+              with <span className="text-[#ffffff] bg-secondary px-2 rounded-md">Integrated</span> <br />
+              Complete <span className="text-[#ffffff] bg-secondary px-2 rounded-md">ERP Platform</span>
             </h1>
           </div>
         </div>
@@ -296,16 +266,17 @@ generateCaptcha()
       <section className="relative w-full h-[600px] max-[900px]:h-auto overflow-hidden bg-[#001529]">
 
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
-        <div className="w-full h-full max-[900px]:h-auto">
+        <div className="w-full h-full max-[900px]:h-auto bg-white">
           <img
-            src="/final.png"
+            src="/heropic.webp"
+            
             alt="ERP Banner Desktop"
             className="hidden min-[701px]:block w-full h-full object-cover object-top"
           />
 
           {/* 2. Mobile Image: Jo sirf 600px aur usse niche dikhegi */}
           <img
-            src="/finalmobile.png" // Yahan apni mobile wali image ka path dalo
+            src="/heropicmobile.webp" // Yahan apni mobile wali image ka path dalo
             alt="ERP Banner Mobile"
             className="block min-[701px]:hidden w-full h-auto object-cover"
           />
@@ -313,21 +284,21 @@ generateCaptcha()
 
         {/* Content Overlay: flex-items-start aur pt (padding-top) se text upar shift ho jayega */}
         <div className="absolute inset-0 z-10">
-          <div className="max-w-[1500px] mx-auto h-full px-6 flex items-start pt-16 md:pt-2 lg:pt-3">
+          <div className="max-w-[1500px] mx-auto h-full px-6 flex items-start pt-16 md:pt-7 lg:pt-6">
 
             {/* Left Content Area */}
             <div className="w-full min-[900px]:w-1/2 flex max-[900px]:hidden  flex-col  items-start whitespace-nowrap">
 
               {/* 1. Small Heading: Size kam kiya hai */}
-              <p className="text-[#0008e7] text-[16px] sm:text-[20px] md:text-[26px] lg:text-[30px]  font-bold tracking-wide mb-2 opacity-90">
-                Smart ERP Solutions for Modern Institutions.
+              <p className="text-primary text-[16px] sm:text-[20px] md:text-[26px] lg:text-[33px]  font-bold tracking-wide mb-2 opacity-90">
+                Smart ERP Solutions for Modern Institutions
               </p>
 
               {/* 2. Main Heading: Size aur line-height adjust ki hai taaki photo na dhake */}
-              <h1 className="text-[16px] sm:text-[20px] md:text-[25px]  lg:text-[28px] font-semibold text-[#3a3a3a] leading-[1.9] lg:leading-[1.6]  ">
+              <h1 className="text-[16px] sm:text-[20px] md:text-[25px]  lg:text-[30px] font-semibold text-[#3a3a3a] leading-[1.9] lg:leading-[1.6]  ">
                 Enhancing Education
-                with <span className="text-[#ffffff] bg-[#ff9100] px-2 rounded-md">Integrated</span> <br />
-                Complete  <span className="text-[#ffffff] bg-[#ff9100] px-2 rounded-md">ERP Platform</span>
+                with <span className="text-[#ffffff] bg-secondary px-2 rounded-md">Integrated</span> <br />
+                Complete  <span className="text-[#ffffff] bg-secondary px-2 rounded-md">ERP Platform</span>
               </h1>
 
 
@@ -337,50 +308,53 @@ generateCaptcha()
             <div className="hidden min-[900px]:block  lg:w-[300px] ml-auto bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden border border-gray-100 self-center">
               {/* Form Header */}
               <div className="bg-white px-6 py-2 border-b border-gray-50 flex items-center justify-center gap-2">
-                <span className="material-symbols-outlined text-[#FF9100] text-[22px] fill-1">send</span>
-                <h3 className="text-[17px] font-extrabold text-[#2C84D5] uppercase tracking-tight">Enquiry Form</h3>
+                <span className="material-symbols-outlined text-secondary text-[22px] fill-1">send</span>
+                <h3 className="text-[17px] font-extrabold text-primary uppercase tracking-tight">Enquiry Form</h3>
               </div>
 
-              <form className="p-4 flex flex-col gap-1.5">
+              <form className="p-4 flex flex-col gap-1.5" spellCheck={false}>
                 {/* Section Title */}
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="material-symbols-outlined text-[#2C84D5] text-[18px]" style={{ fontSize: "14px" }}>account_circle</span>
-                  <span className="text-[11px] font-bold text-[#2C84D5] uppercase tracking-wider">Your Details</span>
+                  <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontSize: "14px" }}>account_circle</span>
+                  <span className="text-[11px] font-bold text-primary uppercase tracking-wider">Your Details</span>
                 </div>
 
                 {/* Input Fields with Icons */}
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]" style={{ fontSize: "18px" }}>person</span>
                   <input type="text" placeholder="Your Name"
-name="name"
+                    onFocus={() => handleFocus("name")}
+                    name="name"
                     value={formData.name}
                     onChange={handleChange}
 
-                    className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.name ? "border-red-400 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
-                 
+                    className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  text-sm  transition-all
+  ${errors.name ? "border-red-400 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
+
                 </div>
 
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]" style={{ fontSize: "18px" }}>mail</span>
                   <input type="email" placeholder="you@example.com"
                     value={formData.email}
+                     onFocus={() => handleFocus("email")}
                     name="email"
                     onChange={handleChange}
-                    className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
-                 
+                    className={`w-full bg-white border rounded-lg pl-10 pr-4 outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  py-2 text-sm  transition-all
+  ${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
+
                 </div>
 
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]" style={{ fontSize: "18px" }}>smartphone</span>
                   <input type="tel" placeholder="+91..."
                     value={formData.phone}
+                     onFocus={() => handleFocus("phone")}
                     name="phone"
                     onChange={handleChange}
-                 className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
-                 
+                    className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
+
                 </div>
 
                 <div className="relative">
@@ -388,16 +362,18 @@ name="name"
                   <select
                     value={formData.position}
                     onChange={handleChange}
+                     onFocus={() => handleFocus("position")}
                     name="position"
-                    className={`w-full bg-white border appearance-none rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.position ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`}>
-                    <option value= "" disabled>Select Position</option>
+                    className={`w-full bg-white border appearance-none rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.position ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`}>
+                    <option value="" disabled>Select Position</option>
                     <option value="Principal">Principal</option>
                     <option value="Director">Director</option>
-                    <option value = "Teacher">Teacher</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Other">Other</option>
                   </select>
                   <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">arrow_drop_down</span>
-                 
+
                 </div>
 
                 <div className="relative">
@@ -405,49 +381,51 @@ name="name"
                   <textarea
                     value={formData.message}
                     onChange={handleChange}
+                     onFocus={() => handleFocus("message")}
                     name="message"
-                    placeholder="Message for us..." rows="1" className="w-full bg-white border border-gray-300 rounded-lg pl-10 pr-4 py-2 text-sm outline-none focus:border-[#2C84D5] transition-all placeholder:text-gray-300 min-h-[40px] "></textarea>
-               
+                    placeholder="Message for us..." rows="1" className="w-full bg-white border border-gray-300 rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  transition-all placeholder:text-gray-300 min-h-[40px] "></textarea>
+
                 </div>
 
                 {/* Captcha Section */}
                 <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center gap-2 border border-gray-100">
                   <div className="flex items-center gap-3">
-             <div className="bg-white px-3 py-1 border border-gray-200 rounded font-mono font-bold tracking-[5px] text-md select-none italic text-gray-700 shadow-sm relative overflow-hidden">
-  {generatedCaptcha}
+                    <div className="bg-white px-3 py-1 border border-gray-200 rounded font-mono font-bold tracking-[5px] text-md select-none italic text-gray-700 shadow-sm relative overflow-hidden">
+                      {generatedCaptcha}
 
-  {/* noise overlay */}
-  <div className="absolute inset-0 pointer-events-none opacity-100">
-    <div className="w-full h-full bg-[radial-gradient(circle,rgba(0,0,0,0.15)_1px,transparent_1px)] [background-size:6px_6px]"></div>
-  </div>
+                      {/* noise overlay */}
+                      <div className="absolute inset-0 pointer-events-none opacity-100">
+                        <div className="w-full h-full bg-[radial-gradient(circle,rgba(0,0,0,0.15)_1px,transparent_1px)] [background-size:6px_6px]"></div>
+                      </div>
 
-  {/* slight blur + distortion layer */}
-  <div className="absolute inset-0 pointer-events-none backdrop-blur-[0.8px]"></div>
-</div>
-                    <button type="button" onClick={()=>{
+                      {/* slight blur + distortion layer */}
+                      <div className="absolute inset-0 pointer-events-none backdrop-blur-[0.8px]"></div>
+                    </div>
+                    <button type="button" onClick={() => {
                       generateCaptcha()
                       handleCaptchaClick()
                     }}
-     style={{
-    transform: rotate ? "rotate(180deg)" : "rotate(0deg)",
-  }}
-                     className="material-symbols-outlined text-blue-500 transition-transform duration-500">cached</button>
+                      style={{
+                        transform: rotate ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                      className="material-symbols-outlined text-primary cursor-pointer transition-transform duration-500">cached</button>
                   </div>
                   <p className="text-[12px] font-bold text-red-500 animate-pulse">New CAPTCHA in {timer}s</p>
                   <input type="text"
                     value={formData.captchaInput}
+                     onFocus={() => handleFocus("captcha")}
                     onChange={handleChange}
                     name="captchaInput"
-                    placeholder="ENTER CAPTCHA"  className={`w-full bg-white border text-center rounded-lg px-5 py-2 text-sm outline-none transition-all
-  ${errors.captcha ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
-                      
+                    placeholder="ENTER CAPTCHA" className={`w-full bg-white border text-center rounded-lg px-5 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.captcha ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
+
                 </div>
 
                 {/* Send Enquiry Button (Orange with Icon) */}
-                <button  onClick={handleSubmit}
-  disabled={loading}
-   className="w-full bg-gradient-to-r from-[#FF8E00] to-[#FF6200] hover:from-[#FF6200] hover:to-[#FF8E00] text-white font-extrabold py-2.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mt-1 group">
-                  <span className="uppercase tracking-wider text-[12px]"> {loading ? "Sending..." : "Send Enquiry"}y</span>
+                <button onClick={handleSubmit}
+                  disabled={loading}
+                  className="w-full cursor-pointer bg-gradient-to-r from-[#a600ff] to-[#dd00ff] hover:from-[#c800ff] hover:to-[#ff00ee] text-white font-extrabold py-2.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mt-1 group">
+                  <span className="uppercase tracking-wider text-[12px]"> {loading ? "Sending..." : "Send Enquiry"}</span>
                   <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" style={{ fontSize: "18px" }}>send</span>
                 </button>
               </form>
@@ -459,7 +437,7 @@ name="name"
         {/* Schedule Button: Centered on poster for desktop */}
         <a
           href="#request-demo"
-          className="schedule-btn !hidden min-[900px]:!inline-flex absolute bottom-18 left-1/2 -translate-x-1/2 z-10 px-8 py-3 rounded-lg bg-orange-500 text-white font-bold text-lg shadow-lg transition-all hover:bg-blue-600"
+          className="schedule-btn !hidden min-[900px]:!inline-flex absolute bottom-18 left-1/2 -translate-x-1/2 z-10 px-8 py-3 rounded-lg  text-white font-bold text-lg shadow-lg transition-all "
         >
           Schedule a Free Demo
         </a>
@@ -467,7 +445,7 @@ name="name"
 
       {/* Mobile button: below poster and smaller on small screens */}
       <div className="max-[900px]:block hidden">
-        <a href="#request-demo" className="mx-auto mt-4 block w-fit px-4 py-2 rounded-lg bg-orange-500 text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
+        <a href="#request-demo" className="mx-auto mt-4 block w-fit px-4 py-2 rounded-lg bg-primary text-white font-bold text-sm shadow-lg transition-all ">
           Schedule a Free Demo
         </a>
       </div>
@@ -480,15 +458,15 @@ name="name"
 
           {/* Form Header - Height kam ki hai */}
           <div className="bg-white px-5 py-3 border-b border-gray-50 flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-[#FF9100] text-[20px]">send</span>
-            <h3 className="text-[16px] font-extrabold text-[#2C84D5] uppercase tracking-tight">Enquiry Form</h3>
+            <span className="material-symbols-outlined text-secondary text-[20px]">send</span>
+            <h3 className="text-[16px] font-extrabold text-primary uppercase tracking-tight">Enquiry Form</h3>
           </div>
 
           <form className="p-4 flex flex-col gap-2.5"> {/* Gap kam kiya hai */}
             {/* Section Title */}
             <div className="flex items-center gap-2 mb-1">
-              <span className="material-symbols-outlined text-[#2C84D5] text-[18px]" style={{ fontSize: "17px" }}>account_circle</span>
-              <span className="text-[11px] font-bold text-[#2C84D5] uppercase tracking-wider">Your Details</span>
+              <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontSize: "17px" }}>account_circle</span>
+              <span className="text-[11px] font-bold text-primary uppercase tracking-wider">Your Details</span>
             </div>
 
             {/* Input Fields - Padding kam ki hai height ghatane ke liye */}
@@ -496,11 +474,11 @@ name="name"
               <div className="relative">
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]" style={{ fontSize: "17px" }}>person</span>
                 <input type="text" placeholder="Your Name"
-                name="name"
+                  name="name"
                   value={formData.name}
                   onChange={handleChange}
-                                     className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.name ? "border-red-400 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
+                  className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.name ? "border-red-400 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
               </div>
 
               <div className="relative">
@@ -510,8 +488,8 @@ name="name"
                   value={formData.email}
                   onChange={handleChange}
                   name="email"
-                       className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
+                  className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
               </div>
 
               <div className="relative">
@@ -520,8 +498,8 @@ name="name"
                   value={formData.phone}
                   onChange={handleChange}
                   name="phone"
-                                  className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
+                  className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
               </div>
 
               <div className="relative text-[#888585]">
@@ -530,12 +508,14 @@ name="name"
                   value={formData.position}
                   onChange={handleChange}
                   name="position"
-                 className={`w-full bg-white border appearance-none rounded-lg pl-10 pr-4 py-2 text-sm outline-none transition-all
-  ${errors.position ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`}>
+                  className={`w-full bg-white border appearance-none rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.position ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`}>
                   <option value="" disabled>Select Position</option>
                   <option value="Principal">Principal</option>
                   <option value="Director">Director</option>
                   <option value="Teacher">Teacher</option>
+                  <option value="Other">Other</option>
+
                 </select>
                 <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">arrow_drop_down</span>
               </div>
@@ -546,50 +526,50 @@ name="name"
                   value={formData.message}
                   name="message"
                   onChange={handleChange}
-                  placeholder="Message..." rows="2" className="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-2 text-sm outline-none focus:border-[#2C84D5] resize-y min-h-[30px]"></textarea>
+                  placeholder="Message..." rows="2" className="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  focus:border-primary resize-y min-h-[30px]"></textarea>
               </div>
             </div>
 
-           
+
             <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center gap-2 border border-gray-100">
               <div className="flex items-center gap-3">
-        <div className="bg-white px-3 py-1 border border-gray-200 rounded font-mono font-bold tracking-[5px] text-md select-none italic text-gray-700 shadow-sm relative overflow-hidden">
-  {generatedCaptcha}
+                <div className="bg-white px-3 py-1 border border-gray-200 rounded font-mono font-bold tracking-[5px] text-md select-none italic text-gray-700 shadow-sm relative overflow-hidden">
+                  {generatedCaptcha}
 
-  {/* noise overlay */}
-  <div className="absolute inset-0 pointer-events-none opacity-100">
-    <div className="w-full h-full bg-[radial-gradient(circle,rgba(0,0,0,0.15)_1px,transparent_1px)] [background-size:6px_6px]"></div>
-  </div>
+                  {/* noise overlay */}
+                  <div className="absolute inset-0 pointer-events-none opacity-100">
+                    <div className="w-full h-full bg-[radial-gradient(circle,rgba(0,0,0,0.15)_1px,transparent_1px)] [background-size:6px_6px]"></div>
+                  </div>
 
-  {/* slight blur + distortion layer */}
-  <div className="absolute inset-0 pointer-events-none backdrop-blur-[0.8px]"></div>
-</div>
+                  {/* slight blur + distortion layer */}
+                  <div className="absolute inset-0 pointer-events-none backdrop-blur-[0.8px]"></div>
+                </div>
                 <button
-                onClick={()=>{
-                      generateCaptcha()
-                      handleCaptchaClick()
-                    }}
-     style={{
-    transform: rotate ? "rotate(180deg)" : "rotate(0deg)",
-  }}
-                type="button" className="material-symbols-outlined text-blue-500 duration-300 text-2xl">cached</button>
+                  onClick={() => {
+                    generateCaptcha()
+                    handleCaptchaClick()
+                  }}
+                  style={{
+                    transform: rotate ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                  type="button" className="material-symbols-outlined text-primary duration-300 text-2xl">cached</button>
               </div>
-               <p className="text-[12px] font-bold text-red-500 animate-pulse">New CAPTCHA in {timer}s</p>
+              <p className="text-[12px] font-bold text-red-500 animate-pulse">New CAPTCHA in {timer}s</p>
               <input type="text"
-               value={formData.captchaInput}
-                  onChange={handleChange}
-                  name="captchaInput"
-              placeholder="ENTER CAPTCHA" className={`w-full bg-white text-center text-[#5d5d5d] font-semibold border rounded-lg px-5 py-2 text-[15px] outline-none transition-all
-  ${errors.captcha ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-[#2C84D5]"}`} />
+                value={formData.captchaInput}
+                onChange={handleChange}
+                name="captchaInput"
+                placeholder="ENTER CAPTCHA" className={`w-full bg-white text-center text-[#5d5d5d] font-semibold border rounded-lg px-5 py-2 text-[15px] outline-none duration-200 focus:border-[#8c00ff54]  transition-all
+  ${errors.captcha ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
             </div>
 
-          
-        <button  onClick={handleSubmit}
-  disabled={loading}
-   className="w-full bg-gradient-to-r from-[#FF8E00] to-[#FF6200] hover:from-[#FF6200] hover:to-[#FF8E00] text-white font-extrabold py-2.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mt-1 group">
-                  <span className="uppercase tracking-wider text-[12px]"> {loading ? "Sending..." : "Send Enquiry"}y</span>
-                  <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" style={{ fontSize: "18px" }}>send</span>
-                </button>
+
+            <button onClick={handleSubmit}
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-[#a600ff] to-[#dd00ff] hover:from-[#c800ff] hover:to-[#ff00ee] text-white font-extrabold py-2.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mt-1 group">
+              <span className="uppercase tracking-wider text-[12px]"> {loading ? "Sending..." : "Send Enquiry"}</span>
+              <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" style={{ fontSize: "18px" }}>send</span>
+            </button>
           </form>
         </div>
       </div>
@@ -627,7 +607,7 @@ name="name"
           >
 
             {/* Orange Accent Line */}
-            <div className="w-15 h-[10px] bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-15 h-[10px] bg-secondary rounded-full mb-6"></div>
 
             {/* Main Heading - Responsive sizing */}
             <h2 className="text-2xl sm:text-3xl lg:text-[28px] font-semibold text-[#3f3f3f] leading-[1.3] mb-6 tracking-tight">
@@ -661,11 +641,11 @@ name="name"
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
 
           {/* 1. Orange Accent Line (Bilkul center mein) */}
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-8"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-8"></div>
 
           {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
           {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-          <h2 className="text-[28px] uppercase sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#4c3bcf] leading-tight mb-8 tracking-tight">
+          <h2 className="text-[28px] uppercase sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-primary leading-tight mb-8 tracking-tight">
             Smart Cloud-Based ERP Solutions
           </h2>
 
@@ -689,13 +669,13 @@ name="name"
               >
                 {/* Icon Box */}
                 <div className="w-20 h-20  flex items-center justify-center mb-8 max-[400px]:mb-2">
-                  <span className=" text-[#FF9100] text-[45px]">
+                  <span className=" text-secondary text-[45px]">
                     {item.icon}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[22px] font-medium text-[#3d52d9] mb-4 tracking-tight">
+                <h3 className="text-[22px] font-medium text-primary mb-4 tracking-tight">
                   {item.title}
                 </h3>
 
@@ -711,10 +691,10 @@ name="name"
 
 
       </main>
-{/* 
+      {/* 
     <section className="bg-[#2F2FB2] py-12 px-5 text-center">
         <div className="flex justify-center mb-4">
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full"></div>
         </div>
         <h2 className="text-white text-2xl md:text-[32px] font-bold mb-12">
           Transforming Education with Vidya ERP
@@ -753,7 +733,7 @@ name="name"
         </div>
         
       </section> */}
-<Counter />
+      <Counter />
 
       <section className="w-full bg-[#F9FAFB] py-12 sm:py-16 px-5">
 
@@ -761,11 +741,11 @@ name="name"
 
           {/* Top Line */}
           <div className="flex justify-center mb-4">
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full"></div>
           </div>
 
           {/* Heading */}
-          <h2 className="text-center text-[#4c3bcf] text-2xl md:text-3xl font-semibold mb-6 sm:mb-12">
+          <h2 className="text-center text-primary text-2xl md:text-3xl font-semibold mb-6 sm:mb-12">
             What We Offer
           </h2>
 
@@ -830,11 +810,11 @@ name="name"
 
 
 
-      <section className="w-full bg-[#1E56D1] px-2 py-10 mt-6 sm:px-6 relative overflow-hidden">
+      <section className="w-full bg-primary px-2 py-10 mt-6 sm:px-6 relative overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
 
           {/* --- Orange Line --- */}
-          <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+          <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
           {/* --- Heading --- */}
           <h2 className="text-white text-3xl md:text-5xl font-bold mb-10 tracking-tight">
@@ -852,7 +832,7 @@ name="name"
             {/* Left Arrow */}
             <button
               onClick={prevStory}
-              className="text-orange-400 hover:text-white transition-colors p-2 z-10"
+              className="text-[#cfb703] hover:text-white cursor-pointer transition-colors p-2 z-10"
             >
               <FaChevronLeft className="text-2xl md:text-4xl" />
             </button>
@@ -876,7 +856,7 @@ name="name"
             {/* Right Arrow */}
             <button
               onClick={nextStory}
-              className="text-orange-400 hover:text-white transition-colors p-2 z-10"
+              className="text-[#cfb703] hover:text-white cursor-pointer transition-colors p-2 z-10"
             >
               <FaChevronRight className="text-2xl md:text-4xl" />
             </button>
@@ -888,7 +868,7 @@ name="name"
             {stories.map((_, index) => (
               <div
                 key={index}
-                className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-orange-500" : "w-2 bg-white/30"}`}
+                className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-secondary" : "w-2 bg-white/30"}`}
               />
             ))}
           </div>

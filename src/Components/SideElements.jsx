@@ -3,29 +3,12 @@ import { db } from './firebase';
 import { FaWhatsapp, FaRegCommentDots, FaEnvelope, FaPhoneAlt, FaChevronUp, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import  { useState, useEffect } from 'react';
 import { collection,addDoc } from 'firebase/firestore';
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+
 import { auth } from './firebase';
 
 
 const SideElements = () => {
 const [loading, setLoading] = useState(false);
-  const [otp, setOtp] = useState("");
-const [otpSent, setOtpSent] = useState(false);
-const [confirmationResult, setConfirmationResult] = useState(null);
-
-useEffect(() => {
-  if (!window.recaptchaVerifier) {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      auth,
-      "recaptcha-container",
-      {
-        size: "invisible",
-      }
-    );
-  }
-}, []);
-
-
 
 const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -55,7 +38,7 @@ if (formData.product.includes("school")) {
     link.href = "/vidya_school_brochure.pdf";
     link.download = "Vidya-School-Brochure.pdf";
     link.click();
-  }, 0);
+  }, 500);
 }
 
 if (formData.product.includes("college")) {
@@ -72,10 +55,13 @@ const validate = () => {
   let newErrors = {};
 
   if (!formData.fullName) newErrors.fullName = "Name required";
+  
+ if (!formData.email) {
+  newErrors.email = "Email required";
+} else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
+  newErrors.email = "Enter valid Gmail (example@gmail.com)";
+}
 
-  if (!formData.email.includes("@")) {
-    newErrors.email = "Valid email required";
-  }
 
   if (formData.phone.length < 10) {
     newErrors.phone = "Valid phone required";
@@ -94,66 +80,7 @@ if (formData.product.length === 0) {
   return Object.keys(newErrors).length === 0;
 };
 
-const handleGenerateOTP = async (e) => {
-  e.preventDefault();
 
-  if (!validate()) return;
-  setLoading(true);
-
-  const appVerifier = window.recaptchaVerifier; 
-
-  try {
-    const result = await signInWithPhoneNumber(
-      auth,
-      "+91" + formData.phone,
-      appVerifier
-    );
-
-    setConfirmationResult(result);
-    setOtpSent(true);
-
-    alert("OTP Sent ✅");
-
-  } catch (error) {
-    console.error(error);
-    alert("OTP Failed ❌");
-  }
-   setLoading(false);
-};
-
-const handleVerifyOTP = async () => {
-  if (!otp) {
-    alert("Enter OTP");
-    return;
-  }
-
-  try {
-    await confirmationResult.confirm(otp);
-
-    // ✅ OTP verified → ab data save hoga
-    await addDoc(collection(db, "brochureLeads"), {
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone,
-      institute: formData.institute,
-      product: formData.product,
-      createdAt: new Date()
-    });
-
-    downloadBrochure();
-
-    alert("Verified & Download Started 🎉");
-
-    resetForm();
-    setIsModalOpen(false);
-    setOtp("");
-    setOtpSent(false);
-
-  } catch (error) {
-    console.error(error);
-    alert("Invalid OTP ❌");
-  }
-};
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -201,6 +128,49 @@ useEffect(() => {
     window.removeEventListener("openBrochureModal", openModal);
   };
 }, []);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validate()) return;
+
+  setLoading(true);
+
+  try {
+    await addDoc(collection(db, "brochureLeads"), {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      institute: formData.institute,
+      product: formData.product,
+      createdAt: new Date()
+    });
+
+       await fetch("https://script.google.com/macros/s/AKfycby4Qa7jLNEk4z8c8lH7wInzbGyGBXFvHmCG4U8CsBlKbvN-UWae5JXTsUYI8hGq4U7D-w/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          type: "Download Brochure",
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          instituteName: formData.institute,
+           select: formData.product,
+          date: new Date().toLocaleString()
+        })
+      });
+
+    downloadBrochure();
+
+    resetForm();
+    setIsModalOpen(false);
+
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong ❌");
+  }
+
+  setLoading(false);
+};
  
 
   return (
@@ -209,13 +179,13 @@ useEffect(() => {
       
       {/* 1. Download Brochure Button (Sticky Center-Right) */}
       <div className="absolute right-0 top-[17%]  pointer-events-auto">
-        <button onClick={() => setIsModalOpen(true)} className="bg-[#00b7ff] text-white font-medium py-2 px-3 max-[500px]:py-1 max-[500px]:px-2 rounded-sm shadow-lg flex text-sm sm:text-xl items-center gap-2 [writing-mode:vertical-lr] rotate-0 hover:bg-[#006fe6] transition-all duration-300">
+        <button onClick={() => setIsModalOpen(true)} className="bg-[#00b7ff] cursor-pointer text-white font-medium py-2 px-3 max-[500px]:py-1 max-[500px]:px-2 rounded-sm shadow-lg flex text-sm sm:text-xl items-center gap-2 [writing-mode:vertical-lr] rotate-0 hover:bg-[#006fe6] transition-all duration-300">
           Download Brochure
         </button>
       </div>
 
       {/* 2. Floating Action Icons (Bottom-Right) */}
-      <div className="absolute bottom-13 max-[500px]:right-1  right-4 flex flex-col gap-4 pointer-events-auto">
+      <div className="absolute bottom-10 sm:bottom-6 max-[500px]:right-1  right-3 flex flex-col gap-4 pointer-events-auto">
         
         {/* WhatsApp Icon */}
         <a href="https://wa.me/yournumber" target="_blank" rel="noreferrer" 
@@ -224,7 +194,7 @@ useEffect(() => {
         </a>
 
         {/* Live Chat Icon */}
-        <button className="w-10 h-10 min-[501px]:w-12 min-[501px]:h-12 bg-[#002B5B] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+        <button className="w-10 h-10 min-[501px]:w-12 min-[501px]:h-12 bg-[#002B5B] cursor-pointer text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
           <FaRegCommentDots  className="text-[25px] min-[501px]:text-[35px]" />
         </button>
 
@@ -248,22 +218,22 @@ useEffect(() => {
 
       {/* 4. Scroll to Top (Optional, but usually present in such footers) */}
 <div 
-        className={`fixed bottom-6 left-3 sm:left-4 z-[999] transition-all duration-500 
-        ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-50 pointer-events-none'}`}
+        className={`fixed bottom-6.5 left-3 sm:left-6 z-[999] transition-all duration-500 
+        ${isVisible ? 'opacity-200 translate-y-0 scale-200' : 'opacity-0 translate-y-10 scale-50 pointer-events-none'}`}
       >
         <button 
           onClick={scrollToTop}
-          className="w-11 h-11 max-[500px]:w-8 max-[500px]:h-8 cursor-pointer bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 pointer-events-auto"
+          className="w-5 h-5 max-[500px]:w-3.5 max-[500px]:h-3.5 cursor-pointer bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-90 pointer-events-auto"
           title="Go to Top"
         >
-          <FaChevronUp size={20}  />
+          <FaChevronUp className='scrolltotop' />
         </button>
       </div>
     </div>
 
 <div id="recaptcha-container"></div>
 {isModalOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
           {/* Blur Backdrop */}
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onClick={() => setIsModalOpen(false)}></div>
 
@@ -271,7 +241,7 @@ useEffect(() => {
           <div className="relative bg-white w-full max-w-[500px] rounded-xl shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out]">
             
             {/* Header */}
-            <div className="px-6 py-4 flex justify-between items-center border-b border-gray-100">
+            <div className="px-6 py-4 flex justify-between items-center border-b border-gray-200">
               <h2 className="text-lg max-[340px]:text-[16px] sm:text-xl md:text-2xl font-bold text-gray-800">Download Brochure</h2>
               <button onClick={() => 
               {
@@ -284,7 +254,7 @@ resetForm();
             </div>
 
             {/* Form Body */}
-  <form  className="sm:p-6 p-4">
+  <form  className="sm:p-6 p-4" spellCheck={false}>
 
   {/* Full Name */}
   <div className="mb-4">
@@ -296,8 +266,8 @@ resetForm();
       }}
       type="text"
       placeholder="Your Full Name:"
-      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none duration-300 focus:border-[#FF9100]
-      ${errors.fullName ? "border-red-500" : "border-gray-100"}`}
+      className={`w-full px-3 py-2 bg-gray-50 border  rounded-md outline-none duration-200 focus:border-[#8c00ff54] 
+      ${errors.fullName ? "border-red-500" : "border-gray-200"}`}
     />
     {errors.fullName && (
       <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>
@@ -314,8 +284,8 @@ resetForm();
       }}
       type="email"
       placeholder="Email:"
-      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none focus:border-[#FF9100]
-      ${errors.email ? "border-red-500" : "border-gray-100"}`}
+      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none duration-200 focus:border-[#8c00ff54] 
+      ${errors.email ? "border-red-500" : "border-gray-200"}`}
     />
     {errors.email && (
       <p className="text-red-500 text-xs mt-1">{errors.email}</p>
@@ -332,8 +302,8 @@ resetForm();
       }}
       type="tel"
       placeholder="Phone Number:"
-      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none focus:border-[#FF9100]
-      ${errors.phone ? "border-red-500" : "border-gray-100"}`}
+      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none duration-200 focus:border-[#8c00ff54] 
+      ${errors.phone ? "border-red-500" : "border-gray-200"}`}
     />
     {errors.phone && (
       <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
@@ -350,8 +320,8 @@ resetForm();
       }}
       type="text"
       placeholder="Your Institute:"
-      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none focus:border-[#FF9100]
-      ${errors.institute ? "border-red-500" : "border-gray-100"}`}
+      className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none duration-200 focus:border-[#8c00ff54] 
+      ${errors.institute ? "border-red-500" : "border-gray-200"}`}
     />
     {errors.institute && (
       <p className="text-red-500 text-xs mt-1">{errors.institute}</p>
@@ -380,7 +350,7 @@ resetForm();
           : [...prev.product, value]
       }));
     }}
-    className="w-4 h-4 accent-[#FF9100]"
+    className="w-4 h-4 accent-[#FF9200] cursor-pointer"
   />
   Vidya School Brochure
 </label>
@@ -399,7 +369,7 @@ resetForm();
           : [...prev.product, value]
       }));
     }}
-    className="w-4 h-4 accent-[#FF9100]"
+    className="w-4 h-4 accent-[#FF9200] cursor-pointer"
   />
   Vidya College Brochure
 </label>
@@ -412,41 +382,13 @@ resetForm();
 
   {/* Submit */}
   <div className="flex justify-center pt-2">
-{!otpSent ? (
 <button
-  onClick={handleGenerateOTP}
+  onClick={handleSubmit}
   disabled={loading}
-  className={`bg-[#FF9100] hover:bg-[#e68200] text-white font-bold px-5 py-2.5 sm:py-3 sm:px-10 rounded-full shadow-lg transition-all active:scale-95 uppercase tracking-wide text-sm flex items-center justify-center gap-2
-  ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+  className={`bg-[#b2a902] hover:bg-[#bea201] cursor-pointer text-white font-bold px-5 py-2.5 sm:py-3 sm:px-10 rounded-full shadow-lg transition-all active:scale-95 uppercase tracking-wide text-sm`}
 >
-  {loading ? (
-    <>
-      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-      Sending...
-    </>
-  ) : (
-    "Generate OTP"
-  )}
+  {loading ? "Processing..." : "Download Brochure"}
 </button>
-) : (
-  <>
-    <input
-      type="text"
-      placeholder="Enter OTP"
-      value={otp}
-      onChange={(e) => setOtp(e.target.value)}
-      className="w-full mt-3 px-3 py-2 bg-gray-50 border border-gray-100 rounded-md outline-none focus:border-green-500"
-    />
-
-    <button
-      type="button"
-      onClick={handleVerifyOTP}
-      className="mt-3 bg-green-600 text-white font-bold px-5 py-2.5 sm:py-3 sm:px-10 rounded-full shadow-lg"
-    >
-      Verify & Download
-    </button>
-  </>
-)}
   </div>
 
 </form>
@@ -457,21 +399,21 @@ resetForm();
 
 {/* --- 4. BOTTOM MOBILE BUTTONS (Refined Design) --- */}
 {/* Parent container ko center karne ke liye 'justify-center' add kiya gaya hai */}
-<div className="fixed bottom-4 left-0 w-full px-4 flex justify-center md:hidden z-[100] pointer-events-none">
+<div className="fixed bottom-4 left-0 w-full px-4 flex  justify-center md:hidden z-[200] pointer-events-none">
   
   {/* Inner Wrapper: width kam kar di (max-w-[300px]) aur background transparent rakha */}
-  <div className="w-full sm:max-w-[320px] max-w-[230px]  flex gap-2 h-9 sm:h-12 pointer-events-auto">
+  <div className="w-full sm:max-w-[280px] max-w-[230px]   flex gap-2 h-9 sm:h-10 pointer-events-auto">
     
     {/* Enquire Now Button */}
-    <button className="flex-1 bg-[#002B5B] text-white rounded-xl flex items-center justify-center gap-2 font-bold text-[12px] sm:text-[13px] uppercase tracking-wider active:scale-95 transition-all shadow-lg">
-      <FaPaperPlane className="text-orange-400 text-sm" />
+    <button className="flex-1 bg-primary text-white rounded-xl flex items-center justify-center gap-2 font-bold text-[12px] sm:text-[13px] uppercase tracking-wider active:scale-95 transition-all shadow-lg">
+      <FaPaperPlane className="text-secondary text-sm" />
       Enquire
     </button>
 
     {/* Call Now Button */}
     <a 
       href="tel:+919028690536" 
-      className="flex-1 bg-[#FF9100] text-white rounded-xl flex text-[12px] items-center justify-center gap-2 font-bold sm:text-[13px] uppercase tracking-wider active:scale-95 transition-all shadow-lg"
+      className="flex-1 bg-secondary text-white rounded-xl flex text-[12px] items-center justify-center gap-2 font-bold sm:text-[13px] uppercase tracking-wider active:scale-95 transition-all shadow-lg"
     >
       <FaPhoneAlt className="text-sm" />
       Call Now

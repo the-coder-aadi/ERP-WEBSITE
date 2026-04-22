@@ -80,7 +80,7 @@ const benefits = [
      <div className="hidden max-[701px]:block px-5 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-[#0008e7] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+            <h1 className="text-primary text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
                 All-in-One CRM Software 
                 For Modern Institutions
             </h1>
@@ -98,7 +98,7 @@ const benefits = [
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
         <div className="w-full h-full ">
           <img
-            src="/crmposter.png"
+            src="/crmposter.webp"
             alt="ERP Banner Desktop"
             className="hidden min-[701px]:block w-screen max-[700px]:h-full max-[770px]:h-[380px] max-[1023px]:h-[450px]  h-full object-cover object-top"
 
@@ -106,7 +106,7 @@ const benefits = [
 
           {/* 2. Mobile Image: Jo sirf 600px aur usse niche dikhegi */}
           <img
-            src="/crmmobile.png" // Yahan apni mobile wali image ka path dalo
+            src="/crmmobile.webp" // Yahan apni mobile wali image ka path dalo
             alt="ERP Banner Mobile"
             className="block min-[701px]:hidden w-full h-auto object-cover"
           />
@@ -120,7 +120,7 @@ const benefits = [
             <div className="w-full min-[900px]:w-1/2 flex max-[701px]:hidden  flex-col  items-start whitespace-nowrap">
 
               {/* 1. Small Heading: Size kam kiya hai */}
-              <h1 className="text-[orange] text-[19px] sm:text-[28px] md:text-[34px] lg:text-[45px]  font-bold tracking-wide mb-2 opacity-90">
+              <h1 className="text-[#f0d908] text-[19px] sm:text-[28px] md:text-[34px] lg:text-[45px]  font-bold tracking-wide mb-2 opacity-90">
                 All-in-One CRM Software <br /> 
                 For Modern Institutions
               </h1>
@@ -145,7 +145,7 @@ const benefits = [
 
       {/* Mobile button: below poster and smaller on small screens */}
       <div className="max-[900px]:block hidden">
-        <a href="#request-demo" className="mx-auto mt-4 block px-4 w-fit py-2 rounded-lg bg-orange-500 text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
+        <a href="#request-demo" className="mx-auto mt-4 block px-4 w-fit py-2 rounded-lg bg-primary text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
           Request for Free Demo
         </a>
       </div>
@@ -160,10 +160,10 @@ const benefits = [
           <div className="w-full">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               What is Education CRM Software?
             </h2>
 
@@ -209,10 +209,10 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
           <div className="w-full">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               What Is VidyaCRM?
             </h2>
 
@@ -248,11 +248,11 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
      <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
         
         {/* 1. Orange Accent Line (Bilkul center mein) */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
 
         {/* 2. Main Heading: SMART CLOUD-BASED SOLUTIONS */}
         {/* Text colors aur sizes photo ke hisab se exact match kiye hain */}
-        <h2 className="text-[22px]  sm:text-2xl md:text-3xl lg:text-[36px] font-semibold text-[#3d52d9] leading-tight mb-8 tracking-tight">
+        <h2 className="text-[22px]  sm:text-2xl md:text-3xl lg:text-[36px] font-semibold text-primary leading-tight mb-8 tracking-tight">
           Comprehensive Features of VidyaCRM Software
         </h2>
 
@@ -270,13 +270,13 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
           >
             {/* Icon Box */}
             <div className="w-20 h-20  flex items-center justify-center mb-8 max-[400px]:mb-2">
-              <span className=" text-[#FF9100] text-[45px]">
+              <span className=" text-secondary text-[45px]">
                 {item.icon}
               </span>
             </div>
 
             {/* Title */}
-            <h3 className="text-[22px] font-medium text-[#3d52d9] mb-4 tracking-tight">
+            <h3 className="text-[22px] font-medium text-primary mb-4 tracking-tight">
               {item.title}
             </h3>
 
@@ -292,14 +292,14 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
     </div>
 
 
-    <section className="w-full bg-[#292DC2] py-4 sm:py-8 md:py-12 px-4 sm:px-6">
+    <section className="w-full bg-primary py-4 sm:py-8 md:py-12 px-4 sm:px-6">
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-2 sm:gap-10 lg:gap-16">
 
     {/* 🔥 LEFT CONTENT */}
     <div className="w-full lg:w-1/2 text-center lg:text-left">
 
       {/* small tag */}
-      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+      <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
       {/* heading */}
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#ffffff] leading-tight mb-4">
@@ -377,10 +377,10 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
           <div className="w-full lg:w-1/2 text-center lg:text-left">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               Real-Time Dashboards & Actionable Reports
             </h2>
 
@@ -424,14 +424,14 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
         </div>
       </section>
 
-          <section className="w-full bg-[#292DC2] py-4 sm:py-8 md:py-12 px-4 sm:px-6">
+          <section className="w-full bg-primary py-4 sm:py-8 md:py-12 px-4 sm:px-6">
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-2 sm:gap-10 lg:gap-16">
 
     {/* 🔥 LEFT CONTENT */}
     <div className="w-full lg:w-1/2 text-center lg:text-left">
 
       {/* small tag */}
-      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+      <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
       {/* heading */}
      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-100 mb-4">
@@ -483,9 +483,9 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
 
 <section className="sm:py-12 py-10 px-4 bg-white font-sans">
       <div className="max-w-6xl mx-auto text-center">
-       <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4 mx-auto"></div>
+       <div className="w-14 h-2.5 bg-secondary rounded-full mb-4 mx-auto"></div>
         {/* Main Heading */}
-        <h2 className="text-2xl md:text-4xl font-extrabold text-[#1E266E] mb-4">
+        <h2 className="text-2xl md:text-4xl font-extrabold text-primary mb-4">
           Why Choose VidyaCRM Software?
         </h2>
         
@@ -496,7 +496,7 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
         </p>
 
         {/* Benefits Heading */}
-        <h3 className="text-2xl md:text-3xl font-bold text-[#1E266E] mb-8">
+        <h3 className="text-2xl md:text-3xl font-bold text-primary mb-8">
           Key Benefits at a Glance
         </h3>
 
@@ -512,7 +512,7 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
             >
               {/* Orange Check Circle Icon */}
               <div className="flex-shrink-0 mr-4">
-                <FaCheckCircle className="text-orange-500 text-xl md:text-2xl" />
+                <FaCheckCircle className="text-secondary text-xl md:text-2xl" />
               </div>
               
               {/* Benefit Title */}
@@ -528,7 +528,7 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
     <section className="sm:py-8 py-4 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Main Blue Container */}
-        <div className="bg-gradient-to-br from-[#000a64] to-[#1453bf] rounded-[18px] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+        <div className="bg-gradient-to-br from-[#36005f] to-[#510491] rounded-[18px] p-8 md:p-16 shadow-2xl relative overflow-hidden">
           
           {/* Header Text */}
           <h2 className="text-white text-xl sm:text-2xl md:text-4xl font-bold text-center mb-8">
@@ -560,7 +560,7 @@ Modern CRM for higher education institutions also includes advanced dashboards, 
         <div className="mt-12 text-center">
           <p className="text-gray-500 text-sm md:text-base max-w-4xl mx-auto leading-relaxed italic">
             "By aligning with your unique institutional workflows instead of forcing complex changes, 
-            <span className="font-bold text-[#1E266E]"> VidyaCRM</span> drives long-term operational efficiency, 
+            <span className="font-bold text-primary"> VidyaCRM</span> drives long-term operational efficiency, 
             sustainable growth, and unparalleled stakeholder trust."
           </p>
         </div>

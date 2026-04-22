@@ -6,6 +6,7 @@ import SideElements from "../Components/SideElements";
 
 function BlogDetail() {
 const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
   fullName: "",
   phone: "",
@@ -54,23 +55,44 @@ const validate = () => {
 };
 
 
-
-
-const handleSubmit = (e) => {
+const handleSubmit = async(e) => {
   e.preventDefault();
+ if (loading) return;
 
   if (!validate()) return;
 
-  alert("Form submitted successfully 🎉");
+ try {
+    setLoading(true);
+
+        await fetch("https://script.google.com/macros/s/AKfycby4Qa7jLNEk4z8c8lH7wInzbGyGBXFvHmCG4U8CsBlKbvN-UWae5JXTsUYI8hGq4U7D-w/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        type: "Get in Touch",
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        date: new Date().toLocaleString()
+      })
+    });
+
+      alert("Submiting successfully 🎉");
 
   setFormData({
     fullName: "",
-    phone: "",
     email: "",
+    phone: "",
     message: ""
   });
 
   setErrors({});
+}
+  catch (error) {
+    console.log(error);
+    alert("Error submitting form ❌");
+  }finally {
+    setLoading(false);
+  }
 };
 
 
@@ -304,7 +326,7 @@ const blogsData = [
           />
 
           {/* TITLE */}
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#1E3A8A] mb-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
             {blog.title}
           </h1>
 
@@ -316,14 +338,14 @@ const blogsData = [
           {/* SECTION */}
          {blog.sections.map((sec, i) => (
   <div key={i} className="mb-6">
-    <h2 className="text-xl font-semibold text-[#1E3A8A] mb-2">
+    <h2 className="text-xl font-semibold text-primary mb-2">
       {sec.heading}
     </h2>
     <p className="text-gray-600">{sec.content}</p>
   </div>
 ))}
           {/* FEATURES */}
-          <h2 className="text-xl font-semibold text-[#1E3A8A] mb-4">
+          <h2 className="text-xl font-semibold text-primary mb-4">
             Key Capabilities
           </h2>
 <ul className="list-disc pl-5 text-gray-600 mb-6">
@@ -333,7 +355,7 @@ const blogsData = [
 </ul>
 
           {/* STEPS TABLE */}
-          <h2 className="text-xl font-semibold text-[#1E3A8A] mb-4">
+          <h2 className="text-xl font-semibold text-primary mb-4">
             How It Works
           </h2>
 
@@ -359,7 +381,7 @@ const blogsData = [
           </div>
 
           {/* BENEFITS */}
-          <h2 className="text-xl font-semibold text-[#1E3A8A] mb-4">
+          <h2 className="text-xl font-semibold text-primary mb-4">
             Benefits
           </h2>
 
@@ -379,52 +401,52 @@ const blogsData = [
     ${hideForm ? "opacity-0 pointer-events-none" : "opacity-100"}`}
   >
     
-    <h3 className="text-xl font-bold text-[#3d52d9] mb-4">
+    <h3 className="text-xl font-bold text-primary mb-4">
       Get in Touch
     </h3>
 
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col" spellCheck={false}>
     <input
   name="fullName"
   value={formData.fullName}
   onChange={handleChange}
   type="text"
   placeholder="Your Full Name"
-  className={`border rounded-lg p-2.5 outline-none focus:ring-1
+  className={`border rounded-lg p-2.5 mb-1   outline-none duration-200 focus:border-[#8c00ff4e] 
   ${errors.fullName ? "border-red-500" : "border-gray-300"}`}
 />
-<p className="text-red-500 text-xs">{errors.fullName}</p>
+<p className="text-red-500 mb-2 text-xs">{errors.fullName}</p>
   <input
   name="phone"
   value={formData.phone}
   onChange={handleChange}
   type="text"
   placeholder="Phone Number"
-  className={`border rounded-lg p-2.5 outline-none focus:ring-1
+  className={`border rounded-lg p-2.5 mb-1  outline-none duration-200 focus:border-[#8c00ff54] 
   ${errors.phone ? "border-red-500" : "border-gray-300"}`}
 />
-<p className="text-red-500 text-xs">{errors.phone}</p>
+<p className="text-red-500 mb-2 text-xs">{errors.phone}</p>
     <input
   name="email"
   value={formData.email}
   onChange={handleChange}
   type="email"
   placeholder="Email"
-  className={`border rounded-lg p-2.5 outline-none focus:ring-1
+  className={`border rounded-lg p-2.5  mb-1 outline-none duration-200 focus:border-[#8c00ff54] 
   ${errors.email ? "border-red-500" : "border-gray-300"}`}
 />
-<p className="text-red-500 text-xs">{errors.email}</p>
+<p className="text-red-500 mb-2 text-xs">{errors.email}</p>
 <textarea
   name="message"
   value={formData.message}
   onChange={handleChange}
   rows="4"
   placeholder="Message"
-  className="border rounded-lg p-2.5 outline-none min-h-[80px] focus:ring-1 border-gray-300"
+  className="border rounded-lg p-2.5 mb-5 outline-none min-h-[80px]  duration-200 focus:border-[#8c00ff54]  border-gray-300"
 ></textarea>
 
-      <button className="bg-[#3d52d9] text-white py-3 rounded-full font-semibold hover:bg-[#2c3bb5] transition">
-        Submit
+      <button disabled={loading} className="bg-primary text-white py-3 rounded-full font-semibold hover:bg-[#2c3bb5] transition">
+       {loading ? "Submiting..." : "Submit"}
       </button>
     </form>
 

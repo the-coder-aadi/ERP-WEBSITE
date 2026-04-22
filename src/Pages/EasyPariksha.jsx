@@ -104,7 +104,7 @@ const steps = [
      <div className="hidden max-[701px]:block px-5 py-4  bg-white">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-[#0008e7] text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
+            <h1 className="text-primary text-[18px] max-[400px]:text-[15.5px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-bold tracking-wide mb-1 opacity-90">
                            Smart Online Examination 
   Platform for Modern Education
             </h1>
@@ -120,7 +120,7 @@ const steps = [
       <section className="relative w-full max-[700px]:h-full max-[1023px]:h-[450px] max-[770px]:h-[380px] h-[600px] overflow-hidden bg-[#001529]">
 
         {/* Banner Image: 900px ke upar poster rahega, niche scale hoga */}
-        <div className="w-full h-full ">
+        <div className="w-full h-full bg-white">
           <img
             src="/pariksha.jpg"
             alt="ERP Banner Desktop"
@@ -144,7 +144,7 @@ const steps = [
             <div className="w-full min-[900px]:w-1/2 flex max-[701px]:hidden  flex-col  items-start whitespace-nowrap">
 
               {/* 1. Small Heading: Size kam kiya hai */}
-              <h1 className="text-[#ffa600] text-[19px] sm:text-[28px] md:text-[34px] lg:text-[45px]  font-bold tracking-wide mb-2 opacity-90">
+              <h1 className="text-secondary text-[19px] sm:text-[28px] md:text-[34px] lg:text-[45px]  font-bold tracking-wide mb-2 opacity-90">
                 Smart Online Examination <br />
   Platform for Modern Education
               </h1>
@@ -169,7 +169,7 @@ const steps = [
 
       {/* Mobile button: below poster and smaller on small screens */}
       <div className="max-[900px]:block hidden">
-        <a href="#request-demo" className="mx-auto mt-4 block px-4 w-fit py-2 rounded-lg bg-orange-500 text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
+        <a href="#request-demo" className="mx-auto mt-4 block px-4 w-fit py-2 rounded-lg bg-primary text-white font-bold text-sm shadow-lg transition-all hover:bg-blue-600">
           Request for Free Demo
         </a>
       </div>
@@ -190,10 +190,10 @@ const steps = [
           <div className="w-full lg:w-1/2 text-center lg:text-left">
 
             {/* small tag */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
 
             {/* heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3d52d9] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight mb-4">
               What is EasyPariksha?
             </h2>
 
@@ -227,10 +227,10 @@ const steps = [
       <div className="max-w-6xl mx-auto text-center">
 
         {/* Orange Line */}
-        <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mx-auto mb-4"></div>
+        <div className="w-14 h-2.5 bg-secondary rounded-full mx-auto mb-4"></div>
 
         {/* Heading */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3d52d9] mb-10">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-10">
           Our Cutting-Edge Features
         </h2>
 
@@ -261,11 +261,11 @@ const steps = [
       </div>
     </section>
 
-    <section className="w-full mt-3 sm:mt-10 bg-gradient-to-r from-[#1e73be] to-[#2d3fcf] py-12 md:py-16 px-4 sm:px-6">
+    <section className="w-full mt-3 sm:mt-10 bg-gradient-to-r from-[#711ebe] to-[#5b2dcf] py-12 md:py-16 px-4 sm:px-6">
   
   {/* Heading */}
   <div className="max-w-6xl mx-auto text-center mb-8 sm:mb-12">
-    <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mx-auto mb-4"></div>
+    <div className="w-14 h-2.5 bg-secondary rounded-full mx-auto mb-4"></div>
 
     <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
       Conduct Exams with Multiple Question Formats
@@ -299,9 +299,9 @@ const steps = [
         
         {/* Header Section */}
         <div className="text-center mb-8 sm:mb-13">
-          <div className="w-14 h-1.5 bg-[#FF9100] rounded-full mx-auto mb-4"></div>
+          <div className="w-14 h-1.5 bg-secondary rounded-full mx-auto mb-4"></div>
           <h2 className="text-[#333] text-3xl md:text-4xl font-bold mb-2">How it Works</h2>
-          <p className="text-[#007bff] text-xl md:text-2xl font-semibold">
+          <p className="text-primary text-xl md:text-2xl font-semibold">
             4 Simple Steps to Launch Secure Online Assessments
           </p>
         </div>
@@ -331,7 +331,7 @@ const steps = [
       <div className="max-w-4xl mx-auto text-center">
         
         {/* Main Heading */}
-        <h2 className="text-[#007bff] text-2xl md:text-4xl font-bold mb-12 tracking-tight">
+        <h2 className="text-primary text-2xl md:text-4xl font-bold mb-12 tracking-tight">
           Download User Manual
         </h2>
 
@@ -341,7 +341,7 @@ const steps = [
           {/* Student Manual Row */}
           <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-2xl group">
             <div className="flex items-center gap-6 mb-4 sm:mb-0">
-              <div className="text-[#3d52d9] text-4xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
+              <div className="text-primary text-4xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
                 <FaUserCircle strokeWidth={1.5} />
               </div>
               <span className="text-gray-800 text-xl md:text-2xl font-bold">
@@ -356,7 +356,7 @@ const steps = [
           {/* Paper Checker Manual Row */}
           <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-2xl group">
             <div className="flex items-center gap-6 mb-4 sm:mb-0">
-              <div className="text-[#3d52d9] text-4xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
+              <div className="text-primary text-4xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
                 <FaFileAlt strokeWidth={1.5} />
               </div>
               <span className="text-gray-800 text-xl md:text-2xl font-bold">
@@ -370,7 +370,7 @@ const steps = [
 
                  <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-2xl group">
             <div className="flex items-center gap-6 mb-4 sm:mb-0">
-              <div className="text-[#3d52d9] text-4xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
+              <div className="text-primary text-4xl md:text-6xl transition-transform group-hover:scale-110 duration-300">
                 <FaTachometerAlt strokeWidth={1.5} />
               </div>
               <span className="text-gray-800 text-xl md:text-2xl font-bold">
@@ -386,11 +386,11 @@ const steps = [
       </div>
     </section>
 
-      <section className="w-full mt-8 bg-[#2f40d5] py-10 md:py-16 px-6">
+      <section className="w-full mt-8 bg-primary py-10 md:py-16 px-6">
           <div className="max-w-5xl mx-auto text-center">
             
             {/* Top Orange Accent Line */}
-            <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mx-auto mb-6"></div>
+            <div className="w-14 h-2.5 bg-secondary rounded-full mx-auto mb-6"></div>
     
             {/* Main Heading */}
             <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-10 leading-tight">
@@ -420,9 +420,9 @@ My team and I thank you for the seamless shifts to online examinations. This was
                     
                     {/* Header */}
                     <div className="flex flex-col items-center mb-12">
-                      <div className="w-14 h-2.5 bg-[#FF9100] rounded-full mb-4"></div>
+                      <div className="w-14 h-2.5 bg-secondary rounded-full mb-4"></div>
                       <h2 className="text-3xl md:text-4xl font-extrabold text-[#001529] text-center">
-                        Frequently Asked <span className="text-[#3d52d9]">Questions</span>
+                        Frequently Asked <span className="text-primary">Questions</span>
                       </h2>
                       <p className="text-gray-500 mt-4 text-center">
                         Find answers to common questions about Vidya ERP and its features.
@@ -441,11 +441,11 @@ My team and I thank you for the seamless shifts to online examinations. This was
                             onClick={() => toggleAccordion(index)}
                             className="w-full flex items-center justify-between gap-3  p-4 sm:p-5 text-left bg-white hover:bg-gray-50 transition-colors"
                           >
-                            <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-[#3d52d9]' : 'text-gray-700'}`}>
+                            <span className={` text-sm sm:text-lg font-semibold ${activeIndex === index ? 'text-primary' : 'text-gray-700'}`}>
                               {faq.question}
                             </span>
                            <FaChevronDown 
-              className={`text-[#FF9100] transition-transform duration-300 flex-shrink-0 ${
+              className={`text-secondary transition-transform duration-300 flex-shrink-0 ${
                 activeIndex === index ? 'rotate-180' : 'rotate-0'
               }`} 
             />

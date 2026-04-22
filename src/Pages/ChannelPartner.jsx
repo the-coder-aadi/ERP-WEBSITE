@@ -16,7 +16,7 @@ function ChannelPartner() {
     <div className="w-full lg:w-[60%] text-center lg:text-left">
 
       {/* HEADING */}
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E3A8A] leading-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary leading-tight mb-6">
         Become a Channel Partner
       </h1>
 
@@ -65,7 +65,7 @@ function ChannelPartner() {
     <div className="w-full lg:w-[55%]">
 
       {/* TITLE */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1E3A8A] mb-8 text-center lg:text-left">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-8 text-center lg:text-left">
         Benefits for Channel Partners
       </h2>
 
@@ -83,7 +83,7 @@ function ChannelPartner() {
           <div key={index} className="flex items-start gap-4 text-gray-700">
 
             {/* ICON */}
-            <FaCheckCircle className="text-[#FF9100] text-xl mt-1 flex-shrink-0" />
+            <FaCheckCircle className="text-secondary text-xl mt-1 flex-shrink-0" />
 
             {/* TEXT */}
             <span className="text-sm sm:text-lg font-medium leading-relaxed">
@@ -109,7 +109,7 @@ function ChannelPartner() {
     <div className="w-full lg:w-[55%]">
 
       {/* TITLE */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1E3A8A] mb-8 text-center lg:text-left">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-8 text-center lg:text-left">
         Responsibilities of Channel Partners
       </h2>
 
@@ -127,7 +127,7 @@ function ChannelPartner() {
           <div key={index} className="flex items-start gap-4 text-gray-700">
 
             {/* ICON */}
-            <FaCheckCircle className="text-[#FF9100] text-xl mt-1 flex-shrink-0" />
+            <FaCheckCircle className="text-secondary text-xl mt-1 flex-shrink-0" />
 
             {/* TEXT */}
             <span className="text-sm sm:text-lg font-medium leading-relaxed">

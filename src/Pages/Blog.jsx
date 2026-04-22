@@ -7,7 +7,7 @@ import { useState,useEffect } from "react";
 function Blog() {
 
     const desktopImages = [
-    "/check.png",
+    "/check.webp",
     "/check2.jpg", 
     "/technology.jpg",
     "/hr (1).jpg"
@@ -15,7 +15,7 @@ function Blog() {
 
   // 2. Mobile Images Array
   const mobileImages = [
-    "/checkmobile.png",
+    "/checkmobile.webp",
     "/check2mobile.jpg",
     "/tech.jpg",
     "/check3mobile.jpg"
@@ -42,7 +42,7 @@ function Blog() {
 const [blogsData, setBlogsData] = useState([
   {
     id: 1,
-    image: "AIpic.png",
+    image: "AIpic.webp",
     title: "How Does School ERP Work with Artificial Intelligence?",
     excerpt: "Imagine a school where attendance is self-recorded, class schedules change by themselves, and teachers receive insights into student behavior before issues arise. This is the reality when AI powers your ERP and transforms daily operations into a seamless experience for everyone...",
     date: "05/03/2026",
@@ -50,7 +50,7 @@ const [blogsData, setBlogsData] = useState([
   },
   {
     id: 2,
-    image: "smartai.png",
+    image: "smartai.webp",
     title: "What Is an ERP System in School & How Does AI Make It Smarter?",
     excerpt: "In today's rapidly evolving educational landscape, school leaders and administrators are expected to be efficient. Discover how AI transforms the ERP from a data center to an intelligence center, helping you make better decisions for your institution's future success...",
     date: "03/02/2026",
@@ -58,7 +58,7 @@ const [blogsData, setBlogsData] = useState([
   },
   {
     id: 3,
-    image: "aicheck.png",
+    image: "aicheck.webp",
     title: "Top Benefits of Using AI for Answer Sheet Correction in Educational Institutes",
     excerpt: "The accelerated educational revolution in recent years has challenged schools, colleges, and universities. Find out how AI-driven correction saves time and eliminates bias in grading, ensuring that students get fair results while teachers focus on core teaching tasks...",
     date: "23/12/2025",
@@ -66,7 +66,7 @@ const [blogsData, setBlogsData] = useState([
   },
   {
     id: 4,
-    image: "aihandshake.png",
+    image: "aihandshake.webp",
     title: "Maintaining Integrity: AI Proctoring in Online Examination Software",
     excerpt: "Online exams are here to stay, but how do we ensure fairness? Learn about the advancements in AI proctoring, from face verification to browser lockdown. These tools help maintain the sanctity of assessments while providing students with a flexible and secure environment...",
     date: "15/11/2025",
@@ -74,7 +74,7 @@ const [blogsData, setBlogsData] = useState([
   },
   {
     id: 5,
-    image: "payroll.png",
+    image: "payroll.webp",
     title: "Why Institutions Should Automate Payroll with VidyaHR",
     excerpt: "Managing complex salary structures and compliance (PF/ESI/TDS) manually is time-consuming. VidyaHR offers a one-click payroll solution for institutions. Spend less time on paperwork and more time on strategic growth while our automated system handles the heavy lifting...",
     date: "01/10/2025",
@@ -96,7 +96,7 @@ const [blogsData, setBlogsData] = useState([
 
 <div className="hidden max-[701px]:block px-5 py-4 bg-white relative z-20">
         <div className="max-w-[1500px] mx-auto text-center">
-          <h1 className="text-[#0008e7] text-[18px] font-bold tracking-wide mb-1 opacity-90">
+          <h1 className="text-primary text-[18px] font-bold tracking-wide mb-1 opacity-90">
            Empowering Education Through Insight
           </h1>
           <p className="text-[18px] font-semibold text-[#3a3a3a] leading-[1.5]">
@@ -110,7 +110,7 @@ const [blogsData, setBlogsData] = useState([
 <section className="relative w-full h-[430px] max-[430px]:h-[330px]  sm:h-[480px] md:h-[450px] lg:h-[600px] overflow-hidden bg-[#001529]">
         
         {/* Images Container - STACKED FOR FADE EFFECT */}
-        <div className="w-full h-full relative z-0">
+        <div className="w-full bg-white h-full relative z-0">
           
           {/* Desktop Image Stack */}
           {desktopImages.map((image, index) => (
@@ -144,7 +144,7 @@ const [blogsData, setBlogsData] = useState([
         <div className="absolute inset-0 z-10 pointer-events-none">
           <div className="max-w-[1500px] mx-auto h-full px-6 flex items-start pt-16 md:pt-10 lg:pt-24">
             <div className="w-full min-[900px]:w-1/2 flex max-[701px]:hidden flex-col items-start whitespace-nowrap">
-              <h1 className="text-[#e59502] text-[25px] md:text-[34px] lg:text-[45px] font-bold tracking-wide mb-2 opacity-90 drop-shadow-lg">
+              <h1 className="text-secondary text-[25px] md:text-[34px] lg:text-[45px] font-bold tracking-wide mb-2 opacity-90 drop-shadow-lg">
                 Empowering Education<br />Through Insight
               </h1>
               <p className="text-[20px] md:text-[28px] lg:text-[34px] font-semibold text-[#f4f4f4] leading-[1.9] drop-shadow-md">
@@ -170,7 +170,7 @@ const [blogsData, setBlogsData] = useState([
 <button 
   onClick={nextSlide}
   // Mobile par p-2 aur desktop par p-3
-  className="absolute right-3 sm:right-8 top-1/2 -translate-y-1/2 z-30 bg-black/40 hover:bg-black/60 text-white p-1.5 sm:p-2.5 rounded-full transition-all"
+  className="absolute right-3 sm:right-10 top-1/2 -translate-y-1/2 z-30 bg-black/40 hover:bg-black/60 text-white p-1.5 sm:p-2.5 rounded-full transition-all"
 >
   {/* Mobile par size 14 aur desktop par 18 */}
   <FaChevronRight className="text-[15px] sm:text-[20px]" />
@@ -181,7 +181,7 @@ const [blogsData, setBlogsData] = useState([
           {desktopImages.map((_, index) => (
             <div 
               key={index}
-              className={`h-2 w-2 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-[#FF9100] w-6" : "bg-white/50"}`}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-[#d2ba03] w-6" : "bg-white/50"}`}
             />
           ))}
         </div>
@@ -192,7 +192,7 @@ const [blogsData, setBlogsData] = useState([
         <div className=" mx-auto ">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-black text-[#1E3A8A]">
-              Our Latest <span className="text-[#FF9100]">Blogs</span>
+              Our Latest <span className="text-secondary">Blogs</span>
             </h1>
             <p className="text-gray-500 mt-2 text-lg">Stay updated with insights from the world of Educational Tech.</p>
           </div>
@@ -227,7 +227,7 @@ const [blogsData, setBlogsData] = useState([
     <div className="p-6 flex flex-col flex-1">
       
       {/* Blog Title - Added min-height for multi-line consistency */}
-      <h3 className="text-[#1E3A8A] text-lg font-semibold mb-3 leading-tight group-hover:text-[#FF9100] transition-colors min-h-[3rem]">
+      <h3 className="text-primary text-lg font-semibold mb-3 leading-tight group-hover:text-secondary transition-colors min-h-[3rem]">
         {blog.title}
       </h3>
 
@@ -254,14 +254,14 @@ const [blogsData, setBlogsData] = useState([
         <div className="flex items-center justify-between gap-4">
           {/* Date with Icon */}
           <div className="flex items-center gap-2 text-gray-400 text-md">
-            <FaCalendarAlt className="text-[#FF9100]" />
+            <FaCalendarAlt className="text-secondary" />
             <span>{blog.date}</span>
           </div>
 
           {/* Read More Button */}
           <Link
             to={`/blog/${blog.id}`}
-            className="bg-gray-100 text-[#333] px-6 py-3 rounded-full font-bold text-[13px] uppercase tracking-wider hover:bg-[#FF9100] hover:text-white transition-all shadow-inner group-hover:shadow-lg"
+            className="bg-gray-100 text-[#333] px-6 py-3 rounded-full font-bold text-[13px] uppercase tracking-wider hover:bg-[#979502] hover:text-white transition-all shadow-inner group-hover:shadow-lg"
           >
             Read More
           </Link>
