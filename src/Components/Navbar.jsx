@@ -191,7 +191,7 @@ const [openSection, setOpenSection] = useState(null);
 
 </li>
 
-          <li className="cursor-pointer hover:text-blue-600 font-medium text-[15.5px]">Pricing</li>
+          <li className="cursor-pointer hover:text-blue-600 font-medium text-[15.5px]" onClick={()=> navigate("/pricing")}>Pricing</li>
           <li className={`cursor-pointer font-medium text-[15.5px] hover:text-blue-600 ${
     location.pathname.startsWith("/blog") ? "text-blue-600" : "text-gray-700"
   }`}  onClick={()=> navigate("/blog")}>Blog</li>
@@ -343,7 +343,7 @@ const [openSection, setOpenSection] = useState(null);
           </div>
         </li>
 
-    <li className="px-5 py-3.5 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
+    <li onClick={()=> navigate("/pricing")} className="px-5 py-3.5 border-b border-gray-100 cursor-pointer hover:bg-gray-50">
       Pricing
     </li>
 

@@ -144,7 +144,7 @@ const Footer = () => {
           
 
 
-<div className="flex flex-wrap justify-center font-medium gap-x-3 gap-y-1 text-gray-400 text-[15px]">
+<div className="flex flex-wrap justify-center font-medium gap-x-3 gap-y-1 text-gray-400 text-[14px] sm:text-[15px]">
   {[
     { name: "App Policy", path: "/app-policy" },
     { name: "Privacy Policy", path: "/privacy-policy" },

@@ -32,6 +32,7 @@ import TermsConditions from "./Pages/TermCondition";
 import Disclaimer from "./Pages/Disclaimer";
 import TermsOfUse from "./Pages/TermsOfUse";
 import CopyrightPolicy from "./Pages/CopyRightpolicy";
+import Pricing from "./Pages/Pricing";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -66,6 +67,7 @@ function AnimatedRoutes() {
             <Route path="/disclaimer" element={<PageWrapper><Disclaimer /></PageWrapper>} />
             <Route path="/terms-of-use" element={<PageWrapper><TermsOfUse /></PageWrapper>} />
             <Route path="/copyright-policy" element={<PageWrapper><CopyrightPolicy /></PageWrapper>} />
+            <Route path="/pricing" element={<PageWrapper><Pricing /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );
