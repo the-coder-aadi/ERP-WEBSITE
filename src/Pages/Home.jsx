@@ -4,13 +4,14 @@ import { useState, useEffect, useRef, memo } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../Components/firebase";
 
+
 import { FaSchool } from "react-icons/fa";
 import { FaUniversity } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import { FaCheckSquare } from "react-icons/fa";
 import { FaLaptopCode } from "react-icons/fa";
 import { FaCertificate } from "react-icons/fa";
-import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaQuoteLeft,FaCheckCircle } from 'react-icons/fa';
 import RequestDemo from "../Components/RequestDemo";
 import Footer from "../Components/Footer";
 import SideElements from "../Components/SideElements";
@@ -23,6 +24,7 @@ function Home() {
   const [loading, setLoading] = useState(false)
   const [loaded, setLoaded] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false)
+  const [showToast, setShowToast] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -155,7 +157,11 @@ function Home() {
       });
 
       // 4. success
-      alert("Enquiry sent successfully 🎉");
+      setShowToast(true);
+
+setTimeout(() => {
+  setShowToast(false);
+}, 6000);
 
       // 5. reset form
       setFormData({
@@ -352,6 +358,7 @@ function Home() {
                      onFocus={() => handleFocus("phone")}
                     name="phone"
                     onChange={handleChange}
+                    maxLength={10}
                     className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  duration-200 focus:border-[#8c00ff54]  transition-all
   ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
 
@@ -497,6 +504,7 @@ function Home() {
                 <input type="tel" placeholder="Phone Number"
                   value={formData.phone}
                   onChange={handleChange}
+                  maxLength={10}
                   name="phone"
                   className={`w-full bg-white border rounded-lg pl-10 pr-4 py-2 text-sm outline-none duration-200 focus:border-[#8c00ff54]  transition-all
   ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-primary"}`} />
@@ -877,6 +885,40 @@ function Home() {
       </section>
 
 
+<AnimatePresence>
+  {showToast && (
+    <motion.div
+      initial={{ opacity: 0, y: 100, x: "-50%" }} 
+      animate={{ opacity: 1, y: 0, x: "-50%" }}
+      exit={{ opacity: 0, y: 100, x: "-50%", transition: { duration: 0.2 } }}
+      // Responsive classes: w-[92%] mobile par, sm:w-auto desktop par
+      className="fixed bottom-5 sm:bottom-8 left-1/2 z-[9999] bg-[#10b981] text-white px-5 py-4 sm:px-8 sm:py-5 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-4 border border-white/20 backdrop-blur-md w-[92%] sm:w-auto min-w-[300px] max-w-[500px]"
+    >
+      {/* Icon: Mobile par thoda chota */}
+      <div className="bg-white/20 p-2 sm:p-3 rounded-full shrink-0">
+        <FaCheckCircle className="text-xl sm:text-2xl" />
+      </div>
+
+      <div className="flex-1">
+        <h4 className="font-black text-base sm:text-lg leading-none uppercase tracking-wider">
+          Success
+        </h4>
+        <p className="text-[13px] sm:text-sm font-bold opacity-90 mt-1.5 leading-tight sm:leading-relaxed">
+          Your Enquiry is received. <br className="hidden sm:block" /> 
+          We will contact you very soon.
+        </p>
+      </div>
+
+      {/* Progress Bar (Timer) */}
+      <motion.div 
+        initial={{ width: "100%" }}
+        animate={{ width: "0%" }}
+        transition={{ duration: 4, ease: "linear" }}
+        className="absolute bottom-0 left-0 h-1.5 bg-white/30 rounded-full"
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
 
       <div id="request-demo">
         <RequestDemo />

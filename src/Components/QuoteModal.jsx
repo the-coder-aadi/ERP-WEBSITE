@@ -48,7 +48,9 @@ if (!formData.email) {
   newErrors.email = "Enter valid Gmail (example@gmail.com)";
 }
 
-        if (formData.phone.length < 10) newErrors.phone = true;
+         if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Enter valid 10 digit number";
+    }
 
         if (!formData.institute.trim()) newErrors.institute = true;
 
@@ -200,6 +202,7 @@ if (!validate()) return;
                                         <input
                                             name="phone" value={formData.phone} onChange={handleInputChange}
                                             type="tel" placeholder="+91..."
+                                            maxLength={10}
                                             className={`w-full bg-white border rounded-xl pl-9 pr-4 py-2.5 text-md font-medium outline-none transition-all ${errors.phone ? 'border-red-500 ring-1 ring-red-100' : 'border-gray-200 focus:border-[#6702bf5d]'}`}
                                         />
                                     </div>

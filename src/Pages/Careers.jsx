@@ -1,8 +1,9 @@
 import React from 'react';
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import {motion,  useInView, AnimatePresence } from "framer-motion";
 
-import { FaRocket, FaUsers, FaLightbulb, FaHeart,FaBriefcase, FaMapMarkerAlt, FaClock, FaTimes, FaCloudUploadAlt, FaFileAlt } from 'react-icons/fa';
+import { FaRocket,FaCheckCircle, FaUsers, FaLightbulb, FaHeart,FaBriefcase, FaMapMarkerAlt, FaClock, FaTimes, FaCloudUploadAlt, FaFileAlt } from 'react-icons/fa';
 import { useState } from 'react';
 import SideElements from '../Components/SideElements';
 
@@ -10,6 +11,7 @@ const Careers = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState("");
+   const [showToast, setShowToast] = useState(false);
 
   const [resume, setResume] = useState(null); // File store karne ke liye
   const [isDragging, setIsDragging] = useState(false);
@@ -135,7 +137,13 @@ setLoading(true);
       })
     });
 
-    alert("Application submitted successfully 🎉");
+    setIsModalOpen(false)
+
+          setShowToast(true);
+
+setTimeout(() => {
+  setShowToast(false);
+}, 6000);
 
     // reset form
     setFormData({
@@ -258,7 +266,7 @@ const jobs = [
       </section>
 
       {/* --- Why Join Us (Benefits) --- */}
-      <section className="sm:py-20 py-16 px-6 max-w-7xl mx-auto">
+      <section className="sm:py-18 py-12 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="sm:text-3xl text-[25px] md:text-4xl font-bold text-primary">Why Join Vidya ERP?</h2>
           <div className="w-20 h-1 bg-secondary mx-auto mt-4"></div>
@@ -278,7 +286,7 @@ const jobs = [
       </section>
 
       {/* --- Current Openings Section --- */}
-      <section id="openings" className="sm:py-16 py-8 px-6 bg-white">
+      <section id="openings" className="sm:py-14 py-6 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center mb-10 sm:mb-12">
             <div>
@@ -349,7 +357,7 @@ const jobs = [
           </div>
 
           {/* Modal Box: Simple Scale-up */}
-          <div className="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-[scaleIn_0.2s_ease-out]">
+          <div className="relative bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-[scaleIn_0.2s_ease-out]">
             
             <div className=" p-4 sm:p-6 border-b flex justify-between items-center bg-slate-50">
               <h2 className="text-xl font-bold text-primary">Application Form</h2>
@@ -358,30 +366,30 @@ const jobs = [
                setIsModalOpen(false)
                resetForm()
               }
-              } className="text-gray-400 hover:text-red-500"><FaTimes size={25}/></button>
+              } className="text-gray-400 cursor-pointer hover:text-red-500"><FaTimes size={25}/></button>
             </div>
 
             <form onSubmit={handleSubmit} className="p-6 space-y-3 sm:space-y-4" spellCheck={false}>
               <input type="text"   name="fullName"
   value={formData.fullName}
   onChange={handleChange}
-   placeholder="Full Name" className={`w-full p-3 border rounded-xl outline-none transition-all
-${errors.fullName ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-secondary"}
+   placeholder="Full Name" className={`w-full py-2 px-3 sm:px-3 sm:py-2.5  border rounded-lg outline-none transition-all
+${errors.fullName ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-gray-400"}
 `} required />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input type="email"
                   name="email"
   value={formData.email}
   onChange={handleChange}
-                placeholder="Email" className={`w-full p-3 border rounded-xl outline-none transition-all
-${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-secondary"}
+                placeholder="Email" className={`w-full py-2 px-3 sm:px-3 sm:py-2.5 border rounded-lg outline-none transition-all
+${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-gray-400"}
 `} required />
                 <input type="tel"
                   name="phone"
   value={formData.phone}
   onChange={handleChange}
-                placeholder="Phone" className={`w-full p-3 border rounded-xl outline-none transition-all
-${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-secondary"}
+                placeholder="Phone" className={`w-full py-2 px-3 sm:px-3 sm:py-2.5 border rounded-lg outline-none transition-all
+${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-gray-400"}
 `} required />
               </div>
               
@@ -390,8 +398,8 @@ ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:
   value={formData.position}
   onChange={handleChange}
            
-               className={`w-full p-3 border rounded-xl outline-none transition-all
-${errors.position ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-secondary"}
+               className={`w-full py-2 px-3 sm:px-3 sm:py-2.5 border rounded-lg outline-none transition-all
+${errors.position ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-gray-400"}
 `}
               >
                   <option value="">Select Role</option>
@@ -439,13 +447,49 @@ ${
                 )}
               </div>
 
-              <button disabled={loading} type="submit" className="w-full bg-secondary cursor-pointer text-white py-2 sm:py-4 rounded-xl font-bold text-lg   transition-colors">
+              <button disabled={loading} type="submit" className="w-full hover:scale-95 duration-300  bg-secondary cursor-pointer text-white py-2 sm:py-4 rounded-xl font-bold text-lg  transition-all">
                 {loading ? "submiting..." : "Submit Application"}
               </button>
             </form>
           </div>
         </div>
       )}
+
+<AnimatePresence>
+  {showToast && (
+    <motion.div
+      initial={{ opacity: 0, y: 100, x: "-50%" }} 
+      animate={{ opacity: 1, y: 0, x: "-50%" }}
+      exit={{ opacity: 0, y: 100, x: "-50%", transition: { duration: 0.2 } }}
+      // Responsive classes: w-[92%] mobile par, sm:w-auto desktop par
+      className="fixed bottom-5 sm:bottom-8 left-1/2 z-[9999] bg-[#10b981] text-white px-5 py-4 sm:px-8 sm:py-5 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-4 border border-white/20 backdrop-blur-md w-[92%] sm:w-auto min-w-[300px] max-w-[500px]"
+    >
+      {/* Icon: Mobile par thoda chota */}
+      <div className="bg-white/20 p-2 sm:p-3 rounded-full shrink-0">
+        <FaCheckCircle className="text-xl sm:text-2xl" />
+      </div>
+
+      <div className="flex-1">
+        <h4 className="font-black text-base sm:text-lg leading-none uppercase tracking-wider">
+          Success
+        </h4>
+        <p className="text-[13px] sm:text-sm font-bold opacity-90 mt-1.5 leading-tight sm:leading-relaxed">
+          Your Application form is Submitted. <br className="hidden sm:block" /> 
+          We will contact you very soon.
+        </p>
+      </div>
+
+      {/* Progress Bar (Timer) */}
+      <motion.div 
+        initial={{ width: "100%" }}
+        animate={{ width: "0%" }}
+        transition={{ duration: 4, ease: "linear" }}
+        className="absolute bottom-0 left-0 h-1.5 bg-white/30 rounded-full"
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
+
 <SideElements />
       <Footer />
     </div>

@@ -302,6 +302,7 @@ resetForm();
       }}
       type="tel"
       placeholder="Phone Number:"
+      maxLength={10}
       className={`w-full px-3 py-2 bg-gray-50 border rounded-md outline-none duration-200 focus:border-[#8c00ff54] 
       ${errors.phone ? "border-red-500" : "border-gray-200"}`}
     />
@@ -405,10 +406,15 @@ resetForm();
   <div className="w-full sm:max-w-[280px] max-w-[230px]   flex gap-2 h-9 sm:h-10 pointer-events-auto">
     
     {/* Enquire Now Button */}
-    <button className="flex-1 bg-primary text-white rounded-xl flex items-center justify-center gap-2 font-bold text-[12px] sm:text-[13px] uppercase tracking-wider active:scale-95 transition-all shadow-lg">
+    <a   onClick={() => {
+    document.getElementById("request-demo")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }} className="flex-1 bg-primary text-white rounded-xl flex items-center justify-center gap-2 font-bold text-[12px] sm:text-[13px] uppercase tracking-wider active:scale-95 transition-all shadow-lg">
       <FaPaperPlane className="text-secondary text-sm" />
       Enquire
-    </button>
+    </a>
 
     {/* Call Now Button */}
     <a 

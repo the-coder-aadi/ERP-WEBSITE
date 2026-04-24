@@ -1,11 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { FaSyncAlt } from 'react-icons/fa';
+import { FaSyncAlt, FaCheckCircle } from 'react-icons/fa';
+import { motion, AnimatePresence } from "framer-motion";
 
 const RequestDemo = () => {
  const [rotate, setRotate] = useState(false)
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedCaptcha, setGeneratedCaptcha] = useState("")
+  const [showToast, setShowToast] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
   fullName: "",
@@ -77,8 +79,9 @@ if (!formData.email) {
   newErrors.email = "Enter valid Gmail (example@gmail.com)";
 }
 
-  if (!formData.phone || formData.phone.length < 10)
-    newErrors.phone = "Valid phone required";
+ if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Enter valid 10 digit number";
+    }
 
   if (!formData.instituteName)
     newErrors.instituteName = "Institute name required";
@@ -132,7 +135,11 @@ setLoading(true);
       })
     });
 
-    alert("Form submitted successfully 🎉");
+                setShowToast(true);
+
+setTimeout(() => {
+  setShowToast(false);
+}, 6000);
 
     // reset form
     setFormData({
@@ -159,7 +166,7 @@ setLoading(true);
 };
 
   return (
-    <section className="w-full bg-[#F3F4F6] px-4 py-16 sm:px-4">
+    <section  className="w-full bg-[#F3F4F6] px-4 py-16 sm:px-4">
 
      <div className="flex flex-col items-center mb-8 sm:mb-14 text-center">
           <div className="w-14 h-2.5 bg-secondary rounded-full mb-6"></div>
@@ -230,6 +237,7 @@ Just fill in this form and our representatives will get in touch with you.
   name="phone"
   value={formData.phone}
   onChange={handleChange}
+  maxLength={10}
   type="tel"
   placeholder="+91..."
   className={`w-full border rounded-lg pl-10 pr-4 py-3 text-sm outline-none duration-200 focus:border-[#8c00ff54] 
@@ -377,6 +385,40 @@ Just fill in this form and our representatives will get in touch with you.
 
         </form>
       </div>
+      <AnimatePresence>
+  {showToast && (
+    <motion.div
+      initial={{ opacity: 0, y: 100, x: "-50%" }} 
+      animate={{ opacity: 1, y: 0, x: "-50%" }}
+      exit={{ opacity: 0, y: 100, x: "-50%", transition: { duration: 0.2 } }}
+      // Responsive classes: w-[92%] mobile par, sm:w-auto desktop par
+      className="fixed bottom-5 sm:bottom-8 left-1/2 z-[9999] bg-[#10b981] text-white px-5 py-4 sm:px-8 sm:py-5 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-4 border border-white/20 backdrop-blur-md w-[92%] sm:w-auto min-w-[300px] max-w-[500px]"
+    >
+      {/* Icon: Mobile par thoda chota */}
+      <div className="bg-white/20 p-2 sm:p-3 rounded-full shrink-0">
+        <FaCheckCircle className="text-xl sm:text-2xl" />
+      </div>
+
+      <div className="flex-1">
+        <h4 className="font-black text-base sm:text-lg leading-none uppercase tracking-wider">
+          Success
+        </h4>
+        <p className="text-[13px] sm:text-sm font-bold opacity-90 mt-1.5 leading-tight sm:leading-relaxed">
+          Your Request is received. <br className="hidden sm:block" /> 
+          We will contact you very soon.
+        </p>
+      </div>
+
+      {/* Progress Bar (Timer) */}
+      <motion.div 
+        initial={{ width: "100%" }}
+        animate={{ width: "0%" }}
+        transition={{ duration: 4, ease: "linear" }}
+        className="absolute bottom-0 left-0 h-1.5 bg-white/30 rounded-full"
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
     </section>
   );
 };

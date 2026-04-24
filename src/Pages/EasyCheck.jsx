@@ -412,7 +412,8 @@ const benefits = [
                 Student
               </span>
             </div>
-            <button className="bg-gradient-to-r from-[#0062ff] to-[#004dc2] text-white px-10 py-3 rounded-xl font-bold uppercase text-sm tracking-wider shadow-md hover:shadow-xl hover:scale-105 transition-all">
+            <button  
+   className="bg-gradient-to-r from-[#0062ff] to-[#004dc2] text-white px-10 py-3 rounded-xl font-bold uppercase text-sm tracking-wider shadow-md hover:shadow-xl hover:scale-105 transition-all">
               Download
             </button>
           </div>

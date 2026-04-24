@@ -342,7 +342,7 @@ const [showToast, setShowToast] = useState(false);
 <AnimatePresence>
   {showToast && (
     <motion.div
-      initial={{ opacity: 0, y: 100, x: "-50%" }} // X fix kiya taaki centering na bigde
+      initial={{ opacity: 0, y: 100, x: "-50%" }} 
       animate={{ opacity: 1, y: 0, x: "-50%" }}
       exit={{ opacity: 0, y: 100, x: "-50%", transition: { duration: 0.2 } }}
       // Responsive classes: w-[92%] mobile par, sm:w-auto desktop par

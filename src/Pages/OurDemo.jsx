@@ -2,6 +2,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import SideElements from "../Components/SideElements";
 import { FaSchool, FaUserGraduate, FaLaptop } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 function Demo() {
